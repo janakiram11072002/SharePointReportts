@@ -1,6 +1,7 @@
 package com.jhonny.SharePointReports.Utils;
 
 import com.microsoft.aad.msal4j.IHttpResponse;
+import okhttp3.MediaType;
 
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -18,17 +19,22 @@ public class HttpUtils
         client = HttpClient.newHttpClient();
     }
 
-    public HttpResponse<String> GetMethod(String url)
+    public HttpResponse<String> Get(String url)
     {
         //HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("url"))
+                .uri(URI.create(url))
                 .header("accept", "application/json")
                 .build();
         HttpResponse<String> response = null;
         try
         {
             response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            if(response.statusCode() != 200)
+            {
+                System.out.println("This request not a success. Status code = "+response.statusCode());
+                return  null;
+            }
         }
         catch (Exception e)
         {
@@ -39,34 +45,50 @@ public class HttpUtils
 
     }
 
-    public HttpResponse<String> PostRequest(String url, HashMap<String, String> header)
+    /// *Summary*
+    //
+    // Since the body json is not able to change from string to charset
+    //
+    // /
+    public HttpResponse<String> Post(String url, /*HashMap<String, String> header,*/ String body)
     {
         //HttpClient client = HttpClient.newHttpClient();
-        var headerJson = prepareHeader(header);
+        //var headerJson = prepareHeader(header);
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(url))
                 .header("accept", "application/json")
-                .POST(HttpRequest.BodyPublishers.ofString(headerJson))
+                .header("Content-Type", "application/json")
+                .POST(HttpRequest.BodyPublishers.ofString(body))
                 .build();
 
         HttpResponse<String> response = null;
+        //MediaType mediaType = MediaType.parse("application/json");
+
 
         try
         {
             response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            //System.out.println("Status Code = " + response.statusCode());
+            if(response.statusCode() != 200)
+            {
+                System.out.println("This request is not a success. Status code = "+response.statusCode());
+                return  null;
+            }
         }
         catch (Exception e)
         {
             System.out.println("Erroe in Post Request");
             throw new RuntimeException();
         }
+
         return response;
     }
 
     private String prepareHeader(HashMap<String, String> headers)
     {
+        if(headers == null) return "{}";
         String header = "{";
-        for(Map.Entry item : headers.entrySet())
+        for(Map.Entry<String,String> item : headers.entrySet())
         {
             header+="\""+item.getKey()+"\",\""+item.getValue()+"\"";
         }
