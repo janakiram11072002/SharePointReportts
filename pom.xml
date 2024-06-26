@@ -50,11 +50,6 @@
 		    <artifactId>bcpkix-jdk15on</artifactId>
 		    <version>1.68</version>
 		</dependency>
-		<dependency>
-			<groupId>Jhonny</groupId>
-			<artifactId>Jhonny</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
 	</dependencies>
 
 	<build>
