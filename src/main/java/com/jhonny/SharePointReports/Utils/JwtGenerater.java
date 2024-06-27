@@ -2,7 +2,10 @@ package com.jhonny.SharePointReports.Utils;
 
 import com.nimbusds.jose.JWSAlgorithm;
 import com.nimbusds.jose.JWSHeader;
+import com.nimbusds.jose.JWSSigner;
+import com.nimbusds.jose.crypto.RSASSASigner;
 import com.nimbusds.jwt.JWTClaimsSet;
+import com.nimbusds.jwt.SignedJWT;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 
@@ -28,13 +31,34 @@ public class JwtGenerater
 		this.AUDIENCE = prepareAudiece();
 	}
 	
-	private static void InitilizeSigner()
+	private JWSSigner InitilizeSigner()
 	{
-		
+		try {
+			return new RSASSASigner(new CertificateLoader(env.getProperty("Spring.Certificate.path").toString()).getPrivateKey());
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			return null;
+		}
 	}
-	private static void InitilizeSignedJWT()
+	private SignedJWT InitilizeSignedJWT()
 	{
-		
+		SignedJWT signed = new SignedJWT(this.jwsHeader, this.climbSet);
+		try
+		{
+			signed.sign(InitilizeSigner());
+		}
+		catch (Exception e)
+		{
+			System.out.println(e.getStackTrace());
+		}
+		return signed;
+	}
+
+	public String getJwtToken()
+	{
+		return InitilizeSignedJWT().serialize();
 	}
 	private String prepareAudiece()
 	{
