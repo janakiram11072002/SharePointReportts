@@ -8,11 +8,11 @@ public class AuthClient
     final private String authUrl = "https://login.microsoftonline.com/{0}/oauth2/v2.0/token";
     private String tenant_id, client_id, client_assertion, scope;
 
-    public AuthClient(String tenantId, String client_id, String client_assertion, String scope)
+    public AuthClient(String tenantId, String client_id, /*String client_assertion,*/ String scope)
     {
         this.tenant_id = tenantId;
         this.client_id = client_id;
-        this.client_assertion = client_assertion;
+        this.client_assertion = new JwtGenerater().getJwtToken();
         this.scope = scope;
     }   
 
