@@ -1,7 +1,7 @@
 package com.jhonny.SharePointReports.Utils;
 
-import com.microsoft.aad.msal4j.IHttpResponse;
-import okhttp3.MediaType;
+// import com.microsoft.aad.msal4j.IHttpResponse;
+// import okhttp3.MediaType;
 
 import java.net.URI;
 import java.net.http.HttpClient;
