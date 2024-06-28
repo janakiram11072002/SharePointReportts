@@ -21,6 +21,7 @@ public class JwtGenerater
 	final private String JWT_ID = java.util.UUID.randomUUID().toString();
 	final private String AUDIENCE;
 	private JWTClaimsSet climbSet;
+	private CertificateLoader cert;
 
 	private JWSHeader jwsHeader ;
 
@@ -29,12 +30,24 @@ public class JwtGenerater
 	public JwtGenerater() 
 	{
 		this.AUDIENCE = prepareAudiece();
+		try
+		{
+			cert = new CertificateLoader(env.getProperty("Spring.Certificate.path").toString());
+			prepareHeader(cert.getThumbPrint());
+			prepareClimbSet();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+
 	}
 	
 	private JWSSigner InitilizeSigner()
 	{
 		try {
-			return new RSASSASigner(new CertificateLoader(env.getProperty("Spring.Certificate.path").toString()).getPrivateKey());
+			return new RSASSASigner(cert.getPrivateKey());
 		}
 		catch (Exception e)
 		{
@@ -62,9 +75,9 @@ public class JwtGenerater
 	}
 	private String prepareAudiece()
 	{
-        return env.getProperty("Spring.jwt.AudienceEndPoint")+env.getProperty("Spring.jwt.TenantId")+env.getProperty("Spring.jwt.AudienceVersion");
+        return env.getProperty("spring.jwt.AudienceEndPoint")+env.getProperty("Spring.jwt.TenantId")+env.getProperty("Spring.jwt.AudienceVersion");
 	}
-	private void PrepareHeader(String ThumbPrint)
+	private void prepareHeader(String ThumbPrint)
 	{
 		JWSHeader header = null;
 		try
