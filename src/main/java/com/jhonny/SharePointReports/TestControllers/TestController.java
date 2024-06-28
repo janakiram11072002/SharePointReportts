@@ -1,6 +1,8 @@
 package com.jhonny.SharePointReports.TestControllers;
 
 import com.jhonny.SharePointReports.Utils.HttpUtils;
+import com.jhonny.SharePointReports.Utils.JwtGenerater;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,5 +27,11 @@ public class TestController
         if(url == null) url = "https://api.restful-api.dev/objects";
         String headers = "{ \"id\":\"7\", \"name\":\"AppleMacBookPro16\", \"data\":{ \"year\":2019, \"price\":1849.99, \"CPUmodel\":\"IntelCorei9\", \"Harddisksize\":\"1TB\" }, \"createdAt\":\"2022-11-21T20:06:23.986Z\" }";
         return new HttpUtils().Post(url,headers).body();
+    }
+
+    @GetMapping("/jwt")
+    public String jwt()
+    {
+        return new JwtGenerater().getJwtToken();
     }
 }
