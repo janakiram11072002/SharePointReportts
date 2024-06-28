@@ -4,6 +4,7 @@ import com.jhonny.SharePointReports.Utils.HttpUtils;
 import com.jhonny.SharePointReports.Utils.JwtGenerater;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,7 +22,7 @@ public class TestController
         return new HttpUtils().Get(url).body();
     }
 
-    @GetMapping("/post")
+    @PostMapping("/post")
     public String testPost(String url)
     {
         if(url == null) url = "https://api.restful-api.dev/objects";
