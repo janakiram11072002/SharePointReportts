@@ -1,6 +1,5 @@
 package com.jhonny.SharePointReports.Utils;
 
-import org.springframework.core.env.Environment;
 
 public class AuthClient 
 {
