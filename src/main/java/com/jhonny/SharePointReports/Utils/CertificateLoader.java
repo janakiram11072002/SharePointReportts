@@ -20,23 +20,23 @@ public class CertificateLoader
 	private String alias;
 	private Certificate cert;
 
-	private PrivateKey privateKey;
-	private String PublicKey;
-	private String ThumbPrint;
+	// private PrivateKey privateKey;
+	// private String PublicKey;
+	// private String ThumbPrint;
 	final private MessageDigest md;
 
 
 	public PrivateKey getPrivateKey() 
 	{
-		return privateKey;
+		return generatePrivateKey();
 	}
 	public String getPublicKey() 
 	{
-		return PublicKey;
+		return generatePublicKey();
 	}
-	private String getThumbPrint()
+	public String getThumbPrint()
 	{
-		return ThumbPrint;
+		return genereateThumbPrint();
 	}
 	private FileInputStream fis ;
 
@@ -69,7 +69,7 @@ public class CertificateLoader
 		}
 	}
 
-	private PrivateKey GeneratePrivateKey()
+	private PrivateKey generatePrivateKey()
 	{
 		try
 		{
@@ -85,7 +85,7 @@ public class CertificateLoader
 
 	}
 
-	private String GeneratePublicKey()
+	private String generatePublicKey()
 	{
 		try
 		{
@@ -100,13 +100,13 @@ public class CertificateLoader
 
 	}
 	
-	private String GenereateThumbPrint()
+	private String genereateThumbPrint()
 	{
 		try
 		{
 			md.update(cert.getEncoded());
 			byte[] dir = md.digest();
-			ThumbPrint = Base64.getEncoder().encodeToString(dir);
+			String ThumbPrint = Base64.getEncoder().encodeToString(dir);
 			return ThumbPrint;
 		}
 		catch (Exception e) {
