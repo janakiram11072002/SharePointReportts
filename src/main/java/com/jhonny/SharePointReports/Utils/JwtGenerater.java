@@ -16,6 +16,12 @@ public class JwtGenerater
 	@Autowired
 	Environment env;
 	private String JwtToken;
+	/*
+	 * Audience
+	 * Spring.jwt.AudienceEndPoint="https://login.microsoftonline.com/"
+		Spring.jwt.AudienceVersion = "v2.0"
+	 */
+	final private String AudienceEndPoint = "https://login.microsoftonline.com/%/v2.0";
 	final private Date EXPIRY_DATE = new Date(System.currentTimeMillis() + 3600 * 1000);
 	final private Date NOT_BEFORE_TIME = new Date(1601519114);
 	final private String JWT_ID = java.util.UUID.randomUUID().toString();
@@ -75,7 +81,7 @@ public class JwtGenerater
 	}
 	private String prepareAudiece()
 	{
-        return env.getProperty("spring.jwt.AudienceEndPoint")+env.getProperty("Spring.jwt.TenantId")+env.getProperty("Spring.jwt.AudienceVersion");
+        return String.format(this.AudienceEndPoint,env.getProperty("spring.jwt.tenantid"));
 	}
 	private void prepareHeader(String ThumbPrint)
 	{
