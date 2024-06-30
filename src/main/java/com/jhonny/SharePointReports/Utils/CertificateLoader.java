@@ -19,6 +19,7 @@ public class CertificateLoader
 	private KeyStore keyStore;
 	private String alias;
 	private Certificate cert;
+	private String Key;
 
 	// private PrivateKey privateKey;
 	// private String PublicKey;
@@ -45,9 +46,10 @@ public class CertificateLoader
 	{
 		 md = MessageDigest.getInstance("SHA-1");
 	}
-	public CertificateLoader(String CertPath) throws NoSuchAlgorithmException
+	public CertificateLoader(String CertPath, String CertKey) throws NoSuchAlgorithmException
 	{
 		this();
+		this.Key = CertKey;
 		try
 		{
 			//FileInputStream fis = new FileInputStream(CertPath);
@@ -62,9 +64,11 @@ public class CertificateLoader
 			}
 
 			keyStore = KeyStore.getInstance("PKCS12");
-			keyStore.load(fis, env.getProperty("Spring.Certificate.Key").toCharArray());
+			keyStore.load(fis, this.Key.toCharArray());
+			alias = keyStore.aliases().nextElement();
 		}
 		catch (Exception e) {
+			System.out.println(e.getMessage());
 			// TODO: handle exception
 		}
 	}
@@ -74,12 +78,13 @@ public class CertificateLoader
 		try
 		{
 			//String alias = keyStore.aliases().nextElement();
-			Key key  = keyStore.getKey(alias, env.getProperty("Spring.Certificate.Key").toCharArray());
+			Key key  = keyStore.getKey(alias, this.Key.toCharArray());
 			PrivateKey privateKey = (PrivateKey)key;
 			return privateKey;
 		}
 		catch (Exception e) {
 			// TODO: handle exception
+
 			return null;
 		}
 
