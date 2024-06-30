@@ -6,15 +6,14 @@ import com.nimbusds.jose.JWSSigner;
 import com.nimbusds.jose.crypto.RSASSASigner;
 import com.nimbusds.jwt.JWTClaimsSet;
 import com.nimbusds.jwt.SignedJWT;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.env.Environment;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
 
 import java.util.Date;
 
-public class JwtGenerater 
+public class JwtGenerater
 {
-	@Autowired
-	Environment env;
+
 	private String JwtToken;
 	/*
 	 * Audience
@@ -30,15 +29,22 @@ public class JwtGenerater
 	private CertificateLoader cert;
 
 	private JWSHeader jwsHeader ;
-
+	private AppConfig appConfig;
 
 	
 	public JwtGenerater() 
 	{
+		/*
+		 to prepare a application context and make use of Spring bean
+		ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+		AppConfig appConfig = context.getBean(AppConfig.class);
+		 */
+		appConfig = new AnnotationConfigApplicationContext(AppConfig.class).getBean(AppConfig.class);
+
 		this.AUDIENCE = prepareAudiece();
 		try
 		{
-			cert = new CertificateLoader(env.getProperty("Spring.Certificate.path").toString());
+			cert = new CertificateLoader(appConfig.getCertPath(), appConfig.getCertKey());
 			prepareHeader(cert.getThumbPrint());
 			prepareClimbSet();
 		}
@@ -81,7 +87,7 @@ public class JwtGenerater
 	}
 	private String prepareAudiece()
 	{
-        return String.format(this.AudienceEndPoint,env.getProperty("spring.jwt.tenantid"));
+        return String.format(this.AudienceEndPoint,appConfig.getTenatId());
 	}
 	private void prepareHeader(String ThumbPrint)
 	{
@@ -104,8 +110,8 @@ public class JwtGenerater
 		try
 		{
 			this.climbSet = new JWTClaimsSet.Builder()
-					.issuer(env.getProperty("Spring.jwt.ClientId="))
-					.subject(env.getProperty("Spring.jwt.ClientId="))
+					.issuer(appConfig.getClientId())
+					.subject(appConfig.getClientId())
 					.audience(this.AUDIENCE)
 					.expirationTime(this.EXPIRY_DATE)
 					.notBeforeTime(this.NOT_BEFORE_TIME)
