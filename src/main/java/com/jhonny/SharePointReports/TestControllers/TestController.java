@@ -1,5 +1,6 @@
 package com.jhonny.SharePointReports.TestControllers;
 
+import com.jhonny.SharePointReports.Utils.AuthClient;
 import com.jhonny.SharePointReports.Utils.HttpUtils;
 import com.jhonny.SharePointReports.Utils.JwtGenerater;
 
@@ -34,5 +35,10 @@ public class TestController
     public String jwt()
     {
         return new JwtGenerater().getJwtToken();
+    }
+    @GetMapping("/token")
+    public String token()
+    {
+        return new AuthClient("https://42jghx-admin.sharepoint.com").getAccessToken();
     }
 }
