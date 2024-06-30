@@ -57,7 +57,8 @@ public class HttpUtils
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(url))
                 .header("accept", "application/json")
-                .header("Content-Type", "application/json")
+                //.header("Content-Type", "application/json")
+                .header("Content-Type","application/x-www-form-urlencoded")
                 .POST(HttpRequest.BodyPublishers.ofString(body))
                 .build();
 
@@ -77,7 +78,7 @@ public class HttpUtils
         }
         catch (Exception e)
         {
-            System.out.println("Erroe in Post Request");
+            System.out.println("Error in Post Request");
             throw new RuntimeException();
         }
 
