@@ -109,6 +109,7 @@ public class CertificateLoader
 	{
 		try
 		{
+			cert = keyStore.getCertificate(alias);
 			md.update(cert.getEncoded());
 			byte[] dir = md.digest();
 			String ThumbPrint = Base64.getEncoder().encodeToString(dir);
