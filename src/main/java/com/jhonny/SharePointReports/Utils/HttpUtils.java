@@ -85,6 +85,26 @@ public class HttpUtils
         return response;
     }
 
+    private static String buildFormData(Map<String, String> data) {
+        StringBuilder builder = new StringBuilder();
+        for (Map.Entry<String, String> entry : data.entrySet()) {
+            if (builder.length() > 0) {
+                builder.append("&");
+            }
+            try
+            {
+                builder.append(URLEncoder.encode(entry.getKey(), StandardCharsets.UTF_8.name()));
+                builder.append("=");
+                builder.append(URLEncoder.encode(entry.getValue(), StandardCharsets.UTF_8.name()));
+            }
+            catch(Exception e)
+            {
+                System.out.println(e.getMessage());
+            }
+        }
+        return builder.toString();
+    }
+
     private String prepareHeader(HashMap<String, String> headers)
     {
         if(headers == null) return "{}";
