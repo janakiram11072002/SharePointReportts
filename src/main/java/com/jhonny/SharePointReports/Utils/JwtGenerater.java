@@ -20,7 +20,7 @@ public class JwtGenerater
 	 * Spring.jwt.AudienceEndPoint="https://login.microsoftonline.com/"
 		Spring.jwt.AudienceVersion = "v2.0"
 	 */
-	final private String AudienceEndPoint = "https://login.microsoftonline.com/{0}/v2.0";
+	final private String AudienceEndPoint = "https://login.microsoftonline.com/%s/v2.0";
 	final private Date EXPIRY_DATE = new Date(System.currentTimeMillis() + 3600 * 1000);
 	final private Date NOT_BEFORE_TIME = new Date(1601519114);
 	final private String JWT_ID = java.util.UUID.randomUUID().toString();
