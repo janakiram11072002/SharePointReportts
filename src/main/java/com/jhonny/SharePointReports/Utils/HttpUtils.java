@@ -1,12 +1,16 @@
 package com.jhonny.SharePointReports.Utils;
 
+import java.io.UnsupportedEncodingException;
+
 // import com.microsoft.aad.msal4j.IHttpResponse;
 // import okhttp3.MediaType;
 
 import java.net.URI;
+import java.net.URLEncoder;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -50,7 +54,7 @@ public class HttpUtils
     // Since the body json is not able to change from string to charset
     //
     // /
-    public HttpResponse<String> Post(String url, /*HashMap<String, String> header,*/ String body)
+    public HttpResponse<String> Post(String url, Map<String,String> body)
     {
         //HttpClient client = HttpClient.newHttpClient();
         //var headerJson = prepareHeader(header);
@@ -59,7 +63,7 @@ public class HttpUtils
                 .header("accept", "application/json")
                 //.header("Content-Type", "application/json")
                 .header("Content-Type","application/x-www-form-urlencoded")
-                .POST(HttpRequest.BodyPublishers.ofString(body))
+                .POST(HttpRequest.BodyPublishers.ofString(buildFormData(body)))
                 .build();
 
         HttpResponse<String> response = null;
