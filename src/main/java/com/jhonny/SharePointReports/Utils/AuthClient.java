@@ -10,17 +10,18 @@ public class AuthClient
 {
     final private String clientAssertionType = "urn:ietf:params:oauth:client-assertion-type:jwt-bearer";
     final private String authUrl = "https://login.microsoftonline.com/%s/oauth2/v2.0/token";
+    final private String adminSiteScopeTemplate = "https://%s-admin.sharepoint.com/.default";
     //final private String bodyPattern = "\"grant_type=client_credentials&client_id=%s&client_assertion=%s&client_assertion_type=%s&scope=%s";
-    private String client_assertion, scope;
+    private String client_assertion;
     private AppConfig appConfig;
 
-    public AuthClient(String scope)
+    public AuthClient()
     {
 //        this.tenant_id = tenantId;
 //        this.client_id = client_id;
         this.appConfig = new AnnotationConfigApplicationContext(AppConfig.class).getBean(AppConfig.class);
         this.client_assertion = new JwtGenerater().getJwtToken();
-        this.scope = scope+"/.default";
+        //this.scope = scope+"/.default";
     }   
 
     private String prepareUrl()
@@ -28,14 +29,14 @@ public class AuthClient
         String url = String.format(this.authUrl, appConfig.getTenatId());
         return url;
     }
-    public Map<String, String> prepareBodyAsForm()
+    public Map<String, String> prepareBodyAsForm(String requiredScope)
     {
         Map<String, String> formData = new HashMap<>();
         formData.put("grant_type","client_credentials");
         formData.put("client_id", appConfig.getClientId());
         formData.put("client_assertion",client_assertion);
         formData.put("client_assertion_type",clientAssertionType);
-        formData.put("scope",scope);
+        formData.put("scope",requiredScope);
         return formData;
     }
     // public String prepareBodyAsURLEncoder()
@@ -57,11 +58,29 @@ public class AuthClient
     //             this.scope);
     //     return body;
     // }
-    public String getAccessToken()
+
+    // public String getAccessToken()
+    // {
+    //     String tokenResponse = new HttpUtils().Post(prepareUrl(), prepareBodyAsForm(this.scope)).body();
+    //     //to parse the response object and get the token form it.
+    //     // return tokenResponse.toString();
+    //     TokenResponse response = JsonUtils.toObject(tokenResponse, TokenResponse.class);
+    //     return response.getAccess_token();
+    // }
+
+    public String GetAdminToken()
     {
-        String tokenResponse = new HttpUtils().Post(prepareUrl(), prepareBodyAsForm()).body();
-        //to parse the response object and get the token form it.
-        // return tokenResponse.toString();
+        String tokenResponse = new HttpUtils()
+                        .Post(prepareUrl(), prepareBodyAsForm(String.format(adminSiteScopeTemplate, appConfig.getTenantName())))
+                        .body();
+        TokenResponse response = JsonUtils.toObject(tokenResponse, TokenResponse.class);
+        return response.getAccess_token();
+    }
+    public String GetClientToken(String scope)
+    {
+        String tokenResponse = new HttpUtils()
+                        .Post(prepareUrl(), prepareBodyAsForm(scope+"/.default"))
+                        .body();
         TokenResponse response = JsonUtils.toObject(tokenResponse, TokenResponse.class);
         return response.getAccess_token();
     }
