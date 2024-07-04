@@ -20,7 +20,7 @@ public class TestController
     {
         if(url == null) url = "https://api.restful-api.dev/objects";
 
-        return new HttpUtils().Get(url).body();
+        return new HttpUtils().Get(url,null).body();
     }
 
     @PostMapping("/post")
@@ -40,6 +40,12 @@ public class TestController
     @GetMapping("/token")
     public String token()
     {
-        return new AuthClient("https://42jghx-admin.sharepoint.com").getAccessToken();
+        return new AuthClient().GetAdminToken();
+    }
+    @GetMapping("/allsites")
+    public String allStie()
+    {
+        String url = "https://42jghx-admin.sharepoint.com/_api/search/query?querytext='(contentclass:STS_Site)(contentclass:STS_Web)'&trimduplicates=false&rowlimit=5000&selectproperties='Title,Url,Path,ParentLink'";
+        return new HttpUtils().Get(url, new AuthClient().GetAdminToken()).body();
     }
 }
