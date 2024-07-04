@@ -23,12 +23,13 @@ public class HttpUtils
         client = HttpClient.newHttpClient();
     }
 
-    public HttpResponse<String> Get(String url)
+    public HttpResponse<String> Get(String url, String token)
     {
         //HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(url))
                 .header("accept", "application/json")
+                .header("Authorization", "Bearer "+token)
                 .build();
         HttpResponse<String> response = null;
         try
