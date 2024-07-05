@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/test")
@@ -20,7 +21,7 @@ public class TestController
     {
         if(url == null) url = "https://api.restful-api.dev/objects";
 
-        return new HttpUtils().Get(url,null).body();
+        return new HttpUtils().Get(url,null,null).body();
     }
 
     @PostMapping("/post")
@@ -45,7 +46,10 @@ public class TestController
     @GetMapping("/allsites")
     public String allStie()
     {
-        String url = "https://42jghx-admin.sharepoint.com/_api/search/query?querytext='(contentclass:STS_Site)(contentclass:STS_Web)'&trimduplicates=false&rowlimit=5000&selectproperties='Title,Url,Path,ParentLink'";
-        return new HttpUtils().Get(url, new AuthClient().GetAdminToken()).body();
+        String url = "https://42jghx-admin.sharepoint.com/_api/search/query";
+        Map<String, String> body = new HashMap<>();
+        body.put("querytext","\'contentclass:STS_Site Path:\"https://42jghx.sharepoint.com/*\"\'");
+        body.put("rowlimit","500");
+        return new HttpUtils().Get(url, new AuthClient().GetAdminToken(), body).body();
     }
 }
