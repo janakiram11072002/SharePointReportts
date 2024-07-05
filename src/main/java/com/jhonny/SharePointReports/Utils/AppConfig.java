@@ -16,6 +16,7 @@ import org.springframework.stereotype.Component;
 @PropertySource("classpath:application.properties")
 public class AppConfig
 {
+    final private String adminSiteTemplate = "https://%s-admin.sharepoint.com";
     @Value("${app.config.tenantid}")
     private String tenantid;
     @Value("${app.config.tenantname}")
@@ -45,6 +46,9 @@ public class AppConfig
 
     public String getClientId(){
         return clientid;
+    public String getTenantAdminSite()
+    {
+        return String.format(adminSiteTemplate, tenantname);
     }
 
     /*@Bean(value = "AppConfig")
