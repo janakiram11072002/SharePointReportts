@@ -23,12 +23,15 @@ public class HttpUtils
         client = HttpClient.newHttpClient();
     }
 
-    public HttpResponse<String> Get(String url, String token)
+    public HttpResponse<String> Get(String url, String token, Map<String, String> query)
     {
         //HttpClient client = HttpClient.newHttpClient();
+        String encodedQuery = buildFormData(query);
+        String encodedUrl = encodedQuery.length() > 0 ? url+"?"+encodedQuery : url;
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(url))
+                .uri(URI.create(encodedUrl))
                 .header("accept", "application/json")
+                //.header("Content-Type","application/x-www-form-urlencoded")
                 .header("Authorization", "Bearer "+token)
                 .build();
         HttpResponse<String> response = null;
