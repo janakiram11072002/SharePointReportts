@@ -46,6 +46,7 @@ public class AppConfig
 
     public String getClientId(){
         return clientid;
+    }
     public String getTenantAdminSite()
     {
         return String.format(adminSiteTemplate, tenantname);
