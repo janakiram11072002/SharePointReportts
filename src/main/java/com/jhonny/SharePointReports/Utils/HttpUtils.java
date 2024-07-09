@@ -30,7 +30,8 @@ public class HttpUtils
         String encodedUrl = encodedQuery.length() > 0 ? url+"?"+encodedQuery : url;
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(encodedUrl))
-                .header("accept", "application/json")
+                .header("Accept", "application/json;odata=verbose")
+                .header("Content-Type", "application/json;odata=verbose")
                 //.header("Content-Type","application/x-www-form-urlencoded")
                 .header("Authorization", "Bearer "+token)
                 .build();
@@ -64,7 +65,7 @@ public class HttpUtils
         //var headerJson = prepareHeader(header);
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(url))
-                .header("accept", "application/json")
+                .header("accept", "application/json;odata=verbose")
                 //.header("Content-Type", "application/json")
                 .header("Content-Type","application/x-www-form-urlencoded")
                 .POST(HttpRequest.BodyPublishers.ofString(buildFormData(body)))
