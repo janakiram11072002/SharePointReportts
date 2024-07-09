@@ -1,12 +1,23 @@
 package com.jhonny.SharePointReports.Modules.Operations;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.env.Environment;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import com.jhonny.SharePointReports.Utils.AppConfig;
 
 public class DataCollector
 {
-    @Autowired
-    Environment env;
+    private AppConfig appConfig;
+    
+    public void DataCollector()
+    {
+        appConfig = new AnnotationConfigApplicationContext(AppConfig.class).getBean(AppConfig.class);
+
+    }
+
+    public void initilize()
+    {
+
+    }
     /**
      * to get all sites under admin site in single command
      * "https://42jghx-admin.sharepoint.com/_api/search/query
@@ -21,7 +32,7 @@ public class DataCollector
     }
     public void getAllSitesFromAdmin()
     {
-        
+
     }
     public void getSiteProperties(String url)
     {
