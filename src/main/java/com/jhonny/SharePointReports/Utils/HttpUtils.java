@@ -30,10 +30,10 @@ public class HttpUtils
         String encodedUrl = encodedQuery.length() > 0 ? url+"?"+encodedQuery : url;
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(encodedUrl))
-                .header("Accept", "application/json;odata=verbose")
-                .header("Content-Type", "application/json;odata=verbose")
+                .setHeader("Accept", "application/json;odata=verbose")
+                .setHeader("Content-Type", "application/json;odata=verbose")
                 //.header("Content-Type","application/x-www-form-urlencoded")
-                .header("Authorization", "Bearer "+token)
+                .setHeader("Authorization", "Bearer "+token)
                 .build();
         HttpResponse<String> response = null;
         try
