@@ -95,6 +95,7 @@ public class HttpUtils
     }
 
     private static String buildFormData(Map<String, String> data) {
+        if(data == null || data.size()==0) return "";
         StringBuilder builder = new StringBuilder();
         for (Map.Entry<String, String> entry : data.entrySet()) {
             if (builder.length() > 0) {
