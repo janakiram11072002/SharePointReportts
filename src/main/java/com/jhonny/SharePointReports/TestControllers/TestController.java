@@ -79,24 +79,26 @@ public class TestController
     @GetMapping("/site")
     public String getSite(@RequestParam  String url)
     {
-//        String url = "https://42jghx.sharepoint.com/_api/search/query";
+        // String url = "https://42jghx.sharepoint.com/_api/search/query";
+        url = "https://42jghx.sharepoint.com/sites/1gate";
         Map<String, String> body = new HashMap<>();
 //        body.put("querytext","\'contentclass:STS_Site Path:\"https://42jghx.sharepoint.com/*\"\'");
 //        body.put("rowlimit","500");
 //        body.put("querytext", "'(contentclass:STS_Web)'");
 //        body.put("trimduplicates","false");
-        body.put("selectproperties", "'Title,Url,Path,Usage'");
+        body.put("selectproperties", "'Owner,Url,Path,Usage'");
 //        body.put("RowLimit","500");
 //        body.put("startrow",String.valueOf("0"));
         url+="/_api/site";
-        return new HttpUtils().Get(url, new AuthClient().GetClientToken("https://42jghx.sharepoint.com"), null).body();
+        return new HttpUtils().Get(url, new AuthClient().GetClientToken("https://42jghx.sharepoint.com"), body).body();
     }
 
 
     @GetMapping("/test")
     public String testDataColecor()
     {
-        new DataCollector().initilize();
+        // new DataCollector().initilize();
+        new DataCollector().getAllWebsFromAdmin();
         return "success";
     }
 }
