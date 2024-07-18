@@ -1,13 +1,13 @@
 package com.jhonny.SharePointReports.Modules.Operations;
 
-import com.jhonny.SharePointReports.PersistenceModels.Cell;
-import com.jhonny.SharePointReports.PersistenceModels.Row;
-import com.jhonny.SharePointReports.PersistenceModels.SiteUrlFromAdmin;
 import com.jhonny.SharePointReports.Utils.AuthClient;
 import com.jhonny.SharePointReports.Utils.HttpUtils;
 import com.jhonny.SharePointReports.Utils.JsonUtils;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import com.jhonny.SharePointReports.PersistenceModels.MetaData_Objects.Cell;
+import com.jhonny.SharePointReports.PersistenceModels.MetaData_Objects.Row;
+import com.jhonny.SharePointReports.PersistenceModels.MetaData_Objects.SiteUrlFromAdmin;
 import com.jhonny.SharePointReports.Utils.AppConfig;
 
 import java.net.http.HttpClient;
