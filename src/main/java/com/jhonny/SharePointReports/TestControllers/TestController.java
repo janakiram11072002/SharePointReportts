@@ -44,7 +44,7 @@ public class TestController
     @GetMapping("/ctoken")
     public String getClientToken()
     {
-        return new AuthClient().GetClientToken("https://42jghx.sharepoint.com");
+        return new AuthClient().GetClientToken();
     }
     @GetMapping("/allsites")
     public String allStie()
@@ -90,7 +90,7 @@ public class TestController
 //        body.put("RowLimit","500");
 //        body.put("startrow",String.valueOf("0"));
         url+="/_api/site";
-        return new HttpUtils().Get(url, new AuthClient().GetClientToken("https://42jghx.sharepoint.com"), body).body();
+        return new HttpUtils().Get(url, new AuthClient().GetClientToken(), body).body();
     }
 
 
