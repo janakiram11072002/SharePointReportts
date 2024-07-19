@@ -97,8 +97,8 @@ public class TestController
     @GetMapping("/test")
     public String testDataColecor()
     {
-        // new DataCollector().initilize();
-        new DataCollector().getAllWebsFromAdmin();
+        new DataCollector().initilize();
+        //new DataCollector().getAllWebsFromAdmin();
         return "success";
     }
 }
