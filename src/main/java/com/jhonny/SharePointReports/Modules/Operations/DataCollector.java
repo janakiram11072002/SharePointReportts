@@ -1,5 +1,7 @@
 package com.jhonny.SharePointReports.Modules.Operations;
 
+import com.jhonny.SharePointReports.PersistenceModels.MetaData_Objects.SiteProperties.*;
+import com.jhonny.SharePointReports.PersistenceModels.Site;
 import com.jhonny.SharePointReports.Utils.AuthClient;
 import com.jhonny.SharePointReports.Utils.HttpUtils;
 import com.jhonny.SharePointReports.Utils.JsonUtils;
@@ -8,11 +10,6 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import com.jhonny.SharePointReports.PersistenceModels.MetaData_Objects.Cell;
 import com.jhonny.SharePointReports.PersistenceModels.MetaData_Objects.Row;
 import com.jhonny.SharePointReports.PersistenceModels.MetaData_Objects.SiteUrlFromAdmin;
-import com.jhonny.SharePointReports.PersistenceModels.MetaData_Objects.SiteProperties.SiteOwners;
-import com.jhonny.SharePointReports.PersistenceModels.MetaData_Objects.SiteProperties.SiteProperties;
-import com.jhonny.SharePointReports.PersistenceModels.MetaData_Objects.SiteProperties.SiteSecondaryContact;
-import com.jhonny.SharePointReports.PersistenceModels.MetaData_Objects.SiteProperties.SiteUsage;
-import com.jhonny.SharePointReports.PersistenceModels.MetaData_Objects.SiteProperties.StieAudit;
 import com.jhonny.SharePointReports.Utils.AppConfig;
 
 import java.net.http.HttpClient;
@@ -146,31 +143,32 @@ public class DataCollector
         String response = new HttpUtils()
             .Get(endpoint, new AuthClient().GetClientToken(),null)
             .body();
-        SiteProperties siteproperty = JsonUtils.toObject(response, SiteProperties.class);
+        Site site = new Site(JsonUtils.toObject(response, SiteProperties.class));
+
         //Site Owner Details
         response = new HttpUtils()
             .Get(endpoint+"/Owner", new AuthClient().GetClientToken(),null)
             .body();
-        SiteOwners siteOwners = JsonUtils.toObject(response, SiteOwners.class);
+        site.updateOwner(JsonUtils.toObject(response, SiteOwners.class));
 
         //Site Usage
         response = new HttpUtils()
-            .Get(endpoint+"/secondarycontact", new AuthClient().GetClientToken(),null)
+            .Get(endpoint+"/usage", new AuthClient().GetClientToken(),null)
             .body();
-        SiteUsage siteUsage = JsonUtils.toObject(response, SiteUsage.class);
+        site.updateUsage(JsonUtils.toObject(response, SiteUsage.class));
 
         //Site Secondary Contact
         response = new HttpUtils()
         .Get(endpoint+"/secondarycontact", new AuthClient().GetClientToken(),null)
         .body();
-        SiteSecondaryContact siteSecondaryContact = JsonUtils.toObject(response, SiteSecondaryContact.class);
+        site.updateSecondaryContact(JsonUtils.toObject(response, SiteSecondaryContact.class));
 
 
         //Site Audit
         response = new HttpUtils()
             .Get(endpoint+"/audit", new AuthClient().GetClientToken(),null)
             .body();
-        StieAudit stieAudit = JsonUtils.toObject(response, StieAudit.class);
+        site.updateAudit(JsonUtils.toObject(response, SiteAudit.class));
 
         System.out.println(response);
         //Site Audit
