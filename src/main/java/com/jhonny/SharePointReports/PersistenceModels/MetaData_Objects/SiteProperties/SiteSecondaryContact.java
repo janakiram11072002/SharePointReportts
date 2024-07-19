@@ -8,4 +8,12 @@ public class SiteSecondaryContact
 {
     @JsonProperty("SecondaryContact")
     private String SecondaryContact;
+
+    public String getSecondaryContact() {
+        return SecondaryContact;
+    }
+
+    public void setSecondaryContact(String secondaryContact) {
+        SecondaryContact = secondaryContact;
+    }
 }
