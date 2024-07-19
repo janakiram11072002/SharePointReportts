@@ -11,6 +11,7 @@ public class AuthClient
     final private String clientAssertionType = "urn:ietf:params:oauth:client-assertion-type:jwt-bearer";
     final private String authUrl = "https://login.microsoftonline.com/%s/oauth2/v2.0/token";
     final private String adminSiteScopeTemplate = "https://%s-admin.sharepoint.com/.default";
+    final private String siteScopeTemplate = "https://%s.sharepoint.com/.default";
     //final private String bodyPattern = "\"grant_type=client_credentials&client_id=%s&client_assertion=%s&client_assertion_type=%s&scope=%s";
     private String client_assertion;
     private AppConfig appConfig;
@@ -76,10 +77,10 @@ public class AuthClient
         TokenResponse response = JsonUtils.toObject(tokenResponse, TokenResponse.class);
         return response.getAccess_token();
     }
-    public String GetClientToken(String scope)
+    public String GetClientToken(/*String scope*/)
     {
         String tokenResponse = new HttpUtils()
-                        .Post(prepareUrl(), prepareBodyAsForm(scope+"/.default"))
+                        .Post(prepareUrl(), prepareBodyAsForm(String.format(siteScopeTemplate, appConfig.getTenantName())))
                         .body();
         TokenResponse response = JsonUtils.toObject(tokenResponse, TokenResponse.class);
         return response.getAccess_token();
