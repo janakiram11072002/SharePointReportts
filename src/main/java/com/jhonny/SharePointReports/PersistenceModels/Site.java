@@ -2,13 +2,14 @@ package com.jhonny.SharePointReports.PersistenceModels;
 
 
 import com.jhonny.SharePointReports.PersistenceModels.MetaData_Objects.SiteProperties.*;
+import com.jhonny.SharePointReports.Utils.enums.SiteType;
 
 import java.util.Date;
 
 public class Site
 {
-
     private String id;
+    private String siteType;
     private boolean allowCreateDeclarativeWorkflow;
     private boolean allowDesigner;
     private boolean allowMasterPageEditing;
@@ -69,6 +70,9 @@ public class Site
 
     public Site(SiteProperties source)
     {
+        
+        this.url = source.getUrl();
+        this.siteType = (source.getUrl().contains("-my") || source.getUrl().contains("-my.sharepoint.com/personal")) ? SiteType.OneDrive.toString() : SiteType.SharePoint.toString();
         this.allowCreateDeclarativeWorkflow = source.isAllowCreateDeclarativeWorkflow();
         this.allowDesigner = source.isAllowDesigner();
         this.allowMasterPageEditing = source.isAllowMasterPageEditing();
@@ -111,7 +115,6 @@ public class Site
         this.upgradeScheduled = source.isUpgradeScheduled();
         this.upgradeScheduledDate = source.getUpgradeScheduledDate();
         this.upgrading = source.isUpgrading();
-        this.url = source.getUrl();
         this.writeLocked = source.isWriteLocked();
     }
 
