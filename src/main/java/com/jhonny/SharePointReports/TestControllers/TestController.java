@@ -94,10 +94,10 @@ public class TestController
     }
 
     @GetMapping("/web")
-    public String getWeb(@RequestParam  String url)
+    public String getWeb(@RequestParam  String endpoint)
     {
         // String url = "https://42jghx.sharepoint.com/_api/search/query";
-        url = "https://42jghx.sharepoint.com/sites/1gate";
+        String url = "https://42jghx.sharepoint.com/sites/1gate";
         Map<String, String> body = new HashMap<>();
 //        body.put("querytext","\'contentclass:STS_Site Path:\"https://42jghx.sharepoint.com/*\"\'");
 //        body.put("rowlimit","500");
@@ -106,7 +106,7 @@ public class TestController
 //        body.put("selectproperties", "'Owner,Url,Path,Usage'");
 //        body.put("RowLimit","500");
 //        body.put("startrow",String.valueOf("0"));
-        url+="/_api/web";
+        url+="/_api/web"+endpoint;
         return new HttpUtils().Get(url, new AuthClient().GetClientToken(), body).body();
     }
 
