@@ -1,6 +1,112 @@
 package com.jhonny.SharePointReports.PersistenceModels.MetaData_Objects.WebProperties;
 
-public class WebProperties {
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.util.Date;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class WebProperties
+{
+    @JsonProperty("AllowRssFeeds")
+    private boolean AllowRssFeeds;
+    @JsonProperty("AlternateCssUrl")
+    private String AlternateCssUrl;
+    @JsonProperty("AppInstanceId")
+    private String AppInstanceId;
+    @JsonProperty("ClassicWelcomePage")
+    private String ClassicWelcomePage;
+    @JsonProperty("Configuration")
+    private int Configuration;
+    @JsonProperty("Created")
+    private Date Created;
+    @JsonProperty("CustomMasterUrl")
+    private String CustomMasterUrl;
+    @JsonProperty("Description")
+    private String Description;
+    @JsonProperty("DesignPackageId")
+    private String DesignPackageId;
+    @JsonProperty("DocumentLibraryCalloutOfficeWebAppPreviewersDisabled")
+    private boolean DocumentLibraryCalloutOfficeWebAppPreviewersDisabled;
+    @JsonProperty("EnableMinimalDownload")
+    private boolean EnableMinimalDownload;
+    @JsonProperty("FooterEmphasis")
+    private int FooterEmphasis;
+    @JsonProperty("FooterEnabled")
+    private boolean FooterEnabled;
+    @JsonProperty("FooterLayout")
+    private int FooterLayout;
+    @JsonProperty("HeaderEmphasis")
+    private int HeaderEmphasis;
+    @JsonProperty("HeaderLayout")
+    private int HeaderLayout;
+    @JsonProperty("HideTitleInHeader")
+    private boolean HideTitleInHeader;
+    @JsonProperty("HorizontalQuickLaunch")
+    private boolean HorizontalQuickLaunch;
+    @JsonProperty("Id")
+    private String Id;
+    @JsonProperty("IsEduClass")
+    private boolean  IsEduClass;
+    @JsonProperty("IsEduClassProvisionChecked")
+    private boolean  IsEduClassProvisionChecked;
+    @JsonProperty("IsEduClassProvisionPending")
+    private boolean  IsEduClassProvisionPending;
+    @JsonProperty("IsHomepageModernized")
+    private boolean  IsHomepageModernized;
+    @JsonProperty("IsMultilingual")
+    private boolean  IsMultilingual;
+    @JsonProperty("IsRevertHomepageLinkHidden")
+    private boolean  IsRevertHomepageLinkHidden;
+    @JsonProperty("Language")
+    private int Language;
+    @JsonProperty("LastItemModifiedDate")
+    private Date LastItemModifiedDate;
+    @JsonProperty("LastItemUserModifiedDate")
+    private Date LastItemUserModifiedDate;
+    @JsonProperty("LogoAlignment")
+    private int LogoAlignment;
+    @JsonProperty("MasterUrl")
+    private String MasterUrl;
+    @JsonProperty("MegaMenuEnabled")
+    private boolean MegaMenuEnabled;
+    @JsonProperty("NavAudienceTargetingEnabled")
+    private boolean NavAudienceTargetingEnabled;
+    @JsonProperty("NoCrawl")
+    private boolean NoCrawl;
+    @JsonProperty("ObjectCacheEnabled")
+    private boolean ObjectCacheEnabled;
+    @JsonProperty("OverwriteTranslationsOnChange")
+    private boolean OverwriteTranslationsOnChange;
+    @JsonProperty("QuickLaunchEnabled")
+    private boolean QuickLaunchEnabled;
+    @JsonProperty("RecycleBinEnabled")
+    private boolean RecycleBinEnabled;
+    @JsonProperty("SearchScope")
+    private int SearchScope;
+    @JsonProperty("ServerRelativeUrl")
+    private String ServerRelativeUrl;
+    @JsonProperty("SiteLogoUrl")
+    private String SiteLogoUrl;
+    @JsonProperty("SyndicationEnabled")
+    private boolean SyndicationEnabled;
+    @JsonProperty("TenantAdminMembersCanShare")
+    private int TenantAdminMembersCanShare;
+    @JsonProperty("Title")
+    private String Title;
+    @JsonProperty("TreeViewEnabled")
+    private boolean TreeViewEnabled;
+    @JsonProperty("UIVersion")
+    private int UIVersion;
+    @JsonProperty("UIVersionConfigurationEnabled")
+    private boolean UIVersionConfigurationEnabled;
+    @JsonProperty("Url")
+    private String Url;
+    @JsonProperty("WebTemplate")
+    private String WebTemplate;
+    @JsonProperty("WelcomePage")
+    private String WelcomePage;
+
 }
 
 /*
