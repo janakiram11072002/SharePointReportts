@@ -10,136 +10,277 @@ public class Site
 {
     private String id;
     private String siteType;
-    private boolean allowCreateDeclarativeWorkflow;
-    private boolean allowDesigner;
-    private boolean allowMasterPageEditing;
-    private boolean allowRevertFromTemplate;
-    private boolean allowSaveDeclarativeWorkflowAsTemplate;
-    private boolean allowSavePublishDeclarativeWorkflow;
-    private boolean allowSelfServiceUpgrade;
-    private boolean allowSelfServiceUpgradeEvaluation;
-    private int auditLogTrimmingRetention;
-    private String channelGroupId;
-    private String classification;
-    private int compatibilityLevel;
-    private boolean disableAppViews;
-    private boolean disableCompanyWideSharingLinks;
-    private boolean disableFlows;
-    private boolean externalSharingTipsEnabled;
-    private String geoLocation;
-    private String groupId;
-    private String hubSiteId;
-    private boolean isHubSite;
-    private boolean isRestrictedAccessControlPolicyEnforcedOnSite;
-    private String lockIssue;
-    private int maxItemsPerThrottledOperation;
-    private boolean mediaTranscriptionDisabled;
-    private boolean needsB2BUpgrade;
-    private String primaryUri;
-    private boolean readOnly;
-    private String requiredDesignerVersion;
-    private String sandboxedCodeActivationCapability;
-    private String serverRelativeUrl;
-    private boolean shareByEmailEnabled;
-    private boolean shareByLinkEnabled;
-    private String sensitivityLabelId;
-    private String sensitivityLabel;
-    private boolean showUrlStructure;
-    private boolean trimAuditLog;
-    private boolean uIVersionConfigurationEnabled;
-    private Date upgradeReminderDate;
-    private boolean upgradeScheduled;
-    private Date upgradeScheduledDate;
-    private boolean upgrading;
-    private String url;
-    private boolean writeLocked;
+    private Boolean AllowCreateDeclarativeWorkflow;
+    private Boolean AllowDesigner;
+    private Boolean AllowMasterPageEditing;
+    private Boolean AllowRevertFromTemplate;
+    private Boolean AllowSaveDeclarativeWorkflowAsTemplate;
+    private Boolean AllowSavePublishDeclarativeWorkflow;
+    private Boolean AllowSelfServiceUpgrade;
+    private Boolean AllowSelfServiceUpgradeEvaluation;
+    // "Audit": {
+    //     "AuditFlags": 0
+    // },
+    private int AuditFlags;
+    private String AuditLogTrimmingRetention;
+    private String ChannelGroupId;
+    private String Classification;
+    private String CompatibilityLevel;
+    private Boolean DisableAppViews;
+    private Boolean DisableCompanyWideSharingLinks;
+    private Boolean DisableFlows;
+    private Boolean ExternalSharingTipsEnabled;
+    private String GeoLocation;
+    private String GroupId;
+    private String HubSiteId;
+    private String Id;
+    private String SensitivityLabelId;
+    private String SensitivityLabel;
+    private Boolean IsHubSite;
+    private Boolean IsRestrictedAccessControlPolicyEnforcedOnSite;
+    private String LockIssue;
+    private String MaxItemsPerThrottledOperation;
+    private Boolean MediaTranscriptionDisabled;
+    private Boolean NeedsB2BUpgrade;
+    private String PrimaryUri;
+    private Boolean ReadOnly;
+    private String RequiredDesignerVersion;
+    private int SandboxedCodeActivationCapability;
+    private String ServerRelativeUrl;
+    private Boolean ShareByEmailEnabled;
+    private Boolean ShareByLinkEnabled;
+    private Boolean ShowUrlStructure;
+    private Boolean TrimAuditLog;
+    private Boolean UIVersionConfigurationEnabled;
+    private Date UpgradeReminderDate;
+    private Boolean UpgradeScheduled;
+    private Date UpgradeScheduledDate;
+    private Boolean Upgrading;
+    private String Url;
+    private Boolean WriteLocked;
 
-    // Site Audit
-    private int auditFlags;
 
-    //Site Owners
-    private String owner;
-    private boolean ownerIsSiteAdmin;
+    //"CustomScriptSafeDomains": [],
 
-    //Secondary Contact
-    private String secondaryContact;
+    // "Owner": {
+    //     "Id": 10,
+    //     "IsHiddenInUI": false,
+    //     "LoginName": "i:0#.f|membership|jh@42jghx.onmicrosoft.com",
+    //     "Title": "Jhonny",
+    //     "PrincipalType": 1,
+    //     "Email": "JH@42jghx.onmicrosoft.com",
+    //     "Expiration": "",
+    //     "IsEmailAuthenticationGuestUser": false,
+    //     "IsShareByEmailGuestUser": false,
+    //     "IsSiteAdmin": true,
+    //     "UserId": {
+    //     "NameId": "1003200263675b60",
+    //     "NameIdIssuer": "urn:federation:microsoftonline"
+    //     },
+    //     "UserPrincipalName": "jh@42jghx.onmicrosoft.com"
+    // },
+    private String Owner;
+    private Boolean IsOwnerIssiteAdmin;
+    // "SensitivityLabelInfo": {
+    //     "DisplayName": "",
+    //     "Id": "",
+    //     "MembersCanShare": "None"
+    // },
 
-    // Site Usage
-    private long storage;
-    private double storagePercentage;
+    // "UpgradeInfo": {
+    //     "ErrorFile": "_catalogs/MaintenanceLogs/20240727-053143-847-error.txt",
+    //     "Errors": 0,
+    //     "LastUpdated": "2024-07-27T12:35:05.397",
+    //     "LogFile": "_catalogs/MaintenanceLogs/20240727-053143-847.txt",
+    //     "RequestDate": "2024-07-26T11:47:42.617",
+    //     "RetryCount": 0,
+    //     "StartTime": "2024-07-27T12:31:43.837",
+    //     "Status": 3,
+    //     "UpgradeType": 0,
+    //     "Warnings": 4
+    // },
+    private String UgrageInfoErrorFile;
+    private int UgrageInfoErrors;
+    private Date UgrageInfoLastUpdated;
+    private String UgrageInfoLogFile;
+    private Date UgrageInfoRequestDate;
+    private int UgrageInfoRetryCount;
+    private Date UgrageInfoStartTime;
+    private int UgrageInfoStatus;
+    private int UgrageInfoUpgradeType;
+    private int UgrageInfoWarnings;
+    //    "Usage": {
+    //        "Bandwidth": "0",
+    //        "DiscussionStorage": "0",
+    //        "Hits": "0",
+    //        "Storage": "2182772",
+    //        "StoragePercentageUsed": 1.9852195691782982E-07,
+    //        "Visits": "0"
+    //    },
+    private long UsageBandwidth;
+    private long UsageDiscussionStorage;
+    private long UsageHits;
+    private long UsageStorage;
+    private double UsageStoragePercentage;
+    private long UsageVisits;
+
+
+
+
+
+    /***
+     * Below are the properteies obtained form TenantAdministration.SiteProperties
+     */
+    // "AllowDownloadingNonWebViewableFiles": false,
+    // "AllowEditing": true,
+    // "AnonymousLinkExpirationInDays": 0,
+    // "ApplyToExistingDocumentLibraries": false,
+    // "ApplyToNewDocumentLibraries": false,
+    private String ArchiveStatus;
+    // "AuthContextStrength": null,
+    // "AuthenticationContextLimitedAccess": false,
+    // "AuthenticationContextName": null,
+    private int AverageResourceUsage;
+    // "BlockDownloadLinksFileType": 1,
+    // "BlockDownloadMicrosoft365GroupIds": null,
+    // "BlockDownloadPolicy": false,
+    // "BlockDownloadPolicyFileTypeIds": null,
+    // "BlockGuestsAsSiteAdmin": 0,
+    // "BonusDiskQuota": 652877,
+    // "ClearRestrictedAccessControl": false,
+    // "CommentsOnSitePagesDisabled": false,
+    // "CompatibilityLevel": 15,
+    // "ConditionalAccessPolicy": 0,
+    private int CurrentResourceUsage;
+    // "DefaultLinkPermission": 0,
+    // "DefaultLinkToExistingAccess": false,
+    // "DefaultLinkToExistingAccessReset": false,
+    // "DefaultShareLinkRole": 0,
+    // "DefaultShareLinkScope": -1,
+    // "DefaultSharingLinkType": 0,
+    private int DenyAddAndCustomizePages;
+    private String Description;
+    // "EnableAutoExpirationVersionTrim": false,
+    // "ExcludeBlockDownloadPolicySiteOwners": false,
+    // "ExcludeBlockDownloadSharePointGroups": [],
+    // "ExcludedBlockDownloadGroupIds": [],
+    private int ExpireVersionsAfterDays;
+    // "ExternalUserExpirationInDays": 0,
+    // "GroupOwnerLoginName": "c:0o.c|federateddirectoryclaimprovider|31956366-7ce7-4b48-9f2c-16553af97d33_o",
+    private boolean HasHolds;
+    // "IBMode": "",
+    // "IBSegments": [],
+    // "IBSegmentsToAdd": null,
+    // "IBSegmentsToRemove": null,
+    // "InheritVersionPolicyFromTenant": false,
+    private boolean IsGroupOwnerSiteAdmin;
+    private boolean IsTeamsChannelConnected;
+    private boolean IsTeamsConnected;
+    private Date LastContentModifiedDate;
+    private int Lcid; //get language using lcid
+    // "LimitedAccessFileType": 1,
+    // "ListsShowHeaderAndNavigation": false,
+    // "LockReason": 0,
+    private String LockState;
+    // "LoopDefaultSharingLinkRole": 0,
+    // "LoopDefaultSharingLinkScope": -1,
+    // "MajorVersionLimit": 0,
+    // "MajorWithMinorVersionsLimit": 0,
+    // "MediaTranscription": 0,
+    private String NewUrl;
+    // "OverrideBlockUserInfoVisibility": 0,
+    // "OverrideSharingCapability": false,
+    // "OverrideTenantAnonymousLinkExpirationPolicy": false,
+    // "OverrideTenantExternalUserExpirationPolicy": false,
+    private int PWAEnabled;
+    // "ReadOnlyAccessPolicy": false,
+    // "ReadOnlyForBlockDownloadPolicy": false,
+    // "ReadOnlyForUnmanagedDevices": false,
+    // "RelatedGroupId": "/Guid(31956366-7ce7-4b48-9f2c-16553af97d33)/",
+    private boolean RequestFilesLinkEnabled;
+    private int RequestFilesLinkExpirationInDays;
+    // "RestrictContentOrgWideSearch": false,
+    // "RestrictedAccessControl": false,
+    // "RestrictedAccessControlGroups": [
+    // "/Guid(31956366-7ce7-4b48-9f2c-16553af97d33)/"
+    // ],
+    // "RestrictedAccessControlGroupsToAdd": null,
+    // "RestrictedAccessControlGroupsToRemove": null,
+    // "RestrictedToRegion": 3,
+    // "SandboxedCodeActivationCapability": 2,
+    private boolean SetOwnerWithoutUpdatingSecondaryAdmin;
+    private String SharingAllowedDomainList;
+    private String SharingBlockedDomainList;
+    private int SharingCapability;
+    private int SharingDomainRestrictionMode;
+    // "SharingLockDownCanBeCleared": true,
+    // "SharingLockDownEnabled": false,
+    // "ShowPeoplePickerSuggestionsForGuestUsers": false,
+    // "SiteDefinedSharingCapability": 2,
+    // "SocialBarOnSitePagesDisabled": false,
+    private String Status;
+    private long StorageMaximumLevel;
+    private String StorageQuotaType;
+    private long StorageUsage;
+    private long StorageWarningLevel;
+    //"TeamsChannelType": 0,
+    private String Template;
+    private int TimeZoneId;
+    private String Title;
+    // "TitleTranslations": null,
+    private int UserCodeMaximumLevel;
+    private int UserCodeWarningLevel;
+    private int WebsCount;
+    //Extra properties
+    private int WebDepth; //depth of subsites
+    private int child; //subsites(webcounts-1)
+    private boolean IsOverWarningQuota;
+    private int InactiveDays;
+    private double StoragePercentageUsedInTenant;
+
 
     public Site(SiteProperties source)
     {
-        
-        this.url = source.getUrl();
-        this.siteType = (source.getUrl().contains("-my") || source.getUrl().contains("-my.sharepoint.com/personal")) ? SiteType.OneDrive.toString() : SiteType.SharePoint.toString();
-        this.allowCreateDeclarativeWorkflow = source.isAllowCreateDeclarativeWorkflow();
-        this.allowDesigner = source.isAllowDesigner();
-        this.allowMasterPageEditing = source.isAllowMasterPageEditing();
-        this.allowRevertFromTemplate = source.isAllowRevertFromTemplate();
-        this.allowSaveDeclarativeWorkflowAsTemplate = source.isAllowSavePublishDeclarativeWorkflow();
-        this.allowSavePublishDeclarativeWorkflow = source.isAllowSavePublishDeclarativeWorkflow();
-        this.allowSelfServiceUpgrade = source.isAllowSelfServiceUpgrade();
-        this.allowSelfServiceUpgradeEvaluation = source.isAllowSelfServiceUpgradeEvaluation();
-        this.auditLogTrimmingRetention = source.getAuditLogTrimmingRetention();
-        this.channelGroupId = source.getChannelGroupId();
-        this.classification = source.getClassification();
-        this.compatibilityLevel = source.getCompatibilityLevel();
-        this.disableAppViews = source.isDisableAppViews();
-        this.disableCompanyWideSharingLinks = source.isDisableCompanyWideSharingLinks();
-        this.disableFlows = source.isDisableFlows();
-        this.externalSharingTipsEnabled = source.isExternalSharingTipsEnabled();
-        this.geoLocation = source.getGeoLocation();
-        this.groupId = source.getGroupId();
-        this.hubSiteId = source.getHubSiteId();
-        this.id = source.getId();
-        this.isHubSite = source.isHubSite();
-        this.isRestrictedAccessControlPolicyEnforcedOnSite = source.isRestrictedAccessControlPolicyEnforcedOnSite();
-        this.lockIssue = source.getLockIssue();
-        this.maxItemsPerThrottledOperation = source.getMaxItemsPerThrottledOperation();
-        this.mediaTranscriptionDisabled = source.isMediaTranscriptionDisabled();
-        this.needsB2BUpgrade = source.isNeedsB2BUpgrade();
-        this.primaryUri = source.getPrimaryUri();
-        this.readOnly = source.isReadOnly();
-        this.requiredDesignerVersion = source.getRequiredDesignerVersion();
-        this.sandboxedCodeActivationCapability = source.getSandboxedCodeActivationCapability();
-        this.serverRelativeUrl = source.getServerRelativeUrl();
-        this.shareByEmailEnabled = source.isShareByEmailEnabled();
-        this.shareByLinkEnabled = source.isShareByLinkEnabled();
-        this.sensitivityLabelId = source.getSensitivityLabelId();
-        this.sensitivityLabel = source.getSensitivityLabel();
-        this.showUrlStructure = source.isShowUrlStructure();
-        this.trimAuditLog = source.isTrimAuditLog();
-        this.uIVersionConfigurationEnabled = source.isUIVersionConfigurationEnabled();
-        this.upgradeReminderDate = source.getUpgradeReminderDate();
-        this.upgradeScheduled = source.isUpgradeScheduled();
-        this.upgradeScheduledDate = source.getUpgradeScheduledDate();
-        this.upgrading = source.isUpgrading();
-        this.writeLocked = source.isWriteLocked();
+
+
     }
 
     // Site Audit
-    public void updateAudit(SiteAudit source)
+    public void updateSiteProp(TenantLevelSiteProperties source)
     {
-        this.auditFlags = source.getAuditFlags();
-    }
-
-    //Site Owners
-    public void updateOwner(SiteOwners source)
-    {
-        this.owner = source.getEmail();
-        this.ownerIsSiteAdmin = source.isSiteAdmin();
-    }
-
-    public void updateSecondaryContact(SiteSecondaryContact source)
-    {
-        this.secondaryContact = source.getSecondaryContact();
-    }
-
-    public void updateUsage(SiteUsage source)
-    {
-        this.storage = source.getStorage();
-        this.storagePercentage = source.getStoragePercentageUsed();
+        ArchiveStatus = source.getArchiveStatus();
+        AverageResourceUsage = source.getAverageResourceUsage();
+        CurrentResourceUsage = source.getCurrentResourceUsage();
+        DenyAddAndCustomizePages = source.getDenyAddAndCustomizePages();
+        Description = source.getDescription();
+        ExpireVersionsAfterDays = source.getExpireVersionsAfterDays();
+        HasHolds = source.isHasHolds();
+        IsGroupOwnerSiteAdmin = source.isGroupOwnerSiteAdmin();
+        IsTeamsChannelConnected = source.isTeamsChannelConnected();
+        IsTeamsConnected = source.isTeamsConnected();
+        LastContentModifiedDate = source.getLastContentModifiedDate();
+        Lcid = source.getLcid();
+        LockState = source.getLockState();
+        NewUrl = source.getNewUrl();
+        PWAEnabled = source.getPWAEnabled();
+        RequestFilesLinkEnabled = source.isRequestFilesLinkEnabled();
+        RequestFilesLinkExpirationInDays = source.getRequestFilesLinkExpirationInDays();
+        SetOwnerWithoutUpdatingSecondaryAdmin = source.isSetOwnerWithoutUpdatingSecondaryAdmin();
+        SharingAllowedDomainList = source.getSharingAllowedDomainList();
+        SharingBlockedDomainList = source.getSharingBlockedDomainList();
+        SharingCapability = source.getSharingCapability();
+        SharingDomainRestrictionMode = source.getSharingDomainRestrictionMode();
+        Status = source.getStatus();
+        StorageMaximumLevel = source.getStorageWarningLevel();
+        StorageQuotaType = source.getStorageQuotaType();
+        StorageUsage = source.getStorageUsage();
+        StorageWarningLevel = source.getStorageWarningLevel();
+        Template = source.getTemplate();
+        TimeZoneId = source.getTimeZoneId();
+        Title = source.getTitle();
+        UserCodeMaximumLevel = source.getUserCodeMaximumLevel();
+        UserCodeWarningLevel = source.getUserCodeWarningLevel();
+        WebsCount = source.getWebsCount();
     }
 
 }
