@@ -94,6 +94,36 @@ public class HttpUtils
         return response;
     }
 
+    public HttpResponse<String> PostAsXML(String url,String token ,String body)
+    {
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(url))
+                .setHeader("accept", "application/json;odata=nomedata")
+                //.header("Content-Type", "application/json")
+                .setHeader("Content-Type","text/xml")
+                .setHeader("Accept-Encoding","gzip,deflate")
+                .setHeader("Authorization", "Bearer "+token)
+                .POST(HttpRequest.BodyPublishers.ofString(body))
+                .build();
+
+        HttpResponse<String> response = null;
+        try
+        {
+            response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            if(response.statusCode() != 200)
+            {
+                System.out.println("This request is not a success. Status code = "+response.statusCode());
+                return  null;
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.println("Error in Post Request");
+            throw new RuntimeException();
+        }
+        return response;
+    }
+
     private static String buildFormData(Map<String, String> data) {
         if(data == null || data.size()==0) return "";
         StringBuilder builder = new StringBuilder();
