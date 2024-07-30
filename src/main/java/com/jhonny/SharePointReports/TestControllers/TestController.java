@@ -44,7 +44,7 @@ public class TestController
     @GetMapping("/ctoken")
     public String getClientToken()
     {
-        return new AuthClient().GetClientToken();
+        return new AuthClient().GetSiteClientToken();
     }
     @GetMapping("/allsites")
     public String allStie()
@@ -90,7 +90,7 @@ public class TestController
 //        body.put("RowLimit","500");
 //        body.put("startrow",String.valueOf("0"));
         url+="/_api/site";
-        return new HttpUtils().Get(url, new AuthClient().GetClientToken(), body).body();
+        return new HttpUtils().Get(url, new AuthClient().GetSiteClientToken(), body).body();
     }
 
     @GetMapping("/web")
@@ -107,7 +107,7 @@ public class TestController
 //        body.put("RowLimit","500");
 //        body.put("startrow",String.valueOf("0"));
         url+="/_api/web"+endpoint;
-        return new HttpUtils().Get(url, new AuthClient().GetClientToken(), body).body();
+        return new HttpUtils().Get(url, new AuthClient().GetSiteClientToken(), body).body();
     }
 
     @GetMapping("/test")
@@ -116,5 +116,13 @@ public class TestController
         new DataCollector().initilize();
         //new DataCollector().getAllWebsFromAdmin();
         return "success";
+    }
+
+    @GetMapping("/testv2")
+    public String testV2data()
+    {
+        String temp = new DataCollector().getSitePropertiesV2("https://42jghx.sharepoint.com/sites/1gate");
+        //new DataCollector().getAllWebsFromAdmin();
+        return temp;
     }
 }
