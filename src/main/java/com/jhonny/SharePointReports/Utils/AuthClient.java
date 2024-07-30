@@ -77,11 +77,19 @@ public class AuthClient
         TokenResponse response = JsonUtils.toObject(tokenResponse, TokenResponse.class);
         return response.getAccess_token();
     }
-    public String GetClientToken(/*String scope*/)
+    public String GetSiteClientToken(/*String scope*/)
     {
         String tokenResponse = new HttpUtils()
                         .Post(prepareUrl(), prepareBodyAsForm(String.format(siteScopeTemplate, appConfig.getTenantName())))
                         .body();
+        TokenResponse response = JsonUtils.toObject(tokenResponse, TokenResponse.class);
+        return response.getAccess_token();
+    }
+    public String GetOneDriveClientToken()
+    {
+        String tokenResponse = new HttpUtils()
+                .Post(prepareUrl(), prepareBodyAsForm(String.format(siteScopeTemplate, appConfig.getTenantName())))
+                .body();
         TokenResponse response = JsonUtils.toObject(tokenResponse, TokenResponse.class);
         return response.getAccess_token();
     }
