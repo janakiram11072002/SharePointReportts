@@ -10,488 +10,104 @@ public class SiteProperties
 {
     @JsonProperty("AllowCreateDeclarativeWorkflow")
     private boolean AllowCreateDeclarativeWorkflow;
-
     @JsonProperty("AllowDesigner")
     private boolean AllowDesigner;
-
     @JsonProperty("AllowMasterPageEditing")
     private boolean AllowMasterPageEditing;
-
     @JsonProperty("AllowRevertFromTemplate")
     private boolean AllowRevertFromTemplate;
-
     @JsonProperty("AllowSaveDeclarativeWorkflowAsTemplate")
     private boolean AllowSaveDeclarativeWorkflowAsTemplate;
-
     @JsonProperty("AllowSavePublishDeclarativeWorkflow")
     private boolean AllowSavePublishDeclarativeWorkflow;
-
     @JsonProperty("AllowSelfServiceUpgrade")
     private boolean AllowSelfServiceUpgrade;
-
     @JsonProperty("AllowSelfServiceUpgradeEvaluation")
     private boolean AllowSelfServiceUpgradeEvaluation;
-
+    @JsonProperty("Audit")
+    private Audit Audit;
     @JsonProperty("AuditLogTrimmingRetention")
-    private int AuditLogTrimmingRetention;
-
+    private String AuditLogTrimmingRetention;
     @JsonProperty("ChannelGroupId")
     private String ChannelGroupId;
-
     @JsonProperty("Classification")
     private String Classification;
-
     @JsonProperty("CompatibilityLevel")
-    private int CompatibilityLevel;
-
+    private String CompatibilityLevel;
     @JsonProperty("DisableAppViews")
     private boolean DisableAppViews;
-
     @JsonProperty("DisableCompanyWideSharingLinks")
     private boolean DisableCompanyWideSharingLinks;
-
     @JsonProperty("DisableFlows")
     private boolean DisableFlows;
-
     @JsonProperty("ExternalSharingTipsEnabled")
     private boolean ExternalSharingTipsEnabled;
-
     @JsonProperty("GeoLocation")
     private String GeoLocation;
-
     @JsonProperty("GroupId")
     private String GroupId;
-
     @JsonProperty("HubSiteId")
     private String HubSiteId;
-
     @JsonProperty("Id")
     private String Id;
-
-    @JsonProperty("SensitivityLabelId")
-    private String SensitivityLabelId;
-
-    @JsonProperty("SensitivityLabel")
-    private String SensitivityLabel;
-
     @JsonProperty("IsHubSite")
     private boolean IsHubSite;
-
     @JsonProperty("IsRestrictedAccessControlPolicyEnforcedOnSite")
     private boolean IsRestrictedAccessControlPolicyEnforcedOnSite;
-
     @JsonProperty("LockIssue")
     private String LockIssue;
-
     @JsonProperty("MaxItemsPerThrottledOperation")
-    private int MaxItemsPerThrottledOperation;
-
+    private String MaxItemsPerThrottledOperation;
     @JsonProperty("MediaTranscriptionDisabled")
     private boolean MediaTranscriptionDisabled;
-
     @JsonProperty("NeedsB2BUpgrade")
     private boolean NeedsB2BUpgrade;
-
-    @JsonProperty("PrimaryUriPrimaryUri")
+    @JsonProperty("Owner")
+    private Owner Owner;
+    @JsonProperty("PrimaryUri")
     private String PrimaryUri;
-
     @JsonProperty("ReadOnly")
     private boolean ReadOnly;
-
     @JsonProperty("RequiredDesignerVersion")
     private String RequiredDesignerVersion;
-
-    @JsonProperty("SandboxedCodeActivationCapability")
-    private String SandboxedCodeActivationCapability;
-
+    @JsonProperty("SecondaryContact")
+    private SecondaryContact SecondaryContact;
+    @JsonProperty("SensitivityLabelId")
+    private String SensitivityLabelId;
+    @JsonProperty("SensitivityLabel")
+    private String SensitivityLabel;
+    @JsonProperty("")
+    private SensitivityLabelInfo SensitivityLabelInfo;
+    @JsonProperty("SensitivityLabelInfo")
+    private int SandboxedCodeActivationCapability;
     @JsonProperty("ServerRelativeUrl")
     private String ServerRelativeUrl;
-
     @JsonProperty("ShareByEmailEnabled")
     private boolean ShareByEmailEnabled;
-
     @JsonProperty("ShareByLinkEnabled")
     private boolean ShareByLinkEnabled;
-
     @JsonProperty("ShowUrlStructure")
     private boolean ShowUrlStructure;
-
     @JsonProperty("TrimAuditLog")
     private boolean TrimAuditLog;
-
     @JsonProperty("UIVersionConfigurationEnabled")
     private boolean UIVersionConfigurationEnabled;
-
+    @JsonProperty("UpgradeInfo")
+    private UpgradeInfo UpgradeInfo;
     @JsonProperty("UpgradeReminderDate")
     private Date UpgradeReminderDate;
-
     @JsonProperty("UpgradeScheduled")
     private boolean UpgradeScheduled;
-
     @JsonProperty("UpgradeScheduledDate")
     private Date UpgradeScheduledDate;
-
     @JsonProperty("Upgrading")
     private boolean Upgrading;
-
     @JsonProperty("Url")
     private String Url;
-
+    @JsonProperty("Usage")
+    private Usage Usage;
     @JsonProperty("WriteLocked")
     private boolean WriteLocked;
-
-
-    public boolean isAllowSelfServiceUpgrade() {
-        return AllowSelfServiceUpgrade;
-    }
-
-    public void setAllowSelfServiceUpgrade(boolean allowSelfServiceUpgrade) {
-        AllowSelfServiceUpgrade = allowSelfServiceUpgrade;
-    }
-
-    public boolean isAllowCreateDeclarativeWorkflow() {
-        return AllowCreateDeclarativeWorkflow;
-    }
-
-    public void setAllowCreateDeclarativeWorkflow(boolean allowCreateDeclarativeWorkflow) {
-        AllowCreateDeclarativeWorkflow = allowCreateDeclarativeWorkflow;
-    }
-
-    public boolean isAllowDesigner() {
-        return AllowDesigner;
-    }
-
-    public void setAllowDesigner(boolean allowDesigner) {
-        AllowDesigner = allowDesigner;
-    }
-
-    public boolean isAllowMasterPageEditing() {
-        return AllowMasterPageEditing;
-    }
-
-    public void setAllowMasterPageEditing(boolean allowMasterPageEditing) {
-        AllowMasterPageEditing = allowMasterPageEditing;
-    }
-
-    public boolean isAllowRevertFromTemplate() {
-        return AllowRevertFromTemplate;
-    }
-
-    public void setAllowRevertFromTemplate(boolean allowRevertFromTemplate) {
-        AllowRevertFromTemplate = allowRevertFromTemplate;
-    }
-
-    public boolean isAllowSaveDeclarativeWorkflowAsTemplate() {
-        return AllowSaveDeclarativeWorkflowAsTemplate;
-    }
-
-    public void setAllowSaveDeclarativeWorkflowAsTemplate(boolean allowSaveDeclarativeWorkflowAsTemplate) {
-        AllowSaveDeclarativeWorkflowAsTemplate = allowSaveDeclarativeWorkflowAsTemplate;
-    }
-
-    public boolean isAllowSavePublishDeclarativeWorkflow() {
-        return AllowSavePublishDeclarativeWorkflow;
-    }
-
-    public void setAllowSavePublishDeclarativeWorkflow(boolean allowSavePublishDeclarativeWorkflow) {
-        AllowSavePublishDeclarativeWorkflow = allowSavePublishDeclarativeWorkflow;
-    }
-
-    public boolean isAllowSelfServiceUpgradeEvaluation() {
-        return AllowSelfServiceUpgradeEvaluation;
-    }
-
-    public void setAllowSelfServiceUpgradeEvaluation(boolean allowSelfServiceUpgradeEvaluation) {
-        AllowSelfServiceUpgradeEvaluation = allowSelfServiceUpgradeEvaluation;
-    }
-
-    public int getAuditLogTrimmingRetention() {
-        return AuditLogTrimmingRetention;
-    }
-
-    public void setAuditLogTrimmingRetention(int auditLogTrimmingRetention) {
-        AuditLogTrimmingRetention = auditLogTrimmingRetention;
-    }
-
-    public String getChannelGroupId() {
-        return ChannelGroupId;
-    }
-
-    public void setChannelGroupId(String channelGroupId) {
-        ChannelGroupId = channelGroupId;
-    }
-
-    public String getClassification() {
-        return Classification;
-    }
-
-    public void setClassification(String classification) {
-        Classification = classification;
-    }
-
-    public int getCompatibilityLevel() {
-        return CompatibilityLevel;
-    }
-
-    public void setCompatibilityLevel(int compatibilityLevel) {
-        CompatibilityLevel = compatibilityLevel;
-    }
-
-    public boolean isDisableAppViews() {
-        return DisableAppViews;
-    }
-
-    public void setDisableAppViews(boolean disableAppViews) {
-        DisableAppViews = disableAppViews;
-    }
-
-    public boolean isDisableCompanyWideSharingLinks() {
-        return DisableCompanyWideSharingLinks;
-    }
-
-    public void setDisableCompanyWideSharingLinks(boolean disableCompanyWideSharingLinks) {
-        DisableCompanyWideSharingLinks = disableCompanyWideSharingLinks;
-    }
-
-    public boolean isDisableFlows() {
-        return DisableFlows;
-    }
-
-    public void setDisableFlows(boolean disableFlows) {
-        DisableFlows = disableFlows;
-    }
-
-    public boolean isExternalSharingTipsEnabled() {
-        return ExternalSharingTipsEnabled;
-    }
-
-    public void setExternalSharingTipsEnabled(boolean externalSharingTipsEnabled) {
-        ExternalSharingTipsEnabled = externalSharingTipsEnabled;
-    }
-
-    public String getGeoLocation() {
-        return GeoLocation;
-    }
-
-    public void setGeoLocation(String geoLocation) {
-        GeoLocation = geoLocation;
-    }
-
-    public String getGroupId() {
-        return GroupId;
-    }
-
-    public void setGroupId(String groupId) {
-        GroupId = groupId;
-    }
-
-    public String getHubSiteId() {
-        return HubSiteId;
-    }
-
-    public void setHubSiteId(String hubSiteId) {
-        HubSiteId = hubSiteId;
-    }
-
-    public String getId() {
-        return Id;
-    }
-
-    public void setId(String id) {
-        Id = id;
-    }
-
-    public String getSensitivityLabelId() {
-        return SensitivityLabelId;
-    }
-
-    public void setSensitivityLabelId(String sensitivityLabelId) {
-        SensitivityLabelId = sensitivityLabelId;
-    }
-
-    public String getSensitivityLabel() {
-        return SensitivityLabel;
-    }
-
-    public void setSensitivityLabel(String sensitivityLabel) {
-        SensitivityLabel = sensitivityLabel;
-    }
-
-    public boolean isHubSite() {
-        return IsHubSite;
-    }
-
-    public void setHubSite(boolean hubSite) {
-        IsHubSite = hubSite;
-    }
-
-    public boolean isRestrictedAccessControlPolicyEnforcedOnSite() {
-        return IsRestrictedAccessControlPolicyEnforcedOnSite;
-    }
-
-    public void setRestrictedAccessControlPolicyEnforcedOnSite(boolean restrictedAccessControlPolicyEnforcedOnSite) {
-        IsRestrictedAccessControlPolicyEnforcedOnSite = restrictedAccessControlPolicyEnforcedOnSite;
-    }
-
-    public String getLockIssue() {
-        return LockIssue;
-    }
-
-    public void setLockIssue(String lockIssue) {
-        LockIssue = lockIssue;
-    }
-
-    public int getMaxItemsPerThrottledOperation() {
-        return MaxItemsPerThrottledOperation;
-    }
-
-    public void setMaxItemsPerThrottledOperation(int maxItemsPerThrottledOperation) {
-        MaxItemsPerThrottledOperation = maxItemsPerThrottledOperation;
-    }
-
-    public boolean isMediaTranscriptionDisabled() {
-        return MediaTranscriptionDisabled;
-    }
-
-    public void setMediaTranscriptionDisabled(boolean mediaTranscriptionDisabled) {
-        MediaTranscriptionDisabled = mediaTranscriptionDisabled;
-    }
-
-    public boolean isNeedsB2BUpgrade() {
-        return NeedsB2BUpgrade;
-    }
-
-    public void setNeedsB2BUpgrade(boolean needsB2BUpgrade) {
-        NeedsB2BUpgrade = needsB2BUpgrade;
-    }
-
-    public String getPrimaryUri() {
-        return PrimaryUri;
-    }
-
-    public void setPrimaryUri(String primaryUri) {
-        PrimaryUri = primaryUri;
-    }
-
-    public boolean isReadOnly() {
-        return ReadOnly;
-    }
-
-    public void setReadOnly(boolean readOnly) {
-        ReadOnly = readOnly;
-    }
-
-    public String getRequiredDesignerVersion() {
-        return RequiredDesignerVersion;
-    }
-
-    public void setRequiredDesignerVersion(String requiredDesignerVersion) {
-        RequiredDesignerVersion = requiredDesignerVersion;
-    }
-
-    public String getSandboxedCodeActivationCapability() {
-        return SandboxedCodeActivationCapability;
-    }
-
-    public void setSandboxedCodeActivationCapability(String sandboxedCodeActivationCapability) {
-        SandboxedCodeActivationCapability = sandboxedCodeActivationCapability;
-    }
-
-    public String getServerRelativeUrl() {
-        return ServerRelativeUrl;
-    }
-
-    public void setServerRelativeUrl(String serverRelativeUrl) {
-        ServerRelativeUrl = serverRelativeUrl;
-    }
-
-    public boolean isShareByEmailEnabled() {
-        return ShareByEmailEnabled;
-    }
-
-    public void setShareByEmailEnabled(boolean shareByEmailEnabled) {
-        ShareByEmailEnabled = shareByEmailEnabled;
-    }
-
-    public boolean isShareByLinkEnabled() {
-        return ShareByLinkEnabled;
-    }
-
-    public void setShareByLinkEnabled(boolean shareByLinkEnabled) {
-        ShareByLinkEnabled = shareByLinkEnabled;
-    }
-
-    public boolean isShowUrlStructure() {
-        return ShowUrlStructure;
-    }
-
-    public void setShowUrlStructure(boolean showUrlStructure) {
-        ShowUrlStructure = showUrlStructure;
-    }
-
-    public boolean isTrimAuditLog() {
-        return TrimAuditLog;
-    }
-
-    public void setTrimAuditLog(boolean trimAuditLog) {
-        TrimAuditLog = trimAuditLog;
-    }
-
-    public boolean isUIVersionConfigurationEnabled() {
-        return UIVersionConfigurationEnabled;
-    }
-
-    public void setUIVersionConfigurationEnabled(boolean UIVersionConfigurationEnabled) {
-        this.UIVersionConfigurationEnabled = UIVersionConfigurationEnabled;
-    }
-
-    public Date getUpgradeReminderDate() {
-        return UpgradeReminderDate;
-    }
-
-    public void setUpgradeReminderDate(Date upgradeReminderDate) {
-        UpgradeReminderDate = upgradeReminderDate;
-    }
-
-    public boolean isUpgradeScheduled() {
-        return UpgradeScheduled;
-    }
-
-    public void setUpgradeScheduled(boolean upgradeScheduled) {
-        UpgradeScheduled = upgradeScheduled;
-    }
-
-    public Date getUpgradeScheduledDate() {
-        return UpgradeScheduledDate;
-    }
-
-    public void setUpgradeScheduledDate(Date upgradeScheduledDate) {
-        UpgradeScheduledDate = upgradeScheduledDate;
-    }
-
-    public boolean isUpgrading() {
-        return Upgrading;
-    }
-
-    public void setUpgrading(boolean upgrading) {
-        Upgrading = upgrading;
-    }
-
-    public String getUrl() {
-        return Url;
-    }
-
-    public void setUrl(String url) {
-        Url = url;
-    }
-
-    public boolean isWriteLocked() {
-        return WriteLocked;
-    }
-
-    public void setWriteLocked(boolean writeLocked) {
-        WriteLocked = writeLocked;
-    }
 }
 
 
