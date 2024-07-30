@@ -141,38 +141,53 @@ public class DataCollector
     {
         String endpoint = url+"/_api/site";
         String response = new HttpUtils()
-            .Get(endpoint, new AuthClient().GetClientToken(),null)
+            .Get(endpoint, new AuthClient().GetSiteClientToken(),null)
             .body();
         Site site = new Site(JsonUtils.toObject(response, SiteProperties.class));
 
         //Site Owner Details
-        response = new HttpUtils()
-            .Get(endpoint+"/Owner", new AuthClient().GetClientToken(),null)
-            .body();
-        site.updateOwner(JsonUtils.toObject(response, SiteOwners.class));
-
-        //Site Usage
-        response = new HttpUtils()
-            .Get(endpoint+"/usage", new AuthClient().GetClientToken(),null)
-            .body();
-        site.updateUsage(JsonUtils.toObject(response, SiteUsage.class));
-
-        //Site Secondary Contact
-        response = new HttpUtils()
-        .Get(endpoint+"/secondarycontact", new AuthClient().GetClientToken(),null)
-        .body();
-        site.updateSecondaryContact(JsonUtils.toObject(response, SiteSecondaryContact.class));
-
-
-        //Site Audit
-        response = new HttpUtils()
-            .Get(endpoint+"/audit", new AuthClient().GetClientToken(),null)
-            .body();
-        site.updateAudit(JsonUtils.toObject(response, SiteAudit.class));
+//        response = new HttpUtils()
+//            .Get(endpoint+"/Owner", new AuthClient().GetSiteClientToken(),null)
+//            .body();
+//        site.updateOwner(JsonUtils.toObject(response, SiteOwners.class));
+//
+//        //Site Usage
+//        response = new HttpUtils()
+//            .Get(endpoint+"/usage", new AuthClient().GetSiteClientToken(),null)
+//            .body();
+//        site.updateUsage(JsonUtils.toObject(response, SiteUsage.class));
+//
+//        //Site Secondary Contact
+//        response = new HttpUtils()
+//        .Get(endpoint+"/secondarycontact", new AuthClient().GetSiteClientToken(),null)
+//        .body();
+//        site.updateSecondaryContact(JsonUtils.toObject(response, SiteSecondaryContact.class));
+//
+//
+//        //Site Audit
+//        response = new HttpUtils()
+//            .Get(endpoint+"/audit", new AuthClient().GetSiteClientToken(),null)
+//            .body();
+//        site.updateAudit(JsonUtils.toObject(response, SiteAudit.class));
 
         System.out.println(response);
         //Site Audit
     }
+
+    public String getSitePropertiesV2(String url)
+    {
+        String endpoint = url+"/_vti_bin/client.svc/ProcessQuery";
+        String body = "<Request AddExpandoFieldTypeSuffix=\"true\" SchemaVersion=\"15.0.0.0\" LibraryVersion=\"16.0.0.0\" ApplicationName=\".NET Library\" xmlns=\"http://schemas.microsoft.com/sharepoint/clientquery/2009\"><Actions><ObjectPath Id=\"2\" ObjectPathId=\"1\" /><ObjectPath Id=\"4\" ObjectPathId=\"3\" /><Query Id=\"5\" ObjectPathId=\"3\"><Query SelectAllProperties=\"false\"><Properties><Property Name=\"AllowCreateDeclarativeWorkflow\" ScalarProperty=\"true\" /><Property Name=\"AllowDesigner\" ScalarProperty=\"true\" /><Property Name=\"AllowMasterPageEditing\" ScalarProperty=\"true\" /><Property Name=\"AllowRevertFromTemplate\" ScalarProperty=\"true\" /><Property Name=\"AllowSaveDeclarativeWorkflowAsTemplate\" ScalarProperty=\"true\" /><Property Name=\"AllowSavePublishDeclarativeWorkflow\" ScalarProperty=\"true\" /><Property Name=\"AllowSelfServiceUpgrade\" ScalarProperty=\"true\" /><Property Name=\"AllowSelfServiceUpgradeEvaluation\" ScalarProperty=\"true\" /><Property Name=\"Audit\"><Query SelectAllProperties=\"false\"><Properties><Property Name=\"AuditFlags\" ScalarProperty=\"true\" /></Properties></Query></Property><Property Name=\"AuditLogTrimmingRetention\" ScalarProperty=\"true\" /><Property Name=\"CanUpgrade\" ScalarProperty=\"true\" /><Property Name=\"Classification\" ScalarProperty=\"true\" /><Property Name=\"CompatibilityLevel\" ScalarProperty=\"true\" /><Property Name=\"DisableAppViews\" ScalarProperty=\"true\" /><Property Name=\"DisableCompanyWideSharingLinks\" ScalarProperty=\"true\" /><Property Name=\"DisableFlows\" ScalarProperty=\"true\" /><Property Name=\"ExternalSharingTipsEnabled\" ScalarProperty=\"true\" /><Property Name=\"ExternalUserExpirationInDays\" ScalarProperty=\"true\" /><Property Name=\"GroupId\" ScalarProperty=\"true\" /><Property Name=\"Id\" ScalarProperty=\"true\" /><Property Name=\"LockIssue\" ScalarProperty=\"true\" /><Property Name=\"MaxItemsPerThrottledOperation\" ScalarProperty=\"true\" /><Property Name=\"NeedsB2BUpgrade\" ScalarProperty=\"true\" /><Property Name=\"Owner\"><Query SelectAllProperties=\"false\"><Properties><Property Name=\"LoginName\" ScalarProperty=\"true\" /><Property Name=\"Email\" ScalarProperty=\"true\" /><Property Name=\"Title\" ScalarProperty=\"true\" /></Properties></Query></Property><Property Name=\"PrimaryUri\" ScalarProperty=\"true\" /><Property Name=\"ReadOnly\" ScalarProperty=\"true\" /><Property Name=\"RequiredDesignerVersion\" ScalarProperty=\"true\" /><Property Name=\"SandboxedCodeActivationCapability\" ScalarProperty=\"true\" /><Property Name=\"SecondaryContact\"><Query SelectAllProperties=\"false\"><Properties><Property Name=\"LoginName\" ScalarProperty=\"true\" /><Property Name=\"Email\" ScalarProperty=\"true\" /><Property Name=\"Title\" ScalarProperty=\"true\" /></Properties></Query></Property><Property Name=\"SensitivityLabel\" ScalarProperty=\"true\" /><Property Name=\"SensitivityLabelId\" ScalarProperty=\"true\" /><Property Name=\"SensitivityLabelInfo\" ScalarProperty=\"true\" /><Property Name=\"ServerRelativeUrl\" ScalarProperty=\"true\" /><Property Name=\"ShareByEmailEnabled\" ScalarProperty=\"true\" /><Property Name=\"ShareByLinkEnabled\" ScalarProperty=\"true\" /><Property Name=\"ShowPeoplePickerSuggestionsForGuestUsers\" ScalarProperty=\"true\" /><Property Name=\"ShowUrlStructure\" ScalarProperty=\"true\" /><Property Name=\"StatusBarLink\" ScalarProperty=\"true\" /><Property Name=\"StatusBarText\" ScalarProperty=\"true\" /><Property Name=\"TrimAuditLog\" ScalarProperty=\"true\" /><Property Name=\"UIVersionConfigurationEnabled\" ScalarProperty=\"true\" /><Property Name=\"UpgradeInfo\" ScalarProperty=\"true\" /><Property Name=\"UpgradeReminderDate\" ScalarProperty=\"true\" /><Property Name=\"UpgradeScheduled\" ScalarProperty=\"true\" /><Property Name=\"UpgradeScheduledDate\" ScalarProperty=\"true\" /><Property Name=\"Upgrading\" ScalarProperty=\"true\" /><Property Name=\"Url\" ScalarProperty=\"true\" /><Property Name=\"Usage\" ScalarProperty=\"true\" /></Properties></Query></Query></Actions><ObjectPaths><StaticProperty Id=\"1\" TypeId=\"{3747adcd-a3c3-41b9-bfab-4a64dd2f1e0a}\" Name=\"Current\" /><Property Id=\"3\" ParentId=\"1\" Name=\"Site\" /></ObjectPaths></Request>\n";
+        String response = (url.contains("-my.sharepoint.com")) ?
+                (new HttpUtils().PostAsXML(endpoint, new AuthClient().GetOneDriveClientToken(),body).body()) :
+                (new HttpUtils().PostAsXML(endpoint, new AuthClient().GetSiteClientToken(),body).body());
+        System.out.println(response);
+        //Site site = new Site(JsonUtils.toObject(response, SiteProperties.class));
+        return response;
+
+        //Site Audit
+    }
+
     public void getWebProperties(String url)
     {
 
