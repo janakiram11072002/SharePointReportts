@@ -101,7 +101,7 @@ public class HttpUtils
                 .setHeader("accept", "application/json;odata=nomedata")
                 //.header("Content-Type", "application/json")
                 .setHeader("Content-Type","text/xml")
-                .setHeader("Accept-Encoding","gzip,deflate")
+                //.setHeader("Accept-Encoding","gzip,deflate")
                 .setHeader("Authorization", "Bearer "+token)
                 .POST(HttpRequest.BodyPublishers.ofString(body))
                 .build();
