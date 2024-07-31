@@ -121,8 +121,8 @@ public class TestController
     @GetMapping("/testv2")
     public String testV2data()
     {
-        String temp = new DataCollector().getSitePropertiesV2("https://42jghx.sharepoint.com/sites/1gate");
+        new DataCollector().getSitePropertiesV2("https://42jghx-admin.sharepoint.com","https://42jghx.sharepoint.com/sites/1gate");
         //new DataCollector().getAllWebsFromAdmin();
-        return temp;
+        return "success";
     }
 }
