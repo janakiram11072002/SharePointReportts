@@ -1,19 +1,19 @@
-package com.jhonny.SharePointReports.PersistenceModels.MetaData_Objects.SiteProperties;
+// package com.jhonny.SharePointReports.PersistenceModels.MetaData_Objects.SiteProperties;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
+// import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+// import com.fasterxml.jackson.annotation.JsonProperty;
 
-@JsonIgnoreProperties(ignoreUnknown = true)
-public class SecondaryContact
-{
-    @JsonProperty("SecondaryContact")
-    private String SecondaryContact;
+// @JsonIgnoreProperties(ignoreUnknown = true)
+// public class SecondaryContact
+// {
+//     @JsonProperty("Email")
+//     private String email;
 
-    public String getSecondaryContact() {
-        return SecondaryContact;
-    }
+//     public String getSecondaryContact() {
+//         return SecondaryContact;
+//     }
 
-    public void setSecondaryContact(String secondaryContact) {
-        SecondaryContact = secondaryContact;
-    }
-}
+//     public void setSecondaryContact(String secondaryContact) {
+//         SecondaryContact = secondaryContact;
+//     }
+// }
