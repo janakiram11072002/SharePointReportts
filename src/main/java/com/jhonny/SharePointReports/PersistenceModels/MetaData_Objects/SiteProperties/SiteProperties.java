@@ -63,7 +63,7 @@ public class SiteProperties
     @JsonProperty("NeedsB2BUpgrade")
     private boolean NeedsB2BUpgrade;
     @JsonProperty("Owner")
-    private Owner Owner;
+    private User Owner;
     @JsonProperty("PrimaryUri")
     private String PrimaryUri;
     @JsonProperty("ReadOnly")
@@ -71,7 +71,7 @@ public class SiteProperties
     @JsonProperty("RequiredDesignerVersion")
     private String RequiredDesignerVersion;
     @JsonProperty("SecondaryContact")
-    private SecondaryContact SecondaryContact;
+    private User SecondaryContact;
     @JsonProperty("SensitivityLabelId")
     private String SensitivityLabelId;
     @JsonProperty("SensitivityLabel")
@@ -108,6 +108,309 @@ public class SiteProperties
     private Usage Usage;
     @JsonProperty("WriteLocked")
     private boolean WriteLocked;
+    
+    public boolean isAllowCreateDeclarativeWorkflow() {
+        return AllowCreateDeclarativeWorkflow;
+    }
+    public void setAllowCreateDeclarativeWorkflow(boolean allowCreateDeclarativeWorkflow) {
+        AllowCreateDeclarativeWorkflow = allowCreateDeclarativeWorkflow;
+    }
+    public boolean isAllowDesigner() {
+        return AllowDesigner;
+    }
+    public void setAllowDesigner(boolean allowDesigner) {
+        AllowDesigner = allowDesigner;
+    }
+    public boolean isAllowMasterPageEditing() {
+        return AllowMasterPageEditing;
+    }
+    public void setAllowMasterPageEditing(boolean allowMasterPageEditing) {
+        AllowMasterPageEditing = allowMasterPageEditing;
+    }
+    public boolean isAllowRevertFromTemplate() {
+        return AllowRevertFromTemplate;
+    }
+    public void setAllowRevertFromTemplate(boolean allowRevertFromTemplate) {
+        AllowRevertFromTemplate = allowRevertFromTemplate;
+    }
+    public boolean isAllowSaveDeclarativeWorkflowAsTemplate() {
+        return AllowSaveDeclarativeWorkflowAsTemplate;
+    }
+    public void setAllowSaveDeclarativeWorkflowAsTemplate(boolean allowSaveDeclarativeWorkflowAsTemplate) {
+        AllowSaveDeclarativeWorkflowAsTemplate = allowSaveDeclarativeWorkflowAsTemplate;
+    }
+    public boolean isAllowSavePublishDeclarativeWorkflow() {
+        return AllowSavePublishDeclarativeWorkflow;
+    }
+    public void setAllowSavePublishDeclarativeWorkflow(boolean allowSavePublishDeclarativeWorkflow) {
+        AllowSavePublishDeclarativeWorkflow = allowSavePublishDeclarativeWorkflow;
+    }
+    public boolean isAllowSelfServiceUpgrade() {
+        return AllowSelfServiceUpgrade;
+    }
+    public void setAllowSelfServiceUpgrade(boolean allowSelfServiceUpgrade) {
+        AllowSelfServiceUpgrade = allowSelfServiceUpgrade;
+    }
+    public boolean isAllowSelfServiceUpgradeEvaluation() {
+        return AllowSelfServiceUpgradeEvaluation;
+    }
+    public void setAllowSelfServiceUpgradeEvaluation(boolean allowSelfServiceUpgradeEvaluation) {
+        AllowSelfServiceUpgradeEvaluation = allowSelfServiceUpgradeEvaluation;
+    }
+    public Audit getAudit() {
+        return Audit;
+    }
+    public void setAudit(Audit audit) {
+        Audit = audit;
+    }
+    public String getAuditLogTrimmingRetention() {
+        return AuditLogTrimmingRetention;
+    }
+    public void setAuditLogTrimmingRetention(String auditLogTrimmingRetention) {
+        AuditLogTrimmingRetention = auditLogTrimmingRetention;
+    }
+    public String getChannelGroupId() {
+        return ChannelGroupId;
+    }
+    public void setChannelGroupId(String channelGroupId) {
+        ChannelGroupId = channelGroupId;
+    }
+    public String getClassification() {
+        return Classification;
+    }
+    public void setClassification(String classification) {
+        Classification = classification;
+    }
+    public String getCompatibilityLevel() {
+        return CompatibilityLevel;
+    }
+    public void setCompatibilityLevel(String compatibilityLevel) {
+        CompatibilityLevel = compatibilityLevel;
+    }
+    public boolean isDisableAppViews() {
+        return DisableAppViews;
+    }
+    public void setDisableAppViews(boolean disableAppViews) {
+        DisableAppViews = disableAppViews;
+    }
+    public boolean isDisableCompanyWideSharingLinks() {
+        return DisableCompanyWideSharingLinks;
+    }
+    public void setDisableCompanyWideSharingLinks(boolean disableCompanyWideSharingLinks) {
+        DisableCompanyWideSharingLinks = disableCompanyWideSharingLinks;
+    }
+    public boolean isDisableFlows() {
+        return DisableFlows;
+    }
+    public void setDisableFlows(boolean disableFlows) {
+        DisableFlows = disableFlows;
+    }
+    public boolean isExternalSharingTipsEnabled() {
+        return ExternalSharingTipsEnabled;
+    }
+    public void setExternalSharingTipsEnabled(boolean externalSharingTipsEnabled) {
+        ExternalSharingTipsEnabled = externalSharingTipsEnabled;
+    }
+    public String getGeoLocation() {
+        return GeoLocation;
+    }
+    public void setGeoLocation(String geoLocation) {
+        GeoLocation = geoLocation;
+    }
+    public String getGroupId() {
+        return GroupId;
+    }
+    public void setGroupId(String groupId) {
+        GroupId = groupId;
+    }
+    public String getHubSiteId() {
+        return HubSiteId;
+    }
+    public void setHubSiteId(String hubSiteId) {
+        HubSiteId = hubSiteId;
+    }
+    public String getId() {
+        return Id;
+    }
+    public void setId(String id) {
+        Id = id;
+    }
+    public boolean isIsHubSite() {
+        return IsHubSite;
+    }
+    public void setIsHubSite(boolean isHubSite) {
+        IsHubSite = isHubSite;
+    }
+    public boolean isIsRestrictedAccessControlPolicyEnforcedOnSite() {
+        return IsRestrictedAccessControlPolicyEnforcedOnSite;
+    }
+    public void setIsRestrictedAccessControlPolicyEnforcedOnSite(boolean isRestrictedAccessControlPolicyEnforcedOnSite) {
+        IsRestrictedAccessControlPolicyEnforcedOnSite = isRestrictedAccessControlPolicyEnforcedOnSite;
+    }
+    public String getLockIssue() {
+        return LockIssue;
+    }
+    public void setLockIssue(String lockIssue) {
+        LockIssue = lockIssue;
+    }
+    public String getMaxItemsPerThrottledOperation() {
+        return MaxItemsPerThrottledOperation;
+    }
+    public void setMaxItemsPerThrottledOperation(String maxItemsPerThrottledOperation) {
+        MaxItemsPerThrottledOperation = maxItemsPerThrottledOperation;
+    }
+    public boolean isMediaTranscriptionDisabled() {
+        return MediaTranscriptionDisabled;
+    }
+    public void setMediaTranscriptionDisabled(boolean mediaTranscriptionDisabled) {
+        MediaTranscriptionDisabled = mediaTranscriptionDisabled;
+    }
+    public boolean isNeedsB2BUpgrade() {
+        return NeedsB2BUpgrade;
+    }
+    public void setNeedsB2BUpgrade(boolean needsB2BUpgrade) {
+        NeedsB2BUpgrade = needsB2BUpgrade;
+    }
+    public User getOwner() {
+        return Owner;
+    }
+    public void setOwner(User owner) {
+        Owner = owner;
+    }
+    public String getPrimaryUri() {
+        return PrimaryUri;
+    }
+    public void setPrimaryUri(String primaryUri) {
+        PrimaryUri = primaryUri;
+    }
+    public boolean isReadOnly() {
+        return ReadOnly;
+    }
+    public void setReadOnly(boolean readOnly) {
+        ReadOnly = readOnly;
+    }
+    public String getRequiredDesignerVersion() {
+        return RequiredDesignerVersion;
+    }
+    public void setRequiredDesignerVersion(String requiredDesignerVersion) {
+        RequiredDesignerVersion = requiredDesignerVersion;
+    }
+    public User getSecondaryContact() {
+        return SecondaryContact;
+    }
+    public void setSecondaryContact(User secondaryContact) {
+        SecondaryContact = secondaryContact;
+    }
+    public String getSensitivityLabelId() {
+        return SensitivityLabelId;
+    }
+    public void setSensitivityLabelId(String sensitivityLabelId) {
+        SensitivityLabelId = sensitivityLabelId;
+    }
+    public String getSensitivityLabel() {
+        return SensitivityLabel;
+    }
+    public void setSensitivityLabel(String sensitivityLabel) {
+        SensitivityLabel = sensitivityLabel;
+    }
+    public SensitivityLabelInfo getSensitivityLabelInfo() {
+        return SensitivityLabelInfo;
+    }
+    public void setSensitivityLabelInfo(SensitivityLabelInfo sensitivityLabelInfo) {
+        SensitivityLabelInfo = sensitivityLabelInfo;
+    }
+    public int getSandboxedCodeActivationCapability() {
+        return SandboxedCodeActivationCapability;
+    }
+    public void setSandboxedCodeActivationCapability(int sandboxedCodeActivationCapability) {
+        SandboxedCodeActivationCapability = sandboxedCodeActivationCapability;
+    }
+    public String getServerRelativeUrl() {
+        return ServerRelativeUrl;
+    }
+    public void setServerRelativeUrl(String serverRelativeUrl) {
+        ServerRelativeUrl = serverRelativeUrl;
+    }
+    public boolean isShareByEmailEnabled() {
+        return ShareByEmailEnabled;
+    }
+    public void setShareByEmailEnabled(boolean shareByEmailEnabled) {
+        ShareByEmailEnabled = shareByEmailEnabled;
+    }
+    public boolean isShareByLinkEnabled() {
+        return ShareByLinkEnabled;
+    }
+    public void setShareByLinkEnabled(boolean shareByLinkEnabled) {
+        ShareByLinkEnabled = shareByLinkEnabled;
+    }
+    public boolean isShowUrlStructure() {
+        return ShowUrlStructure;
+    }
+    public void setShowUrlStructure(boolean showUrlStructure) {
+        ShowUrlStructure = showUrlStructure;
+    }
+    public boolean isTrimAuditLog() {
+        return TrimAuditLog;
+    }
+    public void setTrimAuditLog(boolean trimAuditLog) {
+        TrimAuditLog = trimAuditLog;
+    }
+    public boolean isUIVersionConfigurationEnabled() {
+        return UIVersionConfigurationEnabled;
+    }
+    public void setUIVersionConfigurationEnabled(boolean uIVersionConfigurationEnabled) {
+        UIVersionConfigurationEnabled = uIVersionConfigurationEnabled;
+    }
+    public UpgradeInfo getUpgradeInfo() {
+        return UpgradeInfo;
+    }
+    public void setUpgradeInfo(UpgradeInfo upgradeInfo) {
+        UpgradeInfo = upgradeInfo;
+    }
+    public Date getUpgradeReminderDate() {
+        return UpgradeReminderDate;
+    }
+    public void setUpgradeReminderDate(Date upgradeReminderDate) {
+        UpgradeReminderDate = upgradeReminderDate;
+    }
+    public boolean isUpgradeScheduled() {
+        return UpgradeScheduled;
+    }
+    public void setUpgradeScheduled(boolean upgradeScheduled) {
+        UpgradeScheduled = upgradeScheduled;
+    }
+    public Date getUpgradeScheduledDate() {
+        return UpgradeScheduledDate;
+    }
+    public void setUpgradeScheduledDate(Date upgradeScheduledDate) {
+        UpgradeScheduledDate = upgradeScheduledDate;
+    }
+    public boolean isUpgrading() {
+        return Upgrading;
+    }
+    public void setUpgrading(boolean upgrading) {
+        Upgrading = upgrading;
+    }
+    public String getUrl() {
+        return Url;
+    }
+    public void setUrl(String url) {
+        Url = url;
+    }
+    public Usage getUsage() {
+        return Usage;
+    }
+    public void setUsage(Usage usage) {
+        Usage = usage;
+    }
+    public boolean isWriteLocked() {
+        return WriteLocked;
+    }
+    public void setWriteLocked(boolean writeLocked) {
+        WriteLocked = writeLocked;
+    }
+
+    
 }
 
 
