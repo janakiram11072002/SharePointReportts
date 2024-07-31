@@ -21,6 +21,7 @@ public class JsonUtils
     {
         try
         {
+            System.out.println(jsonResponse);
             return objectMapper.readValue(jsonResponse, valueType);
         }
         catch(Exception e)
