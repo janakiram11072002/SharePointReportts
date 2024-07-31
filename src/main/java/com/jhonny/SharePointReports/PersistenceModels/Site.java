@@ -9,7 +9,8 @@ import java.util.Date;
 public class Site
 {
     private String id;
-    private String siteType;
+    private String siteType; //pending 
+    
     private Boolean AllowCreateDeclarativeWorkflow;
     private Boolean AllowDesigner;
     private Boolean AllowMasterPageEditing;
@@ -33,9 +34,6 @@ public class Site
     private String GeoLocation;
     private String GroupId;
     private String HubSiteId;
-    private String Id;
-    private String SensitivityLabelId;
-    private String SensitivityLabel;
     private Boolean IsHubSite;
     private Boolean IsRestrictedAccessControlPolicyEnforcedOnSite;
     private String LockIssue;
@@ -46,6 +44,9 @@ public class Site
     private Boolean ReadOnly;
     private String RequiredDesignerVersion;
     private int SandboxedCodeActivationCapability;
+    private String SecondaryContactEmail;
+    private String SensitivityLabelId;
+    private String SensitivityLabel;
     private String ServerRelativeUrl;
     private Boolean ShareByEmailEnabled;
     private Boolean ShareByLinkEnabled;
@@ -241,7 +242,71 @@ public class Site
 
     public Site(SiteProperties source)
     {
-
+        id = source.getId();
+        //siteType = source;
+        AllowCreateDeclarativeWorkflow = source.isAllowCreateDeclarativeWorkflow();
+        AllowDesigner = source.isAllowDesigner();
+        AllowMasterPageEditing = source.isAllowMasterPageEditing();
+        AllowRevertFromTemplate = source.isAllowRevertFromTemplate();
+        AllowSaveDeclarativeWorkflowAsTemplate = source.isAllowSaveDeclarativeWorkflowAsTemplate();
+        AllowSavePublishDeclarativeWorkflow = source.isAllowSavePublishDeclarativeWorkflow();
+        AllowSelfServiceUpgrade = source.isAllowSelfServiceUpgrade();
+        AllowSelfServiceUpgradeEvaluation = source.isAllowSelfServiceUpgradeEvaluation();
+        AuditFlags = source.getAudit().getAuditFlags();
+        AuditLogTrimmingRetention = source.getAuditLogTrimmingRetention();
+        ChannelGroupId = source.getChannelGroupId();
+        Classification = source.getClassification();
+        CompatibilityLevel = source.getCompatibilityLevel();
+        DisableAppViews = source.isDisableAppViews();
+        DisableCompanyWideSharingLinks = source.isDisableCompanyWideSharingLinks();
+        DisableFlows = source.isDisableFlows();
+        ExternalSharingTipsEnabled = source.isExternalSharingTipsEnabled();
+        GeoLocation = source.getGeoLocation();
+        GroupId = source.getGroupId();;
+        HubSiteId = source.getHubSiteId();
+        IsHubSite = source.isIsHubSite();
+        IsRestrictedAccessControlPolicyEnforcedOnSite = source.isIsRestrictedAccessControlPolicyEnforcedOnSite();
+        LockIssue = source.getLockIssue();
+        MaxItemsPerThrottledOperation = source.getMaxItemsPerThrottledOperation();
+        MediaTranscriptionDisabled = source.isMediaTranscriptionDisabled();
+        NeedsB2BUpgrade = source.isNeedsB2BUpgrade();
+        PrimaryUri = source.getPrimaryUri();
+        ReadOnly = source.isReadOnly();
+        RequiredDesignerVersion = source.getRequiredDesignerVersion();
+        SandboxedCodeActivationCapability = source.getSandboxedCodeActivationCapability();
+        SecondaryContactEmail = source.getSecondaryContact().getEmail();
+        SensitivityLabelId = source.getSensitivityLabelId();
+        SensitivityLabel = source.getSensitivityLabel();
+        ServerRelativeUrl = source.getServerRelativeUrl();
+        ShareByEmailEnabled = source.isShareByEmailEnabled();
+        ShareByLinkEnabled = source.isShareByLinkEnabled();
+        ShowUrlStructure = source.isShowUrlStructure();
+        TrimAuditLog = source.isTrimAuditLog();
+        UIVersionConfigurationEnabled = source.isUIVersionConfigurationEnabled();
+        UpgradeReminderDate = source.getUpgradeReminderDate();
+        UpgradeScheduled = source.isUpgradeScheduled();
+        UpgradeScheduledDate = source.getUpgradeScheduledDate();
+        Upgrading = source.isUpgrading();
+        Url = source.getUrl();
+        WriteLocked = source.isWriteLocked();
+        Owner = source.getOwner().getEmail();
+        IsOwnerIssiteAdmin = source.getOwner().isSiteAdmin();
+        UgrageInfoErrorFile = source.getUpgradeInfo().getErrorFile();
+        UgrageInfoErrors = source.getUpgradeInfo().getErrors();
+        UgrageInfoLastUpdated =  source.getUpgradeInfo().getLastUpdated();
+        UgrageInfoLogFile =  source.getUpgradeInfo().getLogFile();
+        UgrageInfoRequestDate =  source.getUpgradeInfo().getRequestDate();
+        UgrageInfoRetryCount =  source.getUpgradeInfo().getRetryCount();
+        UgrageInfoStartTime =  source.getUpgradeInfo().getStartTime();
+        UgrageInfoStatus =  source.getUpgradeInfo().getStatus();
+        UgrageInfoUpgradeType =  source.getUpgradeInfo().getUpgradeType();
+        UgrageInfoWarnings =  source.getUpgradeInfo().getWarnings();
+        UsageBandwidth = source.getUsage().getBandwidth();
+        UsageDiscussionStorage = source.getUsage().getDiscussionStorage();
+        UsageHits = source.getUsage().getHits();
+        UsageStorage = source.getUsage().getStorage();
+        UsageStoragePercentage = source.getUsage().getStoragePercentageUsed();
+        UsageVisits = source.getUsage().getVisits();
 
     }
 
