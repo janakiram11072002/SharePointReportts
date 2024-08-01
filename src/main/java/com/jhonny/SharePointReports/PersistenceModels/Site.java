@@ -4,7 +4,10 @@ package com.jhonny.SharePointReports.PersistenceModels;
 import com.jhonny.SharePointReports.PersistenceModels.MetaData_Objects.SiteProperties.*;
 import com.jhonny.SharePointReports.Utils.enums.SiteType;
 
+import java.util.Calendar;
 import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Site
 {
@@ -323,7 +326,32 @@ public class Site
         IsGroupOwnerSiteAdmin = source.isGroupOwnerSiteAdmin();
         IsTeamsChannelConnected = source.isTeamsChannelConnected();
         IsTeamsConnected = source.isTeamsConnected();
-        LastContentModifiedDate = source.getLastContentModifiedDate();
+        //LastContentModifiedDate = source.getLastContentModifiedDate();
+        try
+        {
+            Pattern pattern = Pattern.compile("/Date\\((\\d+),(\\d+),(\\d+),(\\d+),(\\d+),(\\d+),(\\d+)\\)/");
+            Matcher matcher = pattern.matcher(source.getLastContentModifiedDate());
+
+            if(matcher.matches())
+            {
+                Calendar calender = Calendar.getInstance();
+                calender.set(Calendar.YEAR,Integer.parseInt(matcher.group(1)));
+                calender.set(Calendar.MONTH,Integer.parseInt(matcher.group(2)));
+                calender.set(Calendar.DAY_OF_MONTH,Integer.parseInt(matcher.group(3)));
+                calender.set(Calendar.HOUR_OF_DAY,Integer.parseInt(matcher.group(4)));
+                calender.set(Calendar.MINUTE,Integer.parseInt(matcher.group(5)));
+                calender.set(Calendar.SECOND,Integer.parseInt(matcher.group(6)));
+                calender.set(Calendar.MILLISECOND,Integer.parseInt(matcher.group(7)));
+                
+                LastContentModifiedDate = calender.getTime();
+                
+            }
+        }
+        catch(Exception e)
+        {
+            System.err.println(e);
+        }
+
         Lcid = source.getLcid();
         LockState = source.getLockState();
         NewUrl = source.getNewUrl();
