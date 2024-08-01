@@ -118,11 +118,18 @@ public class TestController
         return "success";
     }
 
-    @GetMapping("/testv2")
-    public String testV2data()
+    @GetMapping("/sitev2")
+    public String siteV2data()
     {
         new DataCollector().getSitePropertiesV2("https://42jghx-admin.sharepoint.com","https://42jghx.sharepoint.com/sites/1gate");
         //new DataCollector().getAllWebsFromAdmin();
         return "success";
+    }
+    @GetMapping("/webv2")
+    public String webV2data()
+    {
+        return new DataCollector().getWebProperties("https://42jghx.sharepoint.com/sites/1gate");
+        //new DataCollector().getAllWebsFromAdmin();
+//        return "success";
     }
 }
