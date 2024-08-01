@@ -29,7 +29,7 @@ public class TenantLevelSiteProperties
     @JsonProperty("IsTeamsConnected")
     private boolean IsTeamsConnected;
     @JsonProperty("LastContentModifiedDate")
-    private Date LastContentModifiedDate;
+    private String LastContentModifiedDate;
     @JsonProperty("Lcid")
     private int Lcid;
     @JsonProperty("LockState")
@@ -156,11 +156,11 @@ public class TenantLevelSiteProperties
         IsTeamsChannelConnected = teamsChannelConnected;
     }
 
-    public Date getLastContentModifiedDate() {
+    public String getLastContentModifiedDate() {
         return LastContentModifiedDate;
     }
 
-    public void setLastContentModifiedDate(Date lastContentModifiedDate) {
+    public void setLastContentModifiedDate(String lastContentModifiedDate) {
         LastContentModifiedDate = lastContentModifiedDate;
     }
 
