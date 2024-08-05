@@ -1,6 +1,7 @@
 package com.jhonny.SharePointReports.Modules.Operations;
 
 import com.jhonny.SharePointReports.PersistenceModels.MetaData_Objects.SiteProperties.*;
+import com.jhonny.SharePointReports.PersistenceModels.MetaData_Objects.WebProperties.WebProperties;
 import com.jhonny.SharePointReports.PersistenceModels.Site;
 import com.jhonny.SharePointReports.Utils.AuthClient;
 import com.jhonny.SharePointReports.Utils.HttpUtils;
@@ -225,7 +226,7 @@ public class DataCollector
                 ).body();
         System.out.println(response);
         String breakResponse = response.split("},1,")[1];
-        //TenantLevelSiteProperties siteProp = (JsonUtils.toObject(breakResponse.substring(0,breakResponse.length()-2), .class));
+        WebProperties siteProp = (JsonUtils.toObject(breakResponse.substring(0,breakResponse.length()-2), WebProperties.class));
         //return siteProp;
         return breakResponse;
     }

@@ -4,108 +4,146 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.Date;
+import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class WebProperties
 {
-    @JsonProperty("AllowRssFeeds")
+    @JsonProperty("")
+    private boolean AllowAutomaticASPXPageIndexing;
+    @JsonProperty("")
+    private User Author;
+    @JsonProperty("")
+    private boolean AllowCreateDeclarativeWorkflowForCurrentUser;
+    @JsonProperty("")
+    private boolean AllowDesignerForCurrentUser;
+    @JsonProperty("")
+    private boolean AllowMasterPageEditingForCurrentUser;
+    @JsonProperty("")
+    private boolean AllowRevertFromTemplateForCurrentUser;
+    @JsonProperty("")
     private boolean AllowRssFeeds;
-    @JsonProperty("AlternateCssUrl")
+    @JsonProperty("")
+    private boolean AllowSaveDeclarativeWorkflowAsTemplateForCurrentUser;
+    @JsonProperty("")
+    private boolean AllowSavePublishDeclarativeWorkflowForCurrentUser;
+    @JsonProperty("")
+    private AllProperties AllProperties;
+    @JsonProperty("")
     private String AlternateCssUrl;
-    @JsonProperty("AppInstanceId")
+    @JsonProperty("")
     private String AppInstanceId;
-    @JsonProperty("ClassicWelcomePage")
-    private String ClassicWelcomePage;
-    @JsonProperty("Configuration")
+    @JsonProperty("")
+    private Group AssociatedOwnerGroup;
+    @JsonProperty("")
+    private Group AssociatedMemberGroup;
+    @JsonProperty("")
     private int Configuration;
-    @JsonProperty("Created")
-    private Date Created;
-    @JsonProperty("CustomMasterUrl")
+    @JsonProperty("")
+    private boolean ContainsConfidentialInfo;
+    @JsonProperty("")
+    private String Created;
+    @JsonProperty("")
+    private User CurrentUser;
+    @JsonProperty("")
     private String CustomMasterUrl;
-    @JsonProperty("Description")
+    @JsonProperty("")
     private String Description;
-    @JsonProperty("DesignPackageId")
-    private String DesignPackageId;
-    @JsonProperty("DocumentLibraryCalloutOfficeWebAppPreviewersDisabled")
+    @JsonProperty("")
+    private String DesignerDownloadUrlForCurrentUser;
+    @JsonProperty("")
+    private boolean DisableAppViews;
+    @JsonProperty("")
+    private boolean DisableFlows;
+    @JsonProperty("")
     private boolean DocumentLibraryCalloutOfficeWebAppPreviewersDisabled;
-    @JsonProperty("EnableMinimalDownload")
+    @JsonProperty("")
     private boolean EnableMinimalDownload;
-    @JsonProperty("FooterEmphasis")
-    private int FooterEmphasis;
-    @JsonProperty("FooterEnabled")
-    private boolean FooterEnabled;
-    @JsonProperty("FooterLayout")
-    private int FooterLayout;
-    @JsonProperty("HeaderEmphasis")
-    private int HeaderEmphasis;
-    @JsonProperty("HeaderLayout")
-    private int HeaderLayout;
-    @JsonProperty("HideTitleInHeader")
-    private boolean HideTitleInHeader;
-    @JsonProperty("HorizontalQuickLaunch")
-    private boolean HorizontalQuickLaunch;
-    @JsonProperty("Id")
+    @JsonProperty("")
+    private boolean ExcludeFromOfflineClient;
+    @JsonProperty("")
     private String Id;
-    @JsonProperty("IsEduClass")
-    private boolean  IsEduClass;
-    @JsonProperty("IsEduClassProvisionChecked")
-    private boolean  IsEduClassProvisionChecked;
-    @JsonProperty("IsEduClassProvisionPending")
-    private boolean  IsEduClassProvisionPending;
-    @JsonProperty("IsHomepageModernized")
-    private boolean  IsHomepageModernized;
-    @JsonProperty("IsMultilingual")
-    private boolean  IsMultilingual;
-    @JsonProperty("IsRevertHomepageLinkHidden")
-    private boolean  IsRevertHomepageLinkHidden;
-    @JsonProperty("Language")
+    @JsonProperty("")
+    private boolean IsMultilingual;
+    @JsonProperty("")
     private int Language;
-    @JsonProperty("LastItemModifiedDate")
-    private Date LastItemModifiedDate;
-    @JsonProperty("LastItemUserModifiedDate")
-    private Date LastItemUserModifiedDate;
-    @JsonProperty("LogoAlignment")
-    private int LogoAlignment;
-    @JsonProperty("MasterUrl")
+    @JsonProperty("")
+    private String LastItemModifiedDate;
+    @JsonProperty("")
+    private String LastItemUserModifiedDate;
+    @JsonProperty("")
+    private List<SiteList> Lists;
+    @JsonProperty("")
     private String MasterUrl;
-    @JsonProperty("MegaMenuEnabled")
-    private boolean MegaMenuEnabled;
-    @JsonProperty("NavAudienceTargetingEnabled")
-    private boolean NavAudienceTargetingEnabled;
-    @JsonProperty("NoCrawl")
+    @JsonProperty("")
+    private boolean MembersCanShare;
+    @JsonProperty("")
     private boolean NoCrawl;
-    @JsonProperty("ObjectCacheEnabled")
-    private boolean ObjectCacheEnabled;
-    @JsonProperty("OverwriteTranslationsOnChange")
+    @JsonProperty("")
+    private boolean NotificationsInOneDriveForBusinessEnabled;
+    @JsonProperty("")
+    private boolean NotificationsInSharePointEnabled;
+    @JsonProperty("")
     private boolean OverwriteTranslationsOnChange;
-    @JsonProperty("QuickLaunchEnabled")
+    @JsonProperty("")
+    private boolean PreviewFeaturesEnabled;
+    @JsonProperty("")
     private boolean QuickLaunchEnabled;
-    @JsonProperty("RecycleBinEnabled")
+    @JsonProperty("")
     private boolean RecycleBinEnabled;
-    @JsonProperty("SearchScope")
-    private int SearchScope;
-    @JsonProperty("ServerRelativeUrl")
+    @JsonProperty("")
+    private boolean RequestAccessEmail;
+    @JsonProperty("")
+    private boolean SaveSiteAsTemplateEnabled;
+    @JsonProperty("")
     private String ServerRelativeUrl;
-    @JsonProperty("SiteLogoUrl")
+    @JsonProperty("")
+    private boolean ShowUrlStructureForCurrentUser;
+    @JsonProperty("")
+    private boolean SiteLogoDescription;
+    @JsonProperty("")
     private String SiteLogoUrl;
-    @JsonProperty("SyndicationEnabled")
+    @JsonProperty("")
+    private RootFolder RootFolder;
+//    @JsonProperty("")
+//    private RoleAssignments RoleAssignments;
+//    @JsonProperty("")
+//    private List<RoleDefinition> RoleDefinitions;
+    @JsonProperty("")
+    private List<Group> Groups;
+    @JsonProperty("")
+    private UserInfoList UserInfoList;
+    @JsonProperty("")
+    private List<User> Users;
+    @JsonProperty("")
+    private int[] SupportedUILanguageIds;
+    @JsonProperty("")
     private boolean SyndicationEnabled;
-    @JsonProperty("TenantAdminMembersCanShare")
-    private int TenantAdminMembersCanShare;
-    @JsonProperty("Title")
+    @JsonProperty("")
+    private boolean TenantTagPolicyEnabled;
+    @JsonProperty("")
+    private boolean ThemedCssFolderUrl;
+    @JsonProperty("")
+    private boolean ThirdPartyMdmEnabled;
+    @JsonProperty("")
     private String Title;
-    @JsonProperty("TreeViewEnabled")
+    @JsonProperty("")
     private boolean TreeViewEnabled;
-    @JsonProperty("UIVersion")
+    @JsonProperty("")
     private int UIVersion;
-    @JsonProperty("UIVersionConfigurationEnabled")
+    @JsonProperty("")
     private boolean UIVersionConfigurationEnabled;
-    @JsonProperty("Url")
+    @JsonProperty("")
     private String Url;
-    @JsonProperty("WebTemplate")
+    @JsonProperty("")
+    private boolean UseAccessRequestDefault;
+    @JsonProperty("")
+    private List<Webs> Webs;
+    @JsonProperty("")
     private String WebTemplate;
-    @JsonProperty("WelcomePage")
-    private String WelcomePage;
+    @JsonProperty("")
+    private boolean HasUniqueRoleAssignments;
+
 
 }
 
@@ -7827,7 +7865,7 @@ public class WebProperties
                     }
                 ]
             },
-            "SiteGroups": {
+            "Groups": {
                 "_ObjectType_": "SP.GroupCollection",
                 "_Child_Items_": [
                     {
@@ -15799,7 +15837,7 @@ public class WebProperties
                     }
                 ]
             },
-            "SiteUserInfoList": {
+            "UserInfoList": {
                 "_ObjectType_": "SP.List",
                 "_ObjectIdentity_": "2b0d42a1-b020-3000-9554-aa51d86ecaca|740c6a0b-85e2-48a0-a494-e0f1759d4aa7:site:9372d741-3ce0-4eee-8349-f35cfd489061:web:2ff69ca1-2187-472d-9315-708235bb9c15:list:e838053e-c9c2-47b1-9a38-bd4c04f73c22",
                 "_ObjectVersion_": "46",
@@ -15867,7 +15905,7 @@ public class WebProperties
                 "TemplateFeatureId": "\/Guid(00000000-0000-0000-0000-000000000000)\/",
                 "Title": "User Information List"
             },
-            "SiteUsers": {
+            "Users": {
                 "_ObjectType_": "SP.UserCollection",
                 "_Child_Items_": [
                     {
