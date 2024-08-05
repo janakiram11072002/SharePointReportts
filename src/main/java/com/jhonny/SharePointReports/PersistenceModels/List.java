@@ -1,0 +1,76 @@
+package com.jhonny.SharePointReports.PersistenceModels;
+
+import java.util.Date;
+
+public class List
+{
+    private String siteId;
+    private String webId;
+    private String id;
+    private boolean allowContentTypes;
+    private boolean allowDeletion;
+    private int baseTemplate;
+    private int baseType;
+    private int browserFileHandling;
+    private boolean contentTypesEnabled;
+    private boolean crawlNonDefaultViews;
+    private Date created;
+    private String defaultContentApprovalWorkflowId;
+    private String defaultDisplayFormUrl;
+    private String defaultEditFormUrl;
+    private String defaultNewFormUrl;
+    private String defaultViewUrl;
+    private String description;
+    private String direction;
+    private String documentTemplateUrl;
+    private int draftVersionVisibility;
+    private boolean enableAssignToEmail;
+    private boolean enableAttachments;
+    private boolean enableFolderCreation;
+    private boolean enableMinorVersions;
+    private boolean enableModeration;
+    private boolean enableVersioning;
+    private String entityTypeName;
+    private boolean excludeFromOfflineClient;
+    private boolean exemptFromBlockDownloadOfNonViewableFiles;
+    private boolean fileSavePostProcessingEnabled;
+    private boolean forceCheckout;
+    private boolean hasExternalDataSource;
+    private boolean hidden;
+    private String imageUrl;
+    private boolean irmEnabled;
+    private boolean irmExpire;
+    private boolean irmReject;
+    private boolean isApplicationList;
+    private boolean isCatalog;
+    private boolean isPrivate;
+    private boolean isSiteAssetsLibrary;
+    private boolean isSystemList;
+    private int itemCount;
+    private Date lastItemDeletedDate;
+    private Date lastItemModifiedDate;
+    private Date lastItemUserModifiedDate;
+    private int listExperienceOptions;
+    private String listItemEntityTypeFullName;
+    private int majorVersionLimit;
+    private int majorWithMinorVersionsLimit;
+    private boolean multipleDataList;
+    private boolean noCrawl;
+    private boolean onQuickLaunch;
+    private String parentWebUrl;
+    private boolean parserDisabled;
+    private int readSecurity;
+    private boolean serverTemplateCanCreateFolders;
+    private String templateFeatureId;
+    private String title;
+    private String validationFormula;
+    private String validationMessage;
+    private int writeSecurity;
+    private boolean hasUniqueRoleAssignments;
+    private String webUrl;
+    private String webTitle;
+    private String siteUrl;
+    private int inactiveDays;
+    private String siteTitle;
+
+}
