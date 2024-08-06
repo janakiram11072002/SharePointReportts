@@ -1,26 +1,33 @@
 package com.jhonny.SharePointReports.PersistenceModels;
 
+import com.jhonny.SharePointReports.PersistenceModels.MetaData_Objects.WebProperties.User;
+
 public class SiteUsers
 {
-    private int siteType;
-    private String siteId;
-    private String webId;
-    private String email;
-    private String groups;
-    private boolean isShareByEmailGuestUser;
-    private boolean isSiteAdmin;
-    private boolean isSiteOwner;
-    private String userId_nameId;
-    private String userId_nameIdUser;
-    private String userId_typeId;
-    private int id;
-    private boolean isHiddenInUI;
-    private String loginName;
-    private String title;
-    private int principalType;
-    private String objectVersion;
-    private String webUrl;
-    private String webTitle;
-    private String siteUrl;
-    private String siteTitle;
+    public int siteType;
+    public String siteId;
+    public String webId;
+    public String email;
+    public String groups;
+    public boolean isShareByEmailGuestUser;
+    public boolean isSiteAdmin;
+    public boolean isSiteOwner;
+    public String userId_nameId;
+    public String userId_nameIdUser;
+    public String userId_typeId;
+    public int id;
+    public boolean isHiddenInUI;
+    public String loginName;
+    public String title;
+    public int principalType;
+    public String objectVersion;
+    public String webUrl;
+    public String webTitle;
+    public String siteUrl;
+    public String siteTitle;
+
+    public SiteUsers(String siteId, String webId, User source)
+    {
+
+    }
 }

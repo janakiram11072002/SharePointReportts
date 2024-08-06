@@ -2,25 +2,25 @@ package com.jhonny.SharePointReports.PersistenceModels;
 
 public class SiteGroupMembers
 {
-    private int siteType;
-    private String siteId;
-    private String siteUrl;
-    private String siteTitle;
-    private String webId;
-    private String webUrl;
-    private String webTitle;
-    private int groupId;
-    private String groupTitle;
-    private int id;
-    private String title;
-    private String email;
-    private String loginName;
-    private String domainName;
-    private boolean isExternalUser;
-    private boolean isSystemAccount;
-    private boolean isSiteAdmin;
-    private boolean isOwner;
-    private boolean isSiteMember;
-    private boolean isSiteVisitor;
-    private int principalType;
+    public int siteType;
+    public String siteId;
+    public String siteUrl;
+    public String siteTitle;
+    public String webId;
+    public String webUrl;
+    public String webTitle;
+    public int groupId;
+    public String groupTitle;
+    public int id;
+    public String title;
+    public String email;
+    public String loginName;
+    public String domainName;
+    public boolean isExternalUser;
+    public boolean isSystemAccount;
+    public boolean isSiteAdmin;
+    public boolean isOwner;
+    public boolean isSiteMember;
+    public boolean isSiteVisitor;
+    public int principalType;
 }

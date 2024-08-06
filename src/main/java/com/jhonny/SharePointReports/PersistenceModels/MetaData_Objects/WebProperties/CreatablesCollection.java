@@ -12,4 +12,28 @@ public class CreatablesCollection
     private String FileExtension;
     @JsonProperty("ItemType")
     private String ItemType;
+
+    public int getDocumentTemplate() {
+        return DocumentTemplate;
+    }
+
+    public void setDocumentTemplate(int documentTemplate) {
+        DocumentTemplate = documentTemplate;
+    }
+
+    public String getFileExtension() {
+        return FileExtension;
+    }
+
+    public void setFileExtension(String fileExtension) {
+        FileExtension = fileExtension;
+    }
+
+    public String getItemType() {
+        return ItemType;
+    }
+
+    public void setItemType(String itemType) {
+        ItemType = itemType;
+    }
 }

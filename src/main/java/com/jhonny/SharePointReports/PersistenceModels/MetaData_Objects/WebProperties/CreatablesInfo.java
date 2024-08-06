@@ -16,4 +16,36 @@ public class CreatablesInfo
     private boolean CanUploadFiles;
     @JsonProperty("CreatablesCollection")
     private List<CreatablesCollection> CreatablesCollection;
+
+    public boolean isCanCreateFolders() {
+        return CanCreateFolders;
+    }
+
+    public void setCanCreateFolders(boolean canCreateFolders) {
+        CanCreateFolders = canCreateFolders;
+    }
+
+    public boolean isCanCreateItems() {
+        return CanCreateItems;
+    }
+
+    public void setCanCreateItems(boolean canCreateItems) {
+        CanCreateItems = canCreateItems;
+    }
+
+    public boolean isCanUploadFiles() {
+        return CanUploadFiles;
+    }
+
+    public void setCanUploadFiles(boolean canUploadFiles) {
+        CanUploadFiles = canUploadFiles;
+    }
+
+    public List<com.jhonny.SharePointReports.PersistenceModels.MetaData_Objects.WebProperties.CreatablesCollection> getCreatablesCollection() {
+        return CreatablesCollection;
+    }
+
+    public void setCreatablesCollection(List<com.jhonny.SharePointReports.PersistenceModels.MetaData_Objects.WebProperties.CreatablesCollection> creatablesCollection) {
+        CreatablesCollection = creatablesCollection;
+    }
 }

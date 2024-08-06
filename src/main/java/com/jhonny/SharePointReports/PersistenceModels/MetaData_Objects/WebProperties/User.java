@@ -38,4 +38,124 @@ public class User
     private boolean IsShareByEmailGuestUser;
     @JsonProperty("Expiration")
     private String Expiration;
+
+    public int getId() {
+        return Id;
+    }
+
+    public void setId(int id) {
+        Id = id;
+    }
+
+    public String getEmailWithFallback() {
+        return EmailWithFallback;
+    }
+
+    public void setEmailWithFallback(String emailWithFallback) {
+        EmailWithFallback = emailWithFallback;
+    }
+
+    public String getHexCid() {
+        return HexCid;
+    }
+
+    public void setHexCid(String hexCid) {
+        HexCid = hexCid;
+    }
+
+    public List<Group> getGroups() {
+        return Groups;
+    }
+
+    public void setGroups(List<Group> groups) {
+        Groups = groups;
+    }
+
+    public String getEmail() {
+        return Email;
+    }
+
+    public void setEmail(String email) {
+        Email = email;
+    }
+
+    public boolean isSiteAdmin() {
+        return IsSiteAdmin;
+    }
+
+    public void setSiteAdmin(boolean siteAdmin) {
+        IsSiteAdmin = siteAdmin;
+    }
+
+    public String getLoginName() {
+        return LoginName;
+    }
+
+    public void setLoginName(String loginName) {
+        LoginName = loginName;
+    }
+
+    public String getTitle() {
+        return Title;
+    }
+
+    public void setTitle(String title) {
+        Title = title;
+    }
+
+    public int getPrincipalType() {
+        return PrincipalType;
+    }
+
+    public void setPrincipalType(int principalType) {
+        PrincipalType = principalType;
+    }
+
+    public String getUserId() {
+        return UserId;
+    }
+
+    public void setUserId(String userId) {
+        UserId = userId;
+    }
+
+    public String getUserPrincipalName() {
+        return UserPrincipalName;
+    }
+
+    public void setUserPrincipalName(String userPrincipalName) {
+        UserPrincipalName = userPrincipalName;
+    }
+
+    public boolean isEmailAuthenticationGuestUser() {
+        return IsEmailAuthenticationGuestUser;
+    }
+
+    public void setEmailAuthenticationGuestUser(boolean emailAuthenticationGuestUser) {
+        IsEmailAuthenticationGuestUser = emailAuthenticationGuestUser;
+    }
+
+    public boolean isHiddenInUI() {
+        return IsHiddenInUI;
+    }
+
+    public void setHiddenInUI(boolean hiddenInUI) {
+        IsHiddenInUI = hiddenInUI;
+    }
+
+    public boolean isShareByEmailGuestUser() {
+        return IsShareByEmailGuestUser;
+    }
+
+    public void setShareByEmailGuestUser(boolean shareByEmailGuestUser) {
+        IsShareByEmailGuestUser = shareByEmailGuestUser;
+    }
+
+    public String getExpiration() {
+        return Expiration;
+    }
+
+    public void setExpiration(String expiration) {
+        Expiration = expiration;
+    }
 }

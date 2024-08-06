@@ -44,4 +44,139 @@ public class Group
     @JsonProperty("Users")
     private List<User> Users;
 
+    public int getId() {
+        return Id;
+    }
+
+    public void setId(int id) {
+        Id = id;
+    }
+
+    public boolean isHiddenInUI() {
+        return IsHiddenInUI;
+    }
+
+    public void setHiddenInUI(boolean hiddenInUI) {
+        IsHiddenInUI = hiddenInUI;
+    }
+
+    public String getLoginName() {
+        return LoginName;
+    }
+
+    public void setLoginName(String loginName) {
+        LoginName = loginName;
+    }
+
+    public String getTitle() {
+        return Title;
+    }
+
+    public void setTitle(String title) {
+        Title = title;
+    }
+
+    public int getPrincipalType() {
+        return PrincipalType;
+    }
+
+    public void setPrincipalType(int principalType) {
+        PrincipalType = principalType;
+    }
+
+    public boolean isAllowMembersEditMembership() {
+        return AllowMembersEditMembership;
+    }
+
+    public void setAllowMembersEditMembership(boolean allowMembersEditMembership) {
+        AllowMembersEditMembership = allowMembersEditMembership;
+    }
+
+    public boolean isAllowRequestToJoinLeave() {
+        return AllowRequestToJoinLeave;
+    }
+
+    public void setAllowRequestToJoinLeave(boolean allowRequestToJoinLeave) {
+        AllowRequestToJoinLeave = allowRequestToJoinLeave;
+    }
+
+    public boolean isAutoAcceptRequestToJoinLeave() {
+        return AutoAcceptRequestToJoinLeave;
+    }
+
+    public void setAutoAcceptRequestToJoinLeave(boolean autoAcceptRequestToJoinLeave) {
+        AutoAcceptRequestToJoinLeave = autoAcceptRequestToJoinLeave;
+    }
+
+    public boolean isCanCurrentUserEditMembership() {
+        return CanCurrentUserEditMembership;
+    }
+
+    public void setCanCurrentUserEditMembership(boolean canCurrentUserEditMembership) {
+        CanCurrentUserEditMembership = canCurrentUserEditMembership;
+    }
+
+    public boolean isCanCurrentUserManageGroup() {
+        return CanCurrentUserManageGroup;
+    }
+
+    public void setCanCurrentUserManageGroup(boolean canCurrentUserManageGroup) {
+        CanCurrentUserManageGroup = canCurrentUserManageGroup;
+    }
+
+    public boolean isCanCurrentUserViewMembership() {
+        return CanCurrentUserViewMembership;
+    }
+
+    public void setCanCurrentUserViewMembership(boolean canCurrentUserViewMembership) {
+        CanCurrentUserViewMembership = canCurrentUserViewMembership;
+    }
+
+    public String getDescription() {
+        return Description;
+    }
+
+    public void setDescription(String description) {
+        Description = description;
+    }
+
+    public boolean isOnlyAllowMembersViewMembership() {
+        return OnlyAllowMembersViewMembership;
+    }
+
+    public void setOnlyAllowMembersViewMembership(boolean onlyAllowMembersViewMembership) {
+        OnlyAllowMembersViewMembership = onlyAllowMembersViewMembership;
+    }
+
+    public com.jhonny.SharePointReports.PersistenceModels.MetaData_Objects.WebProperties.Owner getOwner() {
+        return Owner;
+    }
+
+    public void setOwner(com.jhonny.SharePointReports.PersistenceModels.MetaData_Objects.WebProperties.Owner owner) {
+        Owner = owner;
+    }
+
+    public String getOwnerTitle() {
+        return OwnerTitle;
+    }
+
+    public void setOwnerTitle(String ownerTitle) {
+        OwnerTitle = ownerTitle;
+    }
+
+    public String getRequestToJoinLeaveEmailSetting() {
+        return RequestToJoinLeaveEmailSetting;
+    }
+
+    public void setRequestToJoinLeaveEmailSetting(String requestToJoinLeaveEmailSetting) {
+        RequestToJoinLeaveEmailSetting = requestToJoinLeaveEmailSetting;
+    }
+
+    public List<User> getUsers() {
+        return Users;
+    }
+
+    public void setUsers(List<User> users) {
+        Users = users;
+    }
 }
