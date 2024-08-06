@@ -1,6 +1,11 @@
 package com.jhonny.SharePointReports.Utils;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.io.IOException;
 
 public class JsonUtils 
 {
@@ -29,5 +34,22 @@ public class JsonUtils
             System.out.println(e.getMessage());
             return null;
         }
+    }
+
+    public static String getDataFromJson(String jsonResponse, int location)
+    {
+        // import org.json
+        try {
+            // Parse the JSON response
+            JsonNode rootNode = objectMapper.readTree(jsonResponse);
+
+            // Print the extracted data
+            return objectMapper
+                    //.writerWithDefaultPrettyPrinter()
+                    .writeValueAsString(rootNode.get(location));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return "";
     }
 }
