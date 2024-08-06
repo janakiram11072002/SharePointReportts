@@ -45,7 +45,7 @@ public class CustomUtils
         return builder.toString();
     }
 
-    public static Date ToDate(String data)
+    public static Date toDate(String data)
     {
         try
         {
