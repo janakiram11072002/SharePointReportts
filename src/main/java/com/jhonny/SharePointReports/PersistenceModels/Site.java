@@ -11,57 +11,57 @@ import java.util.regex.Pattern;
 
 public class Site
 {
-    private String id;
-    private String siteType; //pending 
+    public String id;
+    public String siteType; //pending 
     
-    private Boolean AllowCreateDeclarativeWorkflow;
-    private Boolean AllowDesigner;
-    private Boolean AllowMasterPageEditing;
-    private Boolean AllowRevertFromTemplate;
-    private Boolean AllowSaveDeclarativeWorkflowAsTemplate;
-    private Boolean AllowSavePublishDeclarativeWorkflow;
-    private Boolean AllowSelfServiceUpgrade;
-    private Boolean AllowSelfServiceUpgradeEvaluation;
+    public Boolean AllowCreateDeclarativeWorkflow;
+    public Boolean AllowDesigner;
+    public Boolean AllowMasterPageEditing;
+    public Boolean AllowRevertFromTemplate;
+    public Boolean AllowSaveDeclarativeWorkflowAsTemplate;
+    public Boolean AllowSavePublishDeclarativeWorkflow;
+    public Boolean AllowSelfServiceUpgrade;
+    public Boolean AllowSelfServiceUpgradeEvaluation;
     // "Audit": {
     //     "AuditFlags": 0
     // },
-    private int AuditFlags;
-    private String AuditLogTrimmingRetention;
-    private String ChannelGroupId;
-    private String Classification;
-    private String CompatibilityLevel;
-    private Boolean DisableAppViews;
-    private Boolean DisableCompanyWideSharingLinks;
-    private Boolean DisableFlows;
-    private Boolean ExternalSharingTipsEnabled;
-    private String GeoLocation;
-    private String GroupId;
-    private String HubSiteId;
-    private Boolean IsHubSite;
-    private Boolean IsRestrictedAccessControlPolicyEnforcedOnSite;
-    private String LockIssue;
-    private String MaxItemsPerThrottledOperation;
-    private Boolean MediaTranscriptionDisabled;
-    private Boolean NeedsB2BUpgrade;
-    private String PrimaryUri;
-    private Boolean ReadOnly;
-    private String RequiredDesignerVersion;
-    private int SandboxedCodeActivationCapability;
-    private String SecondaryContactEmail;
-    private String SensitivityLabelId;
-    private String SensitivityLabel;
-    private String ServerRelativeUrl;
-    private Boolean ShareByEmailEnabled;
-    private Boolean ShareByLinkEnabled;
-    private Boolean ShowUrlStructure;
-    private Boolean TrimAuditLog;
-    private Boolean UIVersionConfigurationEnabled;
-    private Date UpgradeReminderDate;
-    private Boolean UpgradeScheduled;
-    private Date UpgradeScheduledDate;
-    private Boolean Upgrading;
-    private String Url;
-    private Boolean WriteLocked;
+    public int AuditFlags;
+    public String AuditLogTrimmingRetention;
+    public String ChannelGroupId;
+    public String Classification;
+    public String CompatibilityLevel;
+    public Boolean DisableAppViews;
+    public Boolean DisableCompanyWideSharingLinks;
+    public Boolean DisableFlows;
+    public Boolean ExternalSharingTipsEnabled;
+    public String GeoLocation;
+    public String GroupId;
+    public String HubSiteId;
+    public Boolean IsHubSite;
+    public Boolean IsRestrictedAccessControlPolicyEnforcedOnSite;
+    public String LockIssue;
+    public String MaxItemsPerThrottledOperation;
+    public Boolean MediaTranscriptionDisabled;
+    public Boolean NeedsB2BUpgrade;
+    public String PrimaryUri;
+    public Boolean ReadOnly;
+    public String RequiredDesignerVersion;
+    public int SandboxedCodeActivationCapability;
+    public String SecondaryContactEmail;
+    public String SensitivityLabelId;
+    public String SensitivityLabel;
+    public String ServerRelativeUrl;
+    public Boolean ShareByEmailEnabled;
+    public Boolean ShareByLinkEnabled;
+    public Boolean ShowUrlStructure;
+    public Boolean TrimAuditLog;
+    public Boolean UIVersionConfigurationEnabled;
+    public Date UpgradeReminderDate;
+    public Boolean UpgradeScheduled;
+    public Date UpgradeScheduledDate;
+    public Boolean Upgrading;
+    public String Url;
+    public Boolean WriteLocked;
 
 
     //"CustomScriptSafeDomains": [],
@@ -83,8 +83,8 @@ public class Site
     //     },
     //     "UserPrincipalName": "jh@42jghx.onmicrosoft.com"
     // },
-    private String Owner;
-    private Boolean IsOwnerIssiteAdmin;
+    public String Owner;
+    public Boolean IsOwnerIssiteAdmin;
     // "SensitivityLabelInfo": {
     //     "DisplayName": "",
     //     "Id": "",
@@ -103,16 +103,16 @@ public class Site
     //     "UpgradeType": 0,
     //     "Warnings": 4
     // },
-    private String UgrageInfoErrorFile;
-    private int UgrageInfoErrors;
-    private Date UgrageInfoLastUpdated;
-    private String UgrageInfoLogFile;
-    private Date UgrageInfoRequestDate;
-    private int UgrageInfoRetryCount;
-    private Date UgrageInfoStartTime;
-    private int UgrageInfoStatus;
-    private int UgrageInfoUpgradeType;
-    private int UgrageInfoWarnings;
+    public String UgrageInfoErrorFile;
+    public int UgrageInfoErrors;
+    public Date UgrageInfoLastUpdated;
+    public String UgrageInfoLogFile;
+    public Date UgrageInfoRequestDate;
+    public int UgrageInfoRetryCount;
+    public Date UgrageInfoStartTime;
+    public int UgrageInfoStatus;
+    public int UgrageInfoUpgradeType;
+    public int UgrageInfoWarnings;
     //    "Usage": {
     //        "Bandwidth": "0",
     //        "DiscussionStorage": "0",
@@ -121,12 +121,12 @@ public class Site
     //        "StoragePercentageUsed": 1.9852195691782982E-07,
     //        "Visits": "0"
     //    },
-    private long UsageBandwidth;
-    private long UsageDiscussionStorage;
-    private long UsageHits;
-    private long UsageStorage;
-    private double UsageStoragePercentage;
-    private long UsageVisits;
+    public long UsageBandwidth;
+    public long UsageDiscussionStorage;
+    public long UsageHits;
+    public long UsageStorage;
+    public double UsageStoragePercentage;
+    public long UsageVisits;
 
 
 
@@ -140,11 +140,11 @@ public class Site
     // "AnonymousLinkExpirationInDays": 0,
     // "ApplyToExistingDocumentLibraries": false,
     // "ApplyToNewDocumentLibraries": false,
-    private String ArchiveStatus;
+    public String ArchiveStatus;
     // "AuthContextStrength": null,
     // "AuthenticationContextLimitedAccess": false,
     // "AuthenticationContextName": null,
-    private int AverageResourceUsage;
+    public int AverageResourceUsage;
     // "BlockDownloadLinksFileType": 1,
     // "BlockDownloadMicrosoft365GroupIds": null,
     // "BlockDownloadPolicy": false,
@@ -155,54 +155,54 @@ public class Site
     // "CommentsOnSitePagesDisabled": false,
     // "CompatibilityLevel": 15,
     // "ConditionalAccessPolicy": 0,
-    private int CurrentResourceUsage;
+    public int CurrentResourceUsage;
     // "DefaultLinkPermission": 0,
     // "DefaultLinkToExistingAccess": false,
     // "DefaultLinkToExistingAccessReset": false,
     // "DefaultShareLinkRole": 0,
     // "DefaultShareLinkScope": -1,
     // "DefaultSharingLinkType": 0,
-    private int DenyAddAndCustomizePages;
-    private String Description;
+    public int DenyAddAndCustomizePages;
+    public String Description;
     // "EnableAutoExpirationVersionTrim": false,
     // "ExcludeBlockDownloadPolicySiteOwners": false,
     // "ExcludeBlockDownloadSharePointGroups": [],
     // "ExcludedBlockDownloadGroupIds": [],
-    private int ExpireVersionsAfterDays;
+    public int ExpireVersionsAfterDays;
     // "ExternalUserExpirationInDays": 0,
     // "GroupOwnerLoginName": "c:0o.c|federateddirectoryclaimprovider|31956366-7ce7-4b48-9f2c-16553af97d33_o",
-    private boolean HasHolds;
+    public boolean HasHolds;
     // "IBMode": "",
     // "IBSegments": [],
     // "IBSegmentsToAdd": null,
     // "IBSegmentsToRemove": null,
     // "InheritVersionPolicyFromTenant": false,
-    private boolean IsGroupOwnerSiteAdmin;
-    private boolean IsTeamsChannelConnected;
-    private boolean IsTeamsConnected;
-    private Date LastContentModifiedDate;
-    private int Lcid; //get language using lcid
+    public boolean IsGroupOwnerSiteAdmin;
+    public boolean IsTeamsChannelConnected;
+    public boolean IsTeamsConnected;
+    public Date LastContentModifiedDate;
+    public int Lcid; //get language using lcid
     // "LimitedAccessFileType": 1,
     // "ListsShowHeaderAndNavigation": false,
     // "LockReason": 0,
-    private String LockState;
+    public String LockState;
     // "LoopDefaultSharingLinkRole": 0,
     // "LoopDefaultSharingLinkScope": -1,
     // "MajorVersionLimit": 0,
     // "MajorWithMinorVersionsLimit": 0,
     // "MediaTranscription": 0,
-    private String NewUrl;
+    public String NewUrl;
     // "OverrideBlockUserInfoVisibility": 0,
     // "OverrideSharingCapability": false,
     // "OverrideTenantAnonymousLinkExpirationPolicy": false,
     // "OverrideTenantExternalUserExpirationPolicy": false,
-    private int PWAEnabled;
+    public int PWAEnabled;
     // "ReadOnlyAccessPolicy": false,
     // "ReadOnlyForBlockDownloadPolicy": false,
     // "ReadOnlyForUnmanagedDevices": false,
     // "RelatedGroupId": "/Guid(31956366-7ce7-4b48-9f2c-16553af97d33)/",
-    private boolean RequestFilesLinkEnabled;
-    private int RequestFilesLinkExpirationInDays;
+    public boolean RequestFilesLinkEnabled;
+    public int RequestFilesLinkExpirationInDays;
     // "RestrictContentOrgWideSearch": false,
     // "RestrictedAccessControl": false,
     // "RestrictedAccessControlGroups": [
@@ -212,35 +212,35 @@ public class Site
     // "RestrictedAccessControlGroupsToRemove": null,
     // "RestrictedToRegion": 3,
     // "SandboxedCodeActivationCapability": 2,
-    private boolean SetOwnerWithoutUpdatingSecondaryAdmin;
-    private String SharingAllowedDomainList;
-    private String SharingBlockedDomainList;
-    private int SharingCapability;
-    private int SharingDomainRestrictionMode;
+    public boolean SetOwnerWithoutUpdatingSecondaryAdmin;
+    public String SharingAllowedDomainList;
+    public String SharingBlockedDomainList;
+    public int SharingCapability;
+    public int SharingDomainRestrictionMode;
     // "SharingLockDownCanBeCleared": true,
     // "SharingLockDownEnabled": false,
     // "ShowPeoplePickerSuggestionsForGuestUsers": false,
     // "SiteDefinedSharingCapability": 2,
     // "SocialBarOnSitePagesDisabled": false,
-    private String Status;
-    private long StorageMaximumLevel;
-    private String StorageQuotaType;
-    private long StorageUsage;
-    private long StorageWarningLevel;
+    public String Status;
+    public long StorageMaximumLevel;
+    public String StorageQuotaType;
+    public long StorageUsage;
+    public long StorageWarningLevel;
     //"TeamsChannelType": 0,
-    private String Template;
-    private int TimeZoneId;
-    private String Title;
+    public String Template;
+    public int TimeZoneId;
+    public String Title;
     // "TitleTranslations": null,
-    private int UserCodeMaximumLevel;
-    private int UserCodeWarningLevel;
-    private int WebsCount;
+    public int UserCodeMaximumLevel;
+    public int UserCodeWarningLevel;
+    public int WebsCount;
     //Extra properties
-    private int WebDepth; //depth of subsites
-    private int child; //subsites(webcounts-1)
-    private boolean IsOverWarningQuota;
-    private int InactiveDays;
-    private double StoragePercentageUsedInTenant;
+    public int WebDepth; //depth of subsites
+    public int child; //subsites(webcounts-1)
+    public boolean IsOverWarningQuota;
+    public int InactiveDays;
+    public double StoragePercentageUsedInTenant;
 
 
     public Site(SiteProperties source)
