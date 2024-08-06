@@ -128,8 +128,8 @@ public class TestController
     @GetMapping("/webv2")
     public String webV2data()
     {
-        return new DataCollector().getWebProperties("https://42jghx.sharepoint.com/sites/1gate");
+        new DataCollector().getWebProperties("https://42jghx.sharepoint.com/sites/1gate");
         //new DataCollector().getAllWebsFromAdmin();
-//        return "success";
+        return "success";
     }
 }
