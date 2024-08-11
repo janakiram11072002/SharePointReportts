@@ -1,6 +1,7 @@
 package com.jhonny.SharePointReports.PersistenceModels;
 
 import com.jhonny.SharePointReports.PersistenceModels.MetaData_Objects.WebProperties.Group;
+import com.jhonny.SharePointReports.PersistenceModels.MetaData_Objects.WebProperties.User;
 
 public class SiteGroups
 {
@@ -28,8 +29,48 @@ public class SiteGroups
     public String title;
     public int principalType;
 
-    public SiteGroups(String siteId, String WebId, Group source)
+    public SiteGroups(Web webSource, Group source)
     {
+        this.siteType = webSource.siteType;
+        this.siteId = webSource.siteId;
+        this.siteUrl = webSource.siteUrl;
+        this.siteTitle = webSource.siteTitle;
+        this.webId = webSource.id;
+        this.webUrl = webSource.url;
+        this.webTitle = webSource.title;
+        this.allowMembersEditMembership = source.isAllowMembersEditMembership();
+        this.allowRequestToJoinLeave = source.isAllowRequestToJoinLeave();
+        this.autoAcceptRequestToJoinLeave = source.isAutoAcceptRequestToJoinLeave();
+        this.canCurrentUserEditMembership = source.isCanCurrentUserEditMembership();
+        this.canCurrentUserManageGroup = source.isCanCurrentUserManageGroup();
+        this.canCurrentUserViewMembership = source.isCanCurrentUserViewMembership();
+        this.description = source.getDescription();
+        this.onlyAllowMembersViewMembership = source.isOnlyAllowMembersViewMembership();
+        this.ownerTitle = source.getOwnerTitle();
+        this.requestToJoinLeaveEmailSetting = source.getRequestToJoinLeaveEmailSetting();
+        try {
+            this.memberCount = source.getUserCollection().getUsers().length;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+        }
+        this.id = source.getId();
+        this.isHiddenInUI = source.isHiddenInUI();
+        this.loginName = source.getLoginName();
+        this.title = source.getTitle();
+        this.principalType = source.getPrincipalType();
 
+        try
+        {
+            for(User user : source.getUserCollection().getUsers())
+            {
+                SiteGroupMembers groupMembers = new SiteGroupMembers(this, user);
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+        }
     }
 }
