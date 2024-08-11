@@ -14,6 +14,7 @@ public class Web
 {
     public int siteType;
     public String siteId;
+    public String geoLocation;
     public boolean allowAutomaticASPXPageIndexing;
     public boolean allowCreateDeclarativeWorkflowForCurrentUser;
     public boolean allowDesignerForCurrentUser;
@@ -108,97 +109,129 @@ public class Web
 //    public int emailAuthenticationGuestUser;
     public int sharingCapability;
 
-    public Web(Site siteSource, WebProperties source)
+    public Web(String siteId, String siteName, String geoLocation, WebProperties source)
     {
-        //siteType = source;
-        siteId = siteSource.id;
-        allowAutomaticASPXPageIndexing = source.isAllowAutomaticASPXPageIndexing();
-        allowCreateDeclarativeWorkflowForCurrentUser = source.isAllowCreateDeclarativeWorkflowForCurrentUser();
-        allowDesignerForCurrentUser = source.isAllowDesignerForCurrentUser();
-        allowMasterPageEditingForCurrentUser = source.isAllowMasterPageEditingForCurrentUser();
-        allowRevertFromTemplateForCurrentUser = source.isAllowRevertFromTemplateForCurrentUser();
-        allowRssFeeds = source.isAllowRssFeeds();
-        allowSaveDeclarativeWorkflowAsTemplateForCurrentUser = source.isAllowSaveDeclarativeWorkflowAsTemplateForCurrentUser();
-        allowSavePublishDeclarativeWorkflowForCurrentUser = source.isAllowSavePublishDeclarativeWorkflowForCurrentUser();
-        alternateCssUrl = source.getAlternateCssUrl();
-        appInstanceId = source.getAppInstanceId();
-        associatedOwnerGroup = source.getAlternateCssUrl();
-        configuration = source.getConfiguration();
-        containsConfidentialInfo = source.isContainsConfidentialInfo();
-        created = CustomUtils.toDate(source.getCreated());
-        currentUserInfo = source.getDesignerDownloadUrlForCurrentUser();
-        customMasterUrl = source.getCustomMasterUrl();
-        description = source.getDescription();
-        designerDownloadUrlForCurrentUser = source.getDesignerDownloadUrlForCurrentUser();
-        disableAppViews = source.isDisableAppViews();
-        disableFlows = source.isDisableFlows();
-        documentLibraryCalloutOfficeWebAppPreviewersDisabled = source.isDocumentLibraryCalloutOfficeWebAppPreviewersDisabled();
-        enableMinimalDownload = source.isEnableMinimalDownload();
-        excludeFromOfflineClient = source.isExcludeFromOfflineClient();
-        id = source.getId();
-        isMultilingual = source.isMultilingual();
-//        language = source;
-//        actualLanguage = source;
-        lastItemModifiedDate = CustomUtils.toDate(source.getLastItemModifiedDate());
-        lastItemUserModifiedDate = CustomUtils.toDate(source.getLastItemUserModifiedDate());
-        masterUrl = source.getMasterUrl();
-        membersCanShare = source.isMembersCanShare();
-        noCrawl = source.isNoCrawl();
-        notificationsInOneDriveForBusinessEnabled = source.isNotificationsInOneDriveForBusinessEnabled();
-        notificationsInSharePointEnabled = source.isNotificationsInSharePointEnabled();
-        overwriteTranslationsOnChange = source.isOverwriteTranslationsOnChange();
-        previewFeaturesEnabled = source.isPreviewFeaturesEnabled();
-        quickLaunchEnabled = source.isQuickLaunchEnabled();
-        recycleBinEnabled = source.isRecycleBinEnabled();
-        requestAccessEmail = source.getAlternateCssUrl();
-        saveSiteAsTemplateEnabled = source.isSaveSiteAsTemplateEnabled();
-        serverRelativeUrl = source.getServerRelativeUrl();
-        showUrlStructureForCurrentUser = source.isShowUrlStructureForCurrentUser();
-        siteLogoDescription = source.getDescription();
-        siteLogoUrl = source.getSiteLogoUrl();
-        supportedUILanguageIds = source.getAlternateCssUrl();
-        syndicationEnabled = source.isSyndicationEnabled();
-        tenantTagPolicyEnabled = source.isTenantTagPolicyEnabled();
-        themedCssFolderUrl = source.getAlternateCssUrl();
-        thirdPartyMdmEnabled = source.isThirdPartyMdmEnabled();
-        title = source.getTitle();
-        treeViewEnabled = source.isTreeViewEnabled();
-        uIVersion = source.getUIVersion();
-        uIVersionConfigurationEnabled = source.isUIVersionConfigurationEnabled();
-        url = source.getUrl();
-        //webs = source.getWebs().size();
-        webTemplate = source.getWebTemplate();
-        
-//        level = source.getConfiguration();
-//        child = source.getConfiguration();
-        immediateChild = source.getWebs().size();
-//        depth = source.getConfiguration();
-//        parentId = source.;
-//        parentUrl = source.getUrl();
-//        parentTitle = source.getTitle();
-//        userCount = source.getConfiguration();
-//        uniqueInternalUserCount = source.getConfiguration();
-//        uniqueExternalUserCount = source.getConfiguration();
-//        externalOwnerCount = source.getConfiguration();
-//        externalMemberCount = source.getConfiguration();
-//        externalVisitorCount = source.getConfiguration();
-//        externalAdminCount = source.getConfiguration();
-//        externalMembershipCount = source.getConfiguration();
-//        adminCount = source.getConfiguration();
-//        ownerCount = source.getConfiguration();
-//        memberCount = source.getConfiguration();
-//        visitorCount = source.getConfiguration();
-//        groupCount = source.getConfiguration();
-        listCount = source.getLists().size();
-//        documentLibraryCount = source.getConfiguration();
-        siteUrl = siteSource.Url;
-        siteTitle = siteSource.Title;
+        this.siteType = (source.getUrl().toLowerCase().contains("-my.sharepoint.com/personal/")) ? 1 : 0;
+        this.siteId = siteId;
+        this.id = CustomUtils.toGuid(source.getId());
+        this.geoLocation = geoLocation;
+
+
+        this.allowAutomaticASPXPageIndexing = source.isAllowAutomaticASPXPageIndexing();
+        this.allowCreateDeclarativeWorkflowForCurrentUser = source.isAllowCreateDeclarativeWorkflowForCurrentUser();
+        this.allowDesignerForCurrentUser = source.isAllowDesignerForCurrentUser();
+        this.allowMasterPageEditingForCurrentUser = source.isAllowMasterPageEditingForCurrentUser();
+        this.allowRevertFromTemplateForCurrentUser = source.isAllowRevertFromTemplateForCurrentUser();
+        this.allowRssFeeds = source.isAllowRssFeeds();
+        this.allowSaveDeclarativeWorkflowAsTemplateForCurrentUser = source.isAllowSaveDeclarativeWorkflowAsTemplateForCurrentUser();
+        this.allowSavePublishDeclarativeWorkflowForCurrentUser = source.isAllowSavePublishDeclarativeWorkflowForCurrentUser();
+        this.alternateCssUrl = source.getAlternateCssUrl();
+        this.appInstanceId = source.getAppInstanceId();
+        this.associatedOwnerGroup = source.getAlternateCssUrl();
+        this.configuration = source.getConfiguration();
+        this.containsConfidentialInfo = source.isContainsConfidentialInfo();
+        this.created = CustomUtils.toDate(source.getCreated());
+        this.currentUserInfo = source.getDesignerDownloadUrlForCurrentUser();
+        this.customMasterUrl = source.getCustomMasterUrl();
+        this.description = source.getDescription();
+        this.designerDownloadUrlForCurrentUser = source.getDesignerDownloadUrlForCurrentUser();
+        this.disableAppViews = source.isDisableAppViews();
+        this.disableFlows = source.isDisableFlows();
+        this.documentLibraryCalloutOfficeWebAppPreviewersDisabled = source.isDocumentLibraryCalloutOfficeWebAppPreviewersDisabled();
+        this.enableMinimalDownload = source.isEnableMinimalDownload();
+        this.excludeFromOfflineClient = source.isExcludeFromOfflineClient();
+        this.isMultilingual = source.isMultilingual();
+//        this.language = source;
+//        this.actualLanguage = source;
+        this.lastItemModifiedDate = CustomUtils.toDate(source.getLastItemModifiedDate());
+        this.lastItemUserModifiedDate = CustomUtils.toDate(source.getLastItemUserModifiedDate());
+        this.masterUrl = source.getMasterUrl();
+        this.membersCanShare = source.isMembersCanShare();
+        this.noCrawl = source.isNoCrawl();
+        this.notificationsInOneDriveForBusinessEnabled = source.isNotificationsInOneDriveForBusinessEnabled();
+        this.notificationsInSharePointEnabled = source.isNotificationsInSharePointEnabled();
+        this.overwriteTranslationsOnChange = source.isOverwriteTranslationsOnChange();
+        this.previewFeaturesEnabled = source.isPreviewFeaturesEnabled();
+        this.quickLaunchEnabled = source.isQuickLaunchEnabled();
+        this.recycleBinEnabled = source.isRecycleBinEnabled();
+        this.requestAccessEmail = source.getAlternateCssUrl();
+        this.saveSiteAsTemplateEnabled = source.isSaveSiteAsTemplateEnabled();
+        this.serverRelativeUrl = source.getServerRelativeUrl();
+        this.showUrlStructureForCurrentUser = source.isShowUrlStructureForCurrentUser();
+        this.siteLogoDescription = source.getDescription();
+        this.siteLogoUrl = source.getSiteLogoUrl();
+        this.supportedUILanguageIds = source.getAlternateCssUrl();
+        this.syndicationEnabled = source.isSyndicationEnabled();
+        this.tenantTagPolicyEnabled = source.isTenantTagPolicyEnabled();
+        this.themedCssFolderUrl = source.getAlternateCssUrl();
+        this.thirdPartyMdmEnabled = source.isThirdPartyMdmEnabled();
+        this.title = source.getTitle();
+        this.treeViewEnabled = source.isTreeViewEnabled();
+        this.uIVersion = source.getUIVersion();
+        this.uIVersionConfigurationEnabled = source.isUIVersionConfigurationEnabled();
+        this.url = source.getUrl();
+        this.webTemplate = source.getWebTemplate();
+
+        // Webs Stats
+        try {
+            this.webs = source.getWebCollection().getWebs().length;
+//          this.level = source.getConfiguration();
+            this.child = source.getWebCollection().getWebs().length - 1;
+            this.immediateChild = source.getWebCollection().getWebs().length;
+//          this.depth = source.getConfiguration();
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+        }
+
+        //Parent Info
+        String[] host = source.getUrl().split("/");
+        try
+        {
+            this.parentId = source.getParentWeb().getId();
+            this.parentUrl = host[2] + source.getParentWeb().getServerRelativeUrl();
+            this.parentTitle = source.getParentWeb().getTitle();
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+        }
+        // Site properties
+        this.siteUrl = host[2]+"/"+host[3];
+        this.siteTitle = siteName;
+
+//        this.userCount = source.getConfiguration();
+//        this.uniqueInternalUserCount = source.getConfiguration();
+//        this.uniqueExternalUserCount = source.getConfiguration();
+//        this.externalOwnerCount = source.getConfiguration();
+//        this.externalMemberCount = source.getConfiguration();
+//        this.externalVisitorCount = source.getConfiguration();
+//        this.externalAdminCount = source.getConfiguration();
+//        this.externalMembershipCount = source.getConfiguration();
+//        this.adminCount = source.getConfiguration();
+//        this.ownerCount = source.getConfiguration();
+//        this.memberCount = source.getConfiguration();
+//        this.visitorCount = source.getConfiguration();
+//        this.groupCount = source.getConfiguration();
+//        this.listCount = source.getLists().size();
+//        this.documentLibraryCount = source.getConfiguration();
+
+
         hasUniqueRoleAssignments = source.isHasUniqueRoleAssignments();
         inactiveDays =  (int)TimeUnit.MILLISECONDS.toDays(new Date().getTime() - this.lastItemUserModifiedDate.getTime());
         if(source.getAssociatedMemberGroup() != null) {
             associatedMemberGroupAllowMembersEditMembership = source.getAssociatedMemberGroup().isAllowMembersEditMembership();
         }
-        IsSitePublic = (source.getAllProperties().getGroupType().toLowerCase().equals("true"));
+        try {
+            IsSitePublic = (source.getAllProperties().getGroupType().toLowerCase().equals("private"));
+        }
+        catch (Exception e)
+        {
+            IsSitePublic = true;
+            System.out.println(e.getMessage());
+        }
+
 //        availableRetentionLable = source;
 //        recycleBinSize = source;
         useAccessRequestDefault = source.isUseAccessRequestDefault();
@@ -206,20 +239,23 @@ public class Web
 //        guestUserInvititedByMail = source;
 //        annonymousLinkCount = source;
 //        emailAuthenticationGuestUser = source;
-//        sharingCapability = siteSource.SharingCapability;
+        //sharingCapability = siteSource.SharingCapability;
 
-        for(User user : source.getUsers())
+        for(User user : source.getUserCollection().getUsers())
         {
-            SiteUsers siteUser= new SiteUsers(siteId, id, user);
+            SiteUsers siteUser= new SiteUsers(this, user);
         }
-        for(Group group : source.getGroups())
+        System.out.println("Site Users data are Collected");
+        for(Group group : source.getGroupCollection().getGroups())
         {
-            SiteGroups sitegroup = new SiteGroups(siteId, id, group);
+            SiteGroups sitegroup = new SiteGroups(this, group);
         }
-        for(SiteList siteList : source.getLists())
+        System.out.println("Site Group and Group members date are collected.");
+        for(SiteList siteList : source.getListCollection().getLists())
         {
-            List list = new List(siteId, id, siteList);
+            List list = new List(this, siteList);
         }
+        System.out.println("Site list data are collected.");
     }
 
 }
