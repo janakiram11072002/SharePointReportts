@@ -33,6 +33,7 @@ public class CustomUtils
             }
             try
             {
+//                builder.append("$");
                 builder.append(URLEncoder.encode(entry.getKey(), StandardCharsets.UTF_8.name()));
                 builder.append("=");
                 builder.append(URLEncoder.encode(entry.getValue(), StandardCharsets.UTF_8.name()));
@@ -72,6 +73,20 @@ public class CustomUtils
         }
 
         return new Date(0);
+    }
+    public static Date toDateFromInt(String data)
+    {
+        try
+        {
+            long timestamp = Long.parseLong(data.replaceAll("[^0-9]", ""));
+            // Convert the timestamp to a Date object
+            return new Date(timestamp);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return null;
+        }
     }
     public static String toGuid(String data)
     {
