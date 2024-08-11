@@ -37,7 +37,7 @@ public class AllProperties
     @JsonProperty("GroupDocumentsListId")
     private String GroupDocumentsListId;
     @JsonProperty("disabledhelpcollections")
-    private boolean disabledhelpcollections;
+    private String disabledhelpcollections;
     @JsonProperty("_VTI_PENDINGREQUESTSVIEWID")
     private String _VTI_PENDINGREQUESTSVIEWID;
     @JsonProperty("SiteNotebookGuid")
@@ -193,11 +193,11 @@ public class AllProperties
         GroupDocumentsListId = groupDocumentsListId;
     }
 
-    public boolean isDisabledhelpcollections() {
+    public String getDisabledhelpcollections() {
         return disabledhelpcollections;
     }
 
-    public void setDisabledhelpcollections(boolean disabledhelpcollections) {
+    public void setDisabledhelpcollections(String disabledhelpcollections) {
         this.disabledhelpcollections = disabledhelpcollections;
     }
 
