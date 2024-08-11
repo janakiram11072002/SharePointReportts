@@ -6,34 +6,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CreatablesCollection
 {
-    @JsonProperty("DocumentTemplate")
-    private int DocumentTemplate;
-    @JsonProperty("FileExtension")
-    private String FileExtension;
-    @JsonProperty("ItemType")
-    private String ItemType;
+    @JsonProperty("_Child_Items_")
+    private CreatablesItemInfo[] ChildItems;
 
-    public int getDocumentTemplate() {
-        return DocumentTemplate;
+    public CreatablesItemInfo[] getChildItems() {
+        return ChildItems;
     }
 
-    public void setDocumentTemplate(int documentTemplate) {
-        DocumentTemplate = documentTemplate;
-    }
-
-    public String getFileExtension() {
-        return FileExtension;
-    }
-
-    public void setFileExtension(String fileExtension) {
-        FileExtension = fileExtension;
-    }
-
-    public String getItemType() {
-        return ItemType;
-    }
-
-    public void setItemType(String itemType) {
-        ItemType = itemType;
+    public void setChildItems(CreatablesItemInfo[] childItems) {
+        ChildItems = childItems;
     }
 }
