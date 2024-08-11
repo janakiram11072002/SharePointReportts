@@ -255,7 +255,13 @@ public class Site
         AllowSavePublishDeclarativeWorkflow = source.isAllowSavePublishDeclarativeWorkflow();
         AllowSelfServiceUpgrade = source.isAllowSelfServiceUpgrade();
         AllowSelfServiceUpgradeEvaluation = source.isAllowSelfServiceUpgradeEvaluation();
-        AuditFlags = source.getAudit().getAuditFlags();
+        try {
+            AuditFlags = source.getAudit().getAuditFlags();
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+        }
         AuditLogTrimmingRetention = source.getAuditLogTrimmingRetention();
         ChannelGroupId = source.getChannelGroupId();
         Classification = source.getClassification();
@@ -277,7 +283,13 @@ public class Site
         ReadOnly = source.isReadOnly();
         RequiredDesignerVersion = source.getRequiredDesignerVersion();
         SandboxedCodeActivationCapability = source.getSandboxedCodeActivationCapability();
-        SecondaryContactEmail = source.getSecondaryContact().getEmail();
+        try {
+            SecondaryContactEmail = source.getSecondaryContact().getEmail();
+        }
+        catch(Exception e)
+        {
+            System.out.println(e.getMessage());
+        }
         SensitivityLabelId = source.getSensitivityLabelId();
         SensitivityLabel = source.getSensitivityLabel();
         ServerRelativeUrl = source.getServerRelativeUrl();
@@ -292,24 +304,41 @@ public class Site
         Upgrading = source.isUpgrading();
         Url = source.getUrl();
         WriteLocked = source.isWriteLocked();
-        Owner = source.getOwner().getEmail();
-        IsOwnerIssiteAdmin = source.getOwner().isSiteAdmin();
-        UgrageInfoErrorFile = source.getUpgradeInfo().getErrorFile();
-        UgrageInfoErrors = source.getUpgradeInfo().getErrors();
-        UgrageInfoLastUpdated =  source.getUpgradeInfo().getLastUpdated();
-        UgrageInfoLogFile =  source.getUpgradeInfo().getLogFile();
-        UgrageInfoRequestDate =  source.getUpgradeInfo().getRequestDate();
-        UgrageInfoRetryCount =  source.getUpgradeInfo().getRetryCount();
-        UgrageInfoStartTime =  source.getUpgradeInfo().getStartTime();
-        UgrageInfoStatus =  source.getUpgradeInfo().getStatus();
-        UgrageInfoUpgradeType =  source.getUpgradeInfo().getUpgradeType();
-        UgrageInfoWarnings =  source.getUpgradeInfo().getWarnings();
-        UsageBandwidth = source.getUsage().getBandwidth();
-        UsageDiscussionStorage = source.getUsage().getDiscussionStorage();
-        UsageHits = source.getUsage().getHits();
-        UsageStorage = source.getUsage().getStorage();
-        UsageStoragePercentage = source.getUsage().getStoragePercentageUsed();
-        UsageVisits = source.getUsage().getVisits();
+        try {
+            Owner = source.getOwner().getEmail();
+            IsOwnerIssiteAdmin = source.getOwner().isSiteAdmin();
+        }catch(Exception e)
+        {
+            System.out.println(e.getMessage());
+        }
+        try {
+            UgrageInfoErrorFile = source.getUpgradeInfo().getErrorFile();
+            UgrageInfoErrors = source.getUpgradeInfo().getErrors();
+            UgrageInfoLastUpdated = source.getUpgradeInfo().getLastUpdated();
+            UgrageInfoLogFile = source.getUpgradeInfo().getLogFile();
+            UgrageInfoRequestDate = source.getUpgradeInfo().getRequestDate();
+            UgrageInfoRetryCount = source.getUpgradeInfo().getRetryCount();
+            UgrageInfoStartTime = source.getUpgradeInfo().getStartTime();
+            UgrageInfoStatus = source.getUpgradeInfo().getStatus();
+            UgrageInfoUpgradeType = source.getUpgradeInfo().getUpgradeType();
+            UgrageInfoWarnings = source.getUpgradeInfo().getWarnings();
+        }
+        catch(Exception e)
+        {
+            System.out.println(e.getMessage());
+        }
+        try {
+            UsageBandwidth = source.getUsage().getBandwidth();
+            UsageDiscussionStorage = source.getUsage().getDiscussionStorage();
+            UsageHits = source.getUsage().getHits();
+            UsageStorage = source.getUsage().getStorage();
+            UsageStoragePercentage = source.getUsage().getStoragePercentageUsed();
+            UsageVisits = source.getUsage().getVisits();
+        }
+        catch(Exception e)
+        {
+            System.out.println(e.getMessage());
+        }
 
     }
 
