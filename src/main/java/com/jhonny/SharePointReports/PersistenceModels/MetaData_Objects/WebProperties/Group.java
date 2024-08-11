@@ -42,7 +42,7 @@ public class Group
     @JsonProperty("RequestToJoinLeaveEmailSetting")
     private String RequestToJoinLeaveEmailSetting;
     @JsonProperty("Users")
-    private List<User> Users;
+    private SPUserCollection UserCollection;
 
     public int getId() {
         return Id;
@@ -172,11 +172,11 @@ public class Group
         RequestToJoinLeaveEmailSetting = requestToJoinLeaveEmailSetting;
     }
 
-    public List<User> getUsers() {
-        return Users;
+    public SPUserCollection getUserCollection() {
+        return UserCollection;
     }
 
-    public void setUsers(List<User> users) {
-        Users = users;
+    public void setUserCollection(SPUserCollection userCollection) {
+        UserCollection = userCollection;
     }
 }
