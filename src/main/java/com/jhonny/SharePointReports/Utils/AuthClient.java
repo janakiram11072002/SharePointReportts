@@ -12,6 +12,7 @@ public class AuthClient
     final private String authUrl = "https://login.microsoftonline.com/%s/oauth2/v2.0/token";
     final private String adminSiteScopeTemplate = "https://%s-admin.sharepoint.com/.default";
     final private String siteScopeTemplate = "https://%s.sharepoint.com/.default";
+    final private String oneDriveScopeTemplate = "https://%s-my.sharepoint.com/.default";
     //final private String bodyPattern = "\"grant_type=client_credentials&client_id=%s&client_assertion=%s&client_assertion_type=%s&scope=%s";
     private String client_assertion;
     private AppConfig appConfig;
@@ -88,7 +89,7 @@ public class AuthClient
     public String GetOneDriveClientToken()
     {
         String tokenResponse = new HttpUtils()
-                .Post(prepareUrl(), prepareBodyAsForm(String.format(siteScopeTemplate, appConfig.getTenantName())))
+                .Post(prepareUrl(), prepareBodyAsForm(String.format(oneDriveScopeTemplate, appConfig.getTenantName())))
                 .body();
         TokenResponse response = JsonUtils.toObject(tokenResponse, TokenResponse.class);
         return response.getAccess_token();
