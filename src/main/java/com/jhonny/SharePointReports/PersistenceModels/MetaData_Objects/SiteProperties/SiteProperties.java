@@ -76,9 +76,9 @@ public class SiteProperties
     private String SensitivityLabelId;
     @JsonProperty("SensitivityLabel")
     private String SensitivityLabel;
-    @JsonProperty("")
-    private SensitivityLabelInfo SensitivityLabelInfo;
     @JsonProperty("SensitivityLabelInfo")
+    private SensitivityLabelInfo SensitivityLabelInfo;
+    @JsonProperty("SandboxedCodeActivationCapability")
     private int SandboxedCodeActivationCapability;
     @JsonProperty("ServerRelativeUrl")
     private String ServerRelativeUrl;
