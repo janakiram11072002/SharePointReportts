@@ -29,7 +29,7 @@ public class HttpUtils
     {
         //HttpClient client = HttpClient.newHttpClient();
         String encodedQuery = buildFormData(query);
-        String encodedUrl = encodedQuery.length() > 0 ? url+"?"+encodedQuery : url;
+        String encodedUrl = encodedQuery.length() > 0 ? url+"?$"+encodedQuery : url;
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(encodedUrl))
                 .setHeader("Accept", "application/json;odata=nometadata")
@@ -49,7 +49,8 @@ public class HttpUtils
         }
         catch (Exception e)
         {
-            System.out.println("Error While in Get Request");
+            System.out.println("Error While in Get Request\n"+e.getMessage());
+
             throw new RuntimeException();
         }
         return response;
@@ -89,7 +90,7 @@ public class HttpUtils
         }
         catch (Exception e)
         {
-            System.out.println("Error in Post Request");
+            System.out.println("Error in Post Request\n"+e.getMessage());
             throw new RuntimeException();
         }
 
@@ -120,7 +121,7 @@ public class HttpUtils
         }
         catch (Exception e)
         {
-            System.out.println("Error in Post Request");
+            System.out.println("Error in Post Request\n"+e.getMessage());
             throw new RuntimeException();
         }
         return response;
