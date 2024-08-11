@@ -15,7 +15,7 @@ public class User
     @JsonProperty("HexCid")
     private String HexCid;
     @JsonProperty("Groups")
-    private List<Group> Groups;
+    private SPGroupCollection GroupCollection;
     @JsonProperty("Email")
     private String Email;
     @JsonProperty("IsSiteAdmin")
@@ -27,7 +27,7 @@ public class User
     @JsonProperty("PrincipalType")
     private int PrincipalType;
     @JsonProperty("UserId")
-    private String UserId;
+    private UserId UserId;
     @JsonProperty("UserPrincipalName")
     private String UserPrincipalName;
     @JsonProperty("IsEmailAuthenticationGuestUser")
@@ -63,12 +63,12 @@ public class User
         HexCid = hexCid;
     }
 
-    public List<Group> getGroups() {
-        return Groups;
+    public SPGroupCollection getGroupCollection() {
+        return GroupCollection;
     }
 
-    public void setGroups(List<Group> groups) {
-        Groups = groups;
+    public void setGroupCollection(SPGroupCollection groupCollection) {
+        GroupCollection = groupCollection;
     }
 
     public String getEmail() {
@@ -111,11 +111,11 @@ public class User
         PrincipalType = principalType;
     }
 
-    public String getUserId() {
+    public com.jhonny.SharePointReports.PersistenceModels.MetaData_Objects.WebProperties.UserId getUserId() {
         return UserId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(com.jhonny.SharePointReports.PersistenceModels.MetaData_Objects.WebProperties.UserId userId) {
         UserId = userId;
     }
 
