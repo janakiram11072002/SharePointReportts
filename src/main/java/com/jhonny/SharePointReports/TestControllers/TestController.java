@@ -39,12 +39,14 @@ public class TestController
     @GetMapping("/token")
     public String token()
     {
-        return new AuthClient().GetAdminToken();
+        return token.GetAdminToken();
     }
+
+    AuthClient token = new AuthClient();
     @GetMapping("/ctoken")
     public String getClientToken()
     {
-        return new AuthClient().GetSiteClientToken();
+        return token.GetSiteClientToken();
     }
     @GetMapping("/allsites")
     public String allStie()
