@@ -38,6 +38,10 @@ public class SiteUrlFromAdmin {
     {
         return primaryQueryResult.getRelevantResults().getTotalRows();
     }
+    public int getTotalRowsIncludingDuplicates()
+    {
+        return primaryQueryResult.getRelevantResults().getTotalRowsIncludingDuplicates();
+    }
 }
 @JsonIgnoreProperties(ignoreUnknown = true)
 class PrimaryQueryResult {
@@ -63,6 +67,9 @@ class RelevantResults {
     @JsonProperty("TotalRows")
     private int totalRows;
 
+    @JsonProperty("TotalRowsIncludingDuplicates")
+    private int totalRowsIncludingDuplicates;
+
     public Table getTable() {
         return table;
     }
@@ -85,6 +92,14 @@ class RelevantResults {
 
     public void setTotalRows(int totalRows) {
         this.totalRows = totalRows;
+    }
+
+    public int getTotalRowsIncludingDuplicates() {
+        return totalRowsIncludingDuplicates;
+    }
+
+    public void setTotalRowsIncludingDuplicates(int totalRowsIncludingDuplicates) {
+        this.totalRowsIncludingDuplicates = totalRowsIncludingDuplicates;
     }
 }
 @JsonIgnoreProperties(ignoreUnknown = true)
