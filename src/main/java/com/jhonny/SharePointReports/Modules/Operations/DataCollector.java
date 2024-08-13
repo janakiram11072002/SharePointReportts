@@ -18,6 +18,7 @@ import com.jhonny.SharePointReports.PersistenceModels.MetaData_Objects.SiteUrlFr
 import com.jhonny.SharePointReports.Utils.AppConfig;
 
 import java.net.http.HttpClient;
+import java.net.http.HttpResponse;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -203,23 +204,30 @@ public class DataCollector
 //            System.out.println(new Date().getTime());
         }
         while(currentRow < end);
+
         System.out.println("WEbs are collected at "+ new Date().getTime());
         return end;
     }
 
     public void getSiteProperties(String url)
     {
+
         System.out.println(url);
         String endpoint = url+"/_api/site";
-        String siteResponse = new HttpUtils()
+        HttpResponse<String> response = new HttpUtils()
             .Get(
                     endpoint,
                     (url.contains("-my.sharepoint.com/personal")) ? token.GetOneDriveClientToken() : token.GetSiteClientToken(),
-                    getSiteQuery())
-            .body();
-        Site site = new Site(JsonUtils.toObject(siteResponse, SiteProperties.class));
-        site.updateSiteProp(getSitePropertiesV2(appConfig.getTenantAdminSite(),url));
-        getWebProperties(site.id, site.Title, site.GeoLocation,url);
+                    getSiteQuery());
+        String siteResponse = response.body();
+
+        if(response.statusCode() == 200)
+        {
+            Site site = new Site(JsonUtils.toObject(siteResponse, SiteProperties.class));
+            site.updateSiteProp(getSitePropertiesV2(appConfig.getTenantAdminSite(), url));
+            getWebProperties(site.id, site.Title, site.GeoLocation, url);
+        }
+        else return;
 
         //System.out.println(site);
     }
