@@ -198,7 +198,11 @@ public class Web
             System.out.println(e.getMessage());
         }
         // Site properties
-        this.siteUrl = host[2]+"/"+host[3];
+        if(host.length >= 5)
+        {
+            this.siteUrl = host[2] + "/" + host[3];
+        }
+        else this.siteUrl = source.getUrl();
         this.siteTitle = siteName;
 
 //        this.userCount = source.getConfiguration();
