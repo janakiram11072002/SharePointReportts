@@ -81,8 +81,10 @@ public class AuthClient
         if(this.admin == null || this.admin.getExpiry().before(today))
         {
             this.admin = new AccessToken();
-            String tokenResponse = new HttpUtils()
-                    .Post(prepareUrl(), prepareBodyAsForm(String.format(adminSiteScopeTemplate, appConfig.getTenantName())))
+            String tokenResponse = HttpUtils
+                    .Post(
+                            prepareUrl(),
+                            prepareBodyAsForm(String.format(adminSiteScopeTemplate, appConfig.getTenantName())))
                     .body();
             TokenResponse response = JsonUtils.toObject(tokenResponse, TokenResponse.class);
             this.admin.setToken(response.getAccess_token());
@@ -111,7 +113,7 @@ public class AuthClient
         if(this.site == null || this.site.getExpiry().before(today))
         {
             this.site = new AccessToken();
-            String tokenResponse = new HttpUtils()
+            String tokenResponse = HttpUtils
                     .Post(prepareUrl(), prepareBodyAsForm(String.format(siteScopeTemplate, appConfig.getTenantName())))
                     .body();
             TokenResponse response = JsonUtils.toObject(tokenResponse, TokenResponse.class);
@@ -142,7 +144,7 @@ public class AuthClient
         if(this.oneDrive == null || this.oneDrive.getExpiry().before(today))
         {
             this.oneDrive = new AccessToken();
-            String tokenResponse = new HttpUtils()
+            String tokenResponse = HttpUtils
                     .Post(prepareUrl(), prepareBodyAsForm(String.format(oneDriveScopeTemplate, appConfig.getTenantName())))
                     .body();
             TokenResponse response = JsonUtils.toObject(tokenResponse, TokenResponse.class);
