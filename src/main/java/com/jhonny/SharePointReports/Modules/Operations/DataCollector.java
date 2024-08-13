@@ -25,11 +25,12 @@ import java.util.Map;
 public class DataCollector
 {
     private AppConfig appConfig;
+    private AuthClient token;
     
     public DataCollector()
     {
         this.appConfig = new AnnotationConfigApplicationContext(AppConfig.class).getBean(AppConfig.class);
-
+        token = new AuthClient();
     }
 
     public void initilize()
@@ -44,11 +45,11 @@ public class DataCollector
      *      &RowLimit=500&startrow=12400 "
      */
 
-    private String PrepGeoLocationXmlBody()
+    private static String PrepGeoLocationXmlBody()
     {
         return "<Request AddExpandoFieldTypeSuffix=\"true\" SchemaVersion=\"15.0.0.0\" LibraryVersion=\"16.0.0.0\" ApplicationName=\".NET Library\" xmlns=\"http://schemas.microsoft.com/sharepoint/clientquery/2009\"> <Actions> <Query Id=\"2\" ObjectPathId=\"233\"> <Query SelectAllProperties=\"true\"> <Properties/> </Query> <ChildItemQuery SelectAllProperties=\"true\"> <Properties/> </ChildItemQuery> </Query> </Actions> <ObjectPaths> <Constructor Id=\"231\" TypeId=\"{268004ae-ef6b-4e9b-8425-127220d84719}\"/> <Method Id=\"233\" ParentId=\"231\" Name=\"GetTenantInstances\"/> </ObjectPaths> </Request>";
     }
-    private Map<String, String> prepAdminSiteBody(int startInd)
+    private static Map<String, String> prepAdminSiteBody(int startInd)
     {
         /*
         https://42jghx-admin.sharepoint.com/_api/search/query
@@ -67,7 +68,7 @@ public class DataCollector
         return body;
 
     }
-    private Map<String, String> prepAdminWebBody(int startInd)
+    private static Map<String, String> prepAdminWebBody(int startInd)
     {
         /*
         https://42jghx-admin.sharepoint.com/_api/search/querydd
@@ -86,7 +87,7 @@ public class DataCollector
         return body;
 
     }
-    private Map<String, String> getSiteQuery()
+    private static Map<String, String> getSiteQuery()
     {
         /*
         select=AllowExternalEmbeddingWrapper,AllowedExternalDomains,CanSyncHubSitePermissions,CanUpgrade,CommentsOnSitePagesDisabled,ComplianceAttribute,CustomizedFormsPages,ExternalUserExpirationInDays,RelatedGroupId,SearchBoxInNavBar,SearchBoxPlaceholderText,SensitivityLabelId,ShowPeoplePickerSuggestionsForGuestUsers,SitePolicyEnabled,SocialBarOnSitePagesDisabled,StatusBarLink,StatusBarText,ThicketSupportDisabled,RelatedGroupId
@@ -116,7 +117,7 @@ public class DataCollector
         String response = new HttpUtils()
                 .PostAsXML(
                         endpoint,
-                        new AuthClient().GetAdminToken(),
+                        token.GetAdminToken(),
                         PrepGeoLocationXmlBody()
                 ).body();
         System.out.println(response);
@@ -143,7 +144,7 @@ public class DataCollector
         int currentRow=0, end=0;
         do
         {
-            String response = new HttpUtils().Get(url, new AuthClient().GetAdminToken(), prepAdminSiteBody(currentRow)).body();
+            String response = new HttpUtils().Get(url, token.GetAdminToken(), prepAdminSiteBody(currentRow)).body();
             SiteUrlFromAdmin sites = JsonUtils.toObject(response, SiteUrlFromAdmin.class);
             for(Row site : sites.getRows())
             {
@@ -178,7 +179,7 @@ public class DataCollector
         int currentRow=0, end=0;
         do
         {
-            String response = new HttpUtils().Get(url, new AuthClient().GetAdminToken(), prepAdminWebBody(currentRow)).body();
+            String response = new HttpUtils().Get(url, token.GetAdminToken(), prepAdminWebBody(currentRow)).body();
             SiteUrlFromAdmin sites = JsonUtils.toObject(response, SiteUrlFromAdmin.class);
             for(Row site : sites.getRows())
             {
@@ -213,7 +214,7 @@ public class DataCollector
         String siteResponse = new HttpUtils()
             .Get(
                     endpoint,
-                    (url.contains("-my.sharepoint.com/personal")) ? new AuthClient().GetOneDriveClientToken() : new AuthClient().GetSiteClientToken(),
+                    (url.contains("-my.sharepoint.com/personal")) ? token.GetOneDriveClientToken() : token.GetSiteClientToken(),
                     getSiteQuery())
             .body();
         Site site = new Site(JsonUtils.toObject(siteResponse, SiteProperties.class));
@@ -228,7 +229,7 @@ public class DataCollector
         String endpoint = adminSite+"/_vti_bin/client.svc/ProcessQuery";
         String response = new HttpUtils()
                 .PostAsXML(endpoint,
-                        new AuthClient().GetAdminToken(),
+                        token.GetAdminToken(),
                         String.format(getTenantSitePropXml(),url,appConfig.getTenatId()))
                 .body();
         System.out.println(response);
@@ -244,7 +245,7 @@ public class DataCollector
         String response = new HttpUtils()
                 .PostAsXML(
                         endpoint,
-                        url.contains("-my.sharepoint.com/personal") ? new AuthClient().GetOneDriveClientToken() : new AuthClient().GetSiteClientToken(),
+                        url.contains("-my.sharepoint.com/personal") ? token.GetOneDriveClientToken() : token.GetSiteClientToken(),
                         getWebPropXml()
                 ).body();
         System.out.println(response);

@@ -1,6 +1,8 @@
 package com.jhonny.SharePointReports.Utils;
 
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,6 +18,8 @@ public class AuthClient
     //final private String bodyPattern = "\"grant_type=client_credentials&client_id=%s&client_assertion=%s&client_assertion_type=%s&scope=%s";
     private String client_assertion;
     private AppConfig appConfig;
+
+    private AccessToken admin, site, oneDrive;
 
     public AuthClient()
     {
@@ -72,27 +76,95 @@ public class AuthClient
 
     public String GetAdminToken()
     {
-        String tokenResponse = new HttpUtils()
-                        .Post(prepareUrl(), prepareBodyAsForm(String.format(adminSiteScopeTemplate, appConfig.getTenantName())))
-                        .body();
-        TokenResponse response = JsonUtils.toObject(tokenResponse, TokenResponse.class);
-        return response.getAccess_token();
+        //String token = "";
+        Date today = new Date();
+        if(this.admin == null || this.admin.getExpiry().before(today))
+        {
+            this.admin = new AccessToken();
+            String tokenResponse = new HttpUtils()
+                    .Post(prepareUrl(), prepareBodyAsForm(String.format(adminSiteScopeTemplate, appConfig.getTenantName())))
+                    .body();
+            TokenResponse response = JsonUtils.toObject(tokenResponse, TokenResponse.class);
+            this.admin.setToken(response.getAccess_token());
+
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(today);
+            calendar.add(Calendar.SECOND, response.getExpires_in());
+
+            this.admin.setExpiry(calendar.getTime());
+            System.out.println("New Token is generated");
+            return response.getAccess_token();
+        }
+
+//            String tokenResponse = new HttpUtils()
+//                    .Post(prepareUrl(), prepareBodyAsForm(String.format(adminSiteScopeTemplate, appConfig.getTenantName())))
+//                    .body();
+//            TokenResponse response = JsonUtils.toObject(tokenResponse, TokenResponse.class);
+//            token = response.getAccess_token();
+
+        System.out.println("Old Token is used");
+        return this.admin.getToken();
     }
     public String GetSiteClientToken(/*String scope*/)
     {
-        String tokenResponse = new HttpUtils()
-                        .Post(prepareUrl(), prepareBodyAsForm(String.format(siteScopeTemplate, appConfig.getTenantName())))
-                        .body();
-        TokenResponse response = JsonUtils.toObject(tokenResponse, TokenResponse.class);
-        return response.getAccess_token();
+        Date today = new Date();
+        if(this.site == null || this.site.getExpiry().before(today))
+        {
+            this.site = new AccessToken();
+            String tokenResponse = new HttpUtils()
+                    .Post(prepareUrl(), prepareBodyAsForm(String.format(siteScopeTemplate, appConfig.getTenantName())))
+                    .body();
+            TokenResponse response = JsonUtils.toObject(tokenResponse, TokenResponse.class);
+            this.site.setToken(response.getAccess_token());
+
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(today);
+            calendar.add(Calendar.SECOND, response.getExpires_in());
+
+            this.site.setExpiry(calendar.getTime());
+
+            System.out.println("New Token is generated");
+            return response.getAccess_token();
+        }
+
+//        String tokenResponse = new HttpUtils()
+//                        .Post(prepareUrl(), prepareBodyAsForm(String.format(siteScopeTemplate, appConfig.getTenantName())))
+//                        .body();
+//        TokenResponse response = JsonUtils.toObject(tokenResponse, TokenResponse.class);
+//        return response.getAccess_token();
+
+        System.out.println("Old Token is used");
+        return this.site.getToken();
     }
     public String GetOneDriveClientToken()
     {
-        String tokenResponse = new HttpUtils()
-                .Post(prepareUrl(), prepareBodyAsForm(String.format(oneDriveScopeTemplate, appConfig.getTenantName())))
-                .body();
-        TokenResponse response = JsonUtils.toObject(tokenResponse, TokenResponse.class);
-        return response.getAccess_token();
+        Date today = new Date();
+        if(this.oneDrive == null || this.oneDrive.getExpiry().before(today))
+        {
+            this.oneDrive = new AccessToken();
+            String tokenResponse = new HttpUtils()
+                    .Post(prepareUrl(), prepareBodyAsForm(String.format(oneDriveScopeTemplate, appConfig.getTenantName())))
+                    .body();
+            TokenResponse response = JsonUtils.toObject(tokenResponse, TokenResponse.class);
+            this.oneDrive.setToken(response.getAccess_token());
+
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(today);
+            calendar.add(Calendar.SECOND, response.getExpires_in());
+
+            this.oneDrive.setExpiry(calendar.getTime());
+
+            System.out.println("New Token is generated");
+            return response.getAccess_token();
+        }
+//        String tokenResponse = new HttpUtils()
+//                .Post(prepareUrl(), prepareBodyAsForm(String.format(oneDriveScopeTemplate, appConfig.getTenantName())))
+//                .body();
+//        TokenResponse response = JsonUtils.toObject(tokenResponse, TokenResponse.class);
+//        return response.getAccess_token();
+
+        System.out.println("Old Token is used");
+        return this.oneDrive.getToken();
     }
 }
 
@@ -127,4 +199,25 @@ class TokenResponse
         this.access_token = access_token;
     }
     
+}
+class AccessToken
+{
+    private String Token;
+    private Date expiry;
+
+    public String getToken() {
+        return Token;
+    }
+
+    public void setToken(String token) {
+        Token = token;
+    }
+
+    public Date getExpiry() {
+        return expiry;
+    }
+
+    public void setExpiry(Date expiry) {
+        this.expiry = expiry;
+    }
 }
