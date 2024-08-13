@@ -134,4 +134,11 @@ public class TestController
         //new DataCollector().getAllWebsFromAdmin();
         return "success";
     }
+    @GetMapping("/websync")
+    public String webSync()
+    {
+        new DataCollector().getAllWebsFromAdmin("https://42jghx-admin.sharepoint.com");
+        //new DataCollector().getAllWebsFromAdmin();
+        return "success";
+    }
 }
