@@ -74,6 +74,8 @@ public class TenantLevelSiteProperties
     private int UserCodeWarningLevel;
     @JsonProperty("WebsCount")
     private int WebsCount;
+    @JsonProperty("Url")
+    private String Url;
 
 
     public String getArchiveStatus() {
@@ -338,5 +340,13 @@ public class TenantLevelSiteProperties
 
     public void setWebsCount(int websCount) {
         WebsCount = websCount;
+    }
+
+    public String getUrl() {
+        return Url;
+    }
+
+    public void setUrl(String url) {
+        Url = url;
     }
 }
