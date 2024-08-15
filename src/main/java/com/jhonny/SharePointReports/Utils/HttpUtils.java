@@ -30,7 +30,7 @@ public class HttpUtils
     {
         //HttpClient client = HttpClient.newHttpClient();
         String encodedQuery = buildFormData(query);
-        String encodedUrl = encodedQuery.length() > 0 ? url+"?$"+encodedQuery : url;
+        String encodedUrl = encodedQuery.length() > 0 ? url+"?"+encodedQuery : url;
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(encodedUrl))
                 .setHeader("Accept", "application/json;odata=nometadata")
