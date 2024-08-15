@@ -137,8 +137,8 @@ public class TestController
     @GetMapping("/websync")
     public String webSync()
     {
-        new DataCollector().getAllWebsFromAdmin("https://42jghx-admin.sharepoint.com");
+        int webs = new DataCollector().getAllWebsFromAdmin("https://42jghx-admin.sharepoint.com");
         //new DataCollector().getAllWebsFromAdmin();
-        return "success";
+        return "websCount = "+String.valueOf(webs);
     }
 }
