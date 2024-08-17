@@ -61,16 +61,21 @@ public class SiteGroups
         this.title = source.getTitle();
         this.principalType = source.getPrincipalType();
 
-        try
-        {
-            for(User user : source.getUserCollection().getUsers())
-            {
-                SiteGroupMembers groupMembers = new SiteGroupMembers(this, user);
-            }
-        }
-        catch (Exception e)
-        {
-            System.out.println(e.getMessage());
-        }
+        // boolean isSiteOwner = false;
+        // boolean isSiteMember = false;
+        // boolean  isSiteVisitor = false;
+
+        // isSiteOwner = webSource.Associated
+        // try
+        // {
+        //     for(User user : source.getUserCollection().getUsers())
+        //     {
+        //         SiteGroupMembers groupMembers = new SiteGroupMembers(this, user);
+        //     }
+        // }
+        // catch (Exception e)
+        // {
+        //     System.out.println(e.getMessage());
+        // }
     }
 }
