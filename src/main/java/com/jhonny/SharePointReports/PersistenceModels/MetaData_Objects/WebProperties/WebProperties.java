@@ -36,6 +36,8 @@ public class WebProperties
     private Group AssociatedOwnerGroup;
     @JsonProperty("AssociatedMemberGroup")
     private Group AssociatedMemberGroup;
+    @JsonProperty("AssociatedMemberGroup")
+    private Group AssociatedVisitorGroup;
     @JsonProperty("Configuration")
     private int Configuration;
     @JsonProperty("ContainsConfidentialInfo")
@@ -255,6 +257,14 @@ public class WebProperties
 
     public void setAssociatedMemberGroup(Group associatedMemberGroup) {
         AssociatedMemberGroup = associatedMemberGroup;
+    }
+
+    public Group getAssociatedVisitorGroup() {
+        return AssociatedVisitorGroup;
+    }
+
+    public void setAssociatedVisitorGroup(Group associatedVisitorGroup) {
+        AssociatedVisitorGroup = associatedVisitorGroup;
     }
 
     public int getConfiguration() {
