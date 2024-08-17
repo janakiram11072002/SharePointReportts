@@ -30,7 +30,7 @@ public class SiteGroupMembers
 //    {
 //
 //    }
-    public SiteGroupMembers(SiteGroups groupSource, User source)
+    public SiteGroupMembers(SiteGroups groupSource, User source, boolean isSiteOwner, boolean isSiteMember, boolean isSiteVisitor)
     {
         this.siteType = groupSource.siteType;
         this.siteId = groupSource.siteId;
@@ -49,9 +49,9 @@ public class SiteGroupMembers
 //        this.isExternalUser = source;
 //        this.isSystemAccount = source;
         this.isSiteAdmin = source.isSiteAdmin();
-//        this.isOwner = source;
-//        this.isSiteMember = source;
-//        this.isSiteVisitor = source;
-//        this.principalType = source;
+       this.isOwner = isSiteOwner;
+       this.isSiteMember = isSiteMember;
+       this.isSiteVisitor = isSiteVisitor;
+       this.principalType = source.getPrincipalType();
     }
 }
