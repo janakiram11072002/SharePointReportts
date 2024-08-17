@@ -2,12 +2,14 @@ package com.jhonny.SharePointReports.PersistenceModels;
 
 import com.jhonny.SharePointReports.PersistenceModels.MetaData_Objects.SiteProperties.SiteProperties;
 import com.jhonny.SharePointReports.PersistenceModels.MetaData_Objects.WebProperties.Group;
+import com.jhonny.SharePointReports.PersistenceModels.MetaData_Objects.WebProperties.Owner;
 import com.jhonny.SharePointReports.PersistenceModels.MetaData_Objects.WebProperties.SiteList;
 import com.jhonny.SharePointReports.PersistenceModels.MetaData_Objects.WebProperties.User;
 import com.jhonny.SharePointReports.PersistenceModels.MetaData_Objects.WebProperties.WebProperties;
 import com.jhonny.SharePointReports.Utils.CustomUtils;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.concurrent.TimeUnit;
 
 public class Web
@@ -79,13 +81,13 @@ public class Web
     public String parentUrl;
     public String parentTitle;
     public int userCount;
-    public int uniqueInternalUserCount;
-    public int uniqueExternalUserCount;
-    public int externalOwnerCount;
-    public int externalMemberCount;
-    public int externalVisitorCount;
-    public int externalAdminCount;
-    public int externalMembershipCount;
+    // public int uniqueInternalUserCount;
+    // public int uniqueExternalUserCount;
+    // public int externalOwnerCount;
+    // public int externalMemberCount;
+    // public int externalVisitorCount;
+    // public int externalAdminCount;
+    // public int externalMembershipCount;
     public int adminCount;
     public int ownerCount;
     public int memberCount;
@@ -205,21 +207,7 @@ public class Web
         else this.siteUrl = source.getUrl();
         this.siteTitle = siteName;
 
-//        this.userCount = source.getConfiguration();
-//        this.uniqueInternalUserCount = source.getConfiguration();
-//        this.uniqueExternalUserCount = source.getConfiguration();
-//        this.externalOwnerCount = source.getConfiguration();
-//        this.externalMemberCount = source.getConfiguration();
-//        this.externalVisitorCount = source.getConfiguration();
-//        this.externalAdminCount = source.getConfiguration();
-//        this.externalMembershipCount = source.getConfiguration();
-//        this.adminCount = source.getConfiguration();
-//        this.ownerCount = source.getConfiguration();
-//        this.memberCount = source.getConfiguration();
-//        this.visitorCount = source.getConfiguration();
-//        this.groupCount = source.getConfiguration();
-//        this.listCount = source.getLists().size();
-//        this.documentLibraryCount = source.getConfiguration();
+
 
 
         hasUniqueRoleAssignments = source.isHasUniqueRoleAssignments();
@@ -245,120 +233,78 @@ public class Web
 //        emailAuthenticationGuestUser = source;
         //sharingCapability = siteSource.SharingCapability;
 
-        for(User user : source.getUserCollection().getUsers())
-        {
-            SiteUsers siteUser= new SiteUsers(this, user);
-        }
-        System.out.println("Site Users data are Collected");
+        HashSet<String> siteOwnersList = new HashSet<>();
+        HashSet<String> siteOwners = new HashSet<>();
+        HashSet<String> siteMembers = new HashSet<>();
+        HashSet<String> siteVisitor = new HashSet<>();
+        HashSet<String> siteAdmins = new HashSet<>();
+        HashSet<String> groupOwners = new HashSet<>();
+
         for(Group group : source.getGroupCollection().getGroups())
         {
             SiteGroups sitegroup = new SiteGroups(this, group);
+            if(group.getTitle().equals(group.getOwnerTitle()))
+            {
+                for(User user : group.getUserCollection().getUsers())
+                {
+                    groupOwners.add(user.getLoginName());
+                }
+            }
+            for(User user : source.getUserCollection().getUsers())
+            {
+                boolean isMember = false;
+                boolean isVisitor = false;
+                boolean isOwner = false;
+
+                if(source.getAssociatedMemberGroup() != null && source.getAssociatedMemberGroup().getId() == group.getId())
+                {
+                    siteMembers.add(user.getLoginName());
+                    isMember = true;
+                }
+                else if(source.getAssociatedVisitorGroup()!= null && source.getAssociatedVisitorGroup().getId() == group.getId())
+                {
+                    siteVisitor.add(user.getLoginName());
+                    isVisitor = true;
+                }
+                if(user.isSiteAdmin())
+                {
+                    siteAdmins.add(user.getLoginName());
+                }
+                if(groupOwners.contains(user.getLoginName()) || source.getAssociatedOwnerGroup().getId() == group.getId())
+                {
+                    siteOwners.add(user.getLoginName());
+                    isOwner = true;
+                }
+                SiteGroupMembers groupMembers = new SiteGroupMembers(sitegroup, user, isOwner, isMember,isVisitor);
+            }
+            this.groupCount++;
         }
+
+       this.adminCount = siteAdmins.size();
+       this.ownerCount = siteOwners.size();
+       this.memberCount = siteMembers.size();
+       this.visitorCount = siteVisitor.size();
+        
+        for(User user : source.getAssociatedOwnerGroup().getUserCollection().getUsers())
+        {
+            siteOwnersList.add(user.getLoginName());
+        }
+
+        for(User user : source.getUserCollection().getUsers())
+        {
+            SiteUsers siteUser= new SiteUsers(this, user, siteOwnersList.contains(user.getLoginName()));
+            this.userCount++;
+        }
+        System.out.println("Site Users data are Collected");
+        
         System.out.println("Site Group and Group members date are collected.");
         for(SiteList siteList : source.getListCollection().getLists())
         {
             List list = new List(this, siteList);
+            if(list.baseType == 0) this.listCount++;
+            else if(list.baseType == 1) this.documentLibraryCount++;
         }
         System.out.println("Site list data are collected.");
     }
 
 }
-
-/*
-    site type,
-    site id,
-    allowAutomaticASPXPageIndexing,
-    allowCreateDeclarativeWorkflowForCurrentUser,
-    allowDesignerForCurrentUser,
-    allowMasterPageEditingForCurrentUser,
-    allowRevertFromTemplateForCurrentUser,
-    allowRssFeeds,
-    allowSaveDeclarativeWorkflowAsTemplateForCurrentUser,
-    allowSavePublishDeclarativeWorkflowForCurrentUser,
-    alternateCssUrl,
-    appInstanceId,
-    associatedOwnerGroup,
-    configuration,
-    containsConfidentialInfo
-    ,DateTime created,
-    currentUserInfo,
-    customMasterUrldescription,
-    designerDownloadUrlForCurrentUser,
-    disableAppViews,
-    disableFlows,
-    documentLibraryCalloutOfficeWebAppPreviewersDisabled,
-    enableMinimalDownload,
-    excludeFromOfflineClient,
-    id,isMultilingual,
-    language,
-    actualLanguage,
-    DateTime 
-    lastItemModifiedDate,DateTime 
-    lastItemUserModifiedDate,
-    masterUrl,membersCanShare,
-    noCrawl,
-    notificationsInOneDriveForBusinessEnabled,
-    notificationsInSharePoEnabled,
-    overwriteTranslationsOnChange,
-    previewFeaturesEnabled,
-    quickLaunchEnabled,
-    recycleBinEnabled,
-    requestAccessEmail,
-    saveSiteAsTemplateEnabled,
-    serverRelativeUrl,
-    showUrlStructureForCurrentUser,
-    siteLogoDescription,
-    siteLogoUrl,
-    supportedUILanguageIds,
-    syndicationEnabled,
-    tenantTagPolicyEnabled,
-    themedCssFolderUrl,
-    thirdPartyMdmEnabled,
-    title,
-    treeViewEnabled,
-    uIVersion,
-    uIVersionConfigurationEnabled,
-    url,
-    webs,
-    webTemplate,
-    level,
-    child,
-    immediateChild,
-    depth,
-    parentId,
-    parentUrl,
-    parentTitle,
-    userCount,
-    uniqueInternalUserCount,
-    uniqueExternalUserCount,
-    externalOwnerCount,
-    externalMemberCount,
-    externalVisitorCount,
-    externalAdminCount,
-    externalMembershipCount,
-    adminCount,
-    ownerCount,
-    memberCount,
-    visitorCount,
-    groupCount,
-    listCount,
-    documentLibraryCount,
-    siteUrl,
-    siteTitle,
-    hasUniqueRoleAssignments,
-    rootWeb,
-    inactiveDays,
-    associatedMemberGroupAllowMembersEditMembership,
-    IsSitePublic,
-    availableRetentionLable,
-    recycleBinSize,
-    useAccessRequestDefault,
-    guestUserCount,
-    guestUserInvititedByMail,
-    annonymousLinkCount,e
-    mailAuthenticationGuestUser,
-    sharingCapability
-
-
-
- */
