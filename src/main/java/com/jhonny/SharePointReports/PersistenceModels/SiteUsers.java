@@ -32,7 +32,7 @@ public class SiteUsers
     public String siteUrl;
     public String siteTitle;
 
-    public SiteUsers(Web webSource, User source)
+    public SiteUsers(Web webSource, User source, boolean isSiteOwner)
     {
 
         this.siteType = webSource.siteType;
@@ -50,7 +50,7 @@ public class SiteUsers
         }
         this.isShareByEmailGuestUser = source.isShareByEmailGuestUser();
         this.isSiteAdmin = source.isSiteAdmin();
-//        this.isSiteOwner = source.;
+       this.isSiteOwner = isSiteOwner;
         try {
             this.userId_nameId = source.getUserId().getNameId();
             this.userId_nameIdUser = source.getUserId().getNameIdIssuer();
