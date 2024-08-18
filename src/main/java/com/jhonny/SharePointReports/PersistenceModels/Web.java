@@ -308,3 +308,29 @@ public class Web
     }
 
 }
+
+/*
+        For Site Permission
+foreach (var roleAssignment in source.RoleAssignments)
+{
+    var roles = "";
+    try
+    {
+        // if the group/user has only Limited Access or Web-only limited access then they were excluded.
+        roles = string.Join(", ", roleAssignment.RoleDefinitionBindings.Where(a => (!a.Name.Equals("Limited Access")) && (!a.Name.Equals("Web-Only Limited Access"))).Select(a => a.Name).ToList());
+        //roles = string.Join(", ", roleAssignment.RoleDefinitionBindings.Select(a => a.Name).ToList());
+        if (roles != null && roles.Length > 0)
+        {
+            var sitepermission = new PersistentObjects.SpoSitePermission(tenantId, siteId, source.Id, roleAssignment, roles);
+            dataUpdater.UpdateSitePermission(sitepermission);
+        }
+        else
+        {
+            Log.Info($"Either the user/group has only Limited Access to the site");
+        }
+    }
+    catch(Exception e)
+    {
+        Log.Info($"Error Message : {e.Message}");
+    }
+}*/
