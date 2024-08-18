@@ -36,7 +36,7 @@ public class WebProperties
     private Group AssociatedOwnerGroup;
     @JsonProperty("AssociatedMemberGroup")
     private Group AssociatedMemberGroup;
-    @JsonProperty("AssociatedMemberGroup")
+    @JsonProperty("AssociatedVisitorGroup")
     private Group AssociatedVisitorGroup;
     @JsonProperty("Configuration")
     private int Configuration;
