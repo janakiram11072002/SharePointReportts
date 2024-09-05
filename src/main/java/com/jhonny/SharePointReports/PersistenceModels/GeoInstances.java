@@ -14,7 +14,10 @@ public class GeoInstances
     public int siteCollections;
     public int sites;
     //public int geosize;
+    public GeoInstances()
+    {
 
+    }
     public GeoInstances(SPOTenantInstance source)
     {
         this.key = new GeoInstanceKey(source.getDataLocation(), source.getTenantAdminUrl());
