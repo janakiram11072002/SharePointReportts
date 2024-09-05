@@ -8,9 +8,13 @@ import java.util.stream.Collectors;
 
 public class SiteUsers
 {
+//    public String siteId;
+//    public String webId;
+//    public int id;
+
+    public SiteUserKey key;
+
     public int siteType;
-    public String siteId;
-    public String webId;
     public String geoLocation;
     public String email;
     public String userPrincipleName;
@@ -21,7 +25,6 @@ public class SiteUsers
     public String userId_nameId;
     public String userId_nameIdUser;
     public String userId_typeId;
-    public int id;
     public boolean isHiddenInUI;
     public String loginName;
     public String title;
@@ -35,9 +38,13 @@ public class SiteUsers
     public SiteUsers(Web webSource, User source, boolean isSiteOwner)
     {
 
+//        this.siteId = webSource.siteId;
+//        this.webId = webSource.id;
+//        this.id = source.getId();
+
+        this.key = new SiteUserKey(webSource.key.siteId, webSource.key.id, source.getId());
+
         this.siteType = webSource.siteType;
-        this.siteId = webSource.siteId;
-        this.webId = webSource.id;
         this.geoLocation = webSource.geoLocation;
         this.email = source.getEmail();
         this.userPrincipleName = source.getUserPrincipalName();
@@ -60,7 +67,6 @@ public class SiteUsers
         {
             System.out.println(e.getMessage());
         }
-        this.id = source.getId();
         this.isHiddenInUI = source.isHiddenInUI();
         this.loginName = source.getLoginName();
         this.title = source.getTitle();
