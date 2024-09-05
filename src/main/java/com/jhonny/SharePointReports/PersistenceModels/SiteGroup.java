@@ -1,15 +1,18 @@
 package com.jhonny.SharePointReports.PersistenceModels;
 
 import com.jhonny.SharePointReports.PersistenceModels.MetaData_Objects.WebProperties.Group;
-import com.jhonny.SharePointReports.PersistenceModels.MetaData_Objects.WebProperties.User;
 
-public class SiteGroups
+public class SiteGroup
 {
+//    public String siteId;
+//    public String webId;
+//    public int id;
+
+    public SiteGroupKey key;
+
     public int siteType;
-    public String siteId;
     public String siteUrl;
     public String siteTitle;
-    public String webId;
     public String webUrl;
     public String webTitle;
     public boolean allowMembersEditMembership;
@@ -23,19 +26,27 @@ public class SiteGroups
     public String ownerTitle;
     public String requestToJoinLeaveEmailSetting;
     public int memberCount;
-    public int id;
     public boolean isHiddenInUI;
     public String loginName;
     public String title;
     public int principalType;
 
-    public SiteGroups(Web webSource, Group source)
+    public SiteGroup()
     {
+
+    }
+    public SiteGroup(Web webSource, Group source)
+    {
+
+//        this.siteId = webSource.siteId;
+//        this.webId = webSource.id;
+//        this.id = source.getId();
+
+        this.key = new SiteGroupKey(webSource.key.siteId, webSource.key.id, source.getId());
+
         this.siteType = webSource.siteType;
-        this.siteId = webSource.siteId;
         this.siteUrl = webSource.siteUrl;
         this.siteTitle = webSource.siteTitle;
-        this.webId = webSource.id;
         this.webUrl = webSource.url;
         this.webTitle = webSource.title;
         this.allowMembersEditMembership = source.isAllowMembersEditMembership();
@@ -55,7 +66,6 @@ public class SiteGroups
         {
             System.out.println(e.getMessage());
         }
-        this.id = source.getId();
         this.isHiddenInUI = source.isHiddenInUI();
         this.loginName = source.getLoginName();
         this.title = source.getTitle();
