@@ -8,9 +8,10 @@ import java.util.concurrent.TimeUnit;
 
 public class List
 {
-    public String siteId;
-    public String webId;
-    public String id;
+//    public String siteId;
+//    public String webId;
+//    public String id;
+    public ListKey key;
     public boolean allowContentTypes;
     public boolean allowDeletion;
     public int baseTemplate;
@@ -77,12 +78,20 @@ public class List
     public int inactiveDays;
     public String siteTitle;
 
+    public List()
+    {
+
+    }
+
     public List(Web webSource, SiteList source)
     {
-        this.siteId = webSource.siteId;
-        this.webId = webSource.id;
-        this.id = webSource.id;
+//        this.siteId = webSource.siteId;
+//        this.webId = webSource.id;
+//        this.id = webSource.id;
+        this.key = new ListKey(webSource.key.siteId, webSource.key.id, webSource.key.id);
+
         this.webUrl = webSource.url;
+
         this.webTitle = webSource.title;
         this.siteUrl = webSource.siteUrl;
         this.siteTitle = webSource.siteTitle;
