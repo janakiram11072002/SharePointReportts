@@ -14,8 +14,12 @@ import java.util.concurrent.TimeUnit;
 
 public class Web
 {
+//    public String siteId;
+//    public String id;
+
+    public WebKey key;
+
     public int siteType;
-    public String siteId;
     public String geoLocation;
     public boolean allowAutomaticASPXPageIndexing;
     public boolean allowCreateDeclarativeWorkflowForCurrentUser;
@@ -40,7 +44,6 @@ public class Web
     public boolean documentLibraryCalloutOfficeWebAppPreviewersDisabled;
     public boolean enableMinimalDownload;
     public boolean excludeFromOfflineClient;
-    public String id;
     public boolean isMultilingual;
     public int language;
     public String actualLanguage;
@@ -114,8 +117,10 @@ public class Web
     public Web(String siteId, String siteName, String geoLocation, WebProperties source)
     {
         this.siteType = (source.getUrl().toLowerCase().contains("-my.sharepoint.com/personal/")) ? 1 : 0;
-        this.siteId = siteId;
-        this.id = CustomUtils.toGuid(source.getId());
+//        this.siteId = siteId;
+//        this.id = CustomUtils.toGuid(source.getId());
+
+        this.key = new WebKey(siteId, CustomUtils.toGuid(source.getId()));
         this.geoLocation = geoLocation;
 
 
@@ -242,7 +247,7 @@ public class Web
 
         for(Group group : source.getGroupCollection().getGroups())
         {
-            SiteGroups sitegroup = new SiteGroups(this, group);
+            SiteGroup sitegroup = new SiteGroup(this, group);
             if(group.getTitle().equals(group.getOwnerTitle()))
             {
                 for(User user : group.getUserCollection().getUsers())
@@ -270,12 +275,12 @@ public class Web
                 {
                     siteAdmins.add(user.getLoginName());
                 }
-                if(groupOwners.contains(user.getLoginName()) || source.getAssociatedOwnerGroup().getId() == group.getId())
+                if(groupOwners.contains(user.getLoginName()) || (source.getAssociatedOwnerGroup() != null && source.getAssociatedOwnerGroup().getId() == group.getId()))
                 {
                     siteOwners.add(user.getLoginName());
                     isOwner = true;
                 }
-                SiteGroupMembers groupMembers = new SiteGroupMembers(sitegroup, user, isOwner, isMember,isVisitor);
+                SiteGroupMember groupMembers = new SiteGroupMember(sitegroup, user, isOwner, isMember,isVisitor);
             }
             this.groupCount++;
         }
@@ -284,10 +289,15 @@ public class Web
        this.ownerCount = siteOwners.size();
        this.memberCount = siteMembers.size();
        this.visitorCount = siteVisitor.size();
-        
-        for(User user : source.getAssociatedOwnerGroup().getUserCollection().getUsers())
+
+       try {
+           for (User user : source.getAssociatedOwnerGroup().getUserCollection().getUsers()) {
+               siteOwnersList.add(user.getLoginName());
+           }
+       }
+       catch(Exception e)
         {
-            siteOwnersList.add(user.getLoginName());
+            System.out.println(e.getMessage());
         }
 
         for(User user : source.getUserCollection().getUsers())
