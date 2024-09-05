@@ -242,6 +242,10 @@ public class Site
     public int InactiveDays;
     public double StoragePercentageUsedInTenant;
 
+    public Site()
+    {
+
+    }
 
     public Site(SiteProperties source)
     {
