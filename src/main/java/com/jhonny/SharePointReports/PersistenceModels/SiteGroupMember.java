@@ -2,18 +2,19 @@ package com.jhonny.SharePointReports.PersistenceModels;
 
 import com.jhonny.SharePointReports.PersistenceModels.MetaData_Objects.WebProperties.User;
 
-public class SiteGroupMembers
+public class SiteGroupMember
 {
+//    public String siteId;
+//    public String webId;
+//    public int groupId;
+//    public int id;
+    public SiteGroupMemberKey key;
     public int siteType;
-    public String siteId;
     public String siteUrl;
     public String siteTitle;
-    public String webId;
     public String webUrl;
     public String webTitle;
-    public int groupId;
     public String groupTitle;
-    public int id;
     public String title;
     public String email;
     public String loginName;
@@ -26,22 +27,25 @@ public class SiteGroupMembers
     public boolean isSiteVisitor;
     public int principalType;
 
-//    public SiteGroupMembers()
-//    {
-//
-//    }
-    public SiteGroupMembers(SiteGroups groupSource, User source, boolean isSiteOwner, boolean isSiteMember, boolean isSiteVisitor)
+    public SiteGroupMember()
     {
+
+    }
+    public SiteGroupMember(SiteGroup groupSource, User source, boolean isSiteOwner, boolean isSiteMember, boolean isSiteVisitor)
+    {
+//        this.siteId = groupSource.siteId;
+//        this.webId = groupSource.webId;
+//        this.groupId = groupSource.id;
+//        this.id = source.getId();
+
+        this.key = new SiteGroupMemberKey(groupSource.key.siteId, groupSource.key.webId, groupSource.key.id, source.getId());
+
         this.siteType = groupSource.siteType;
-        this.siteId = groupSource.siteId;
         this.siteUrl = groupSource.siteUrl;
         this.siteTitle = groupSource.siteTitle;
-        this.webId = groupSource.webId;
         this.webUrl = groupSource.webUrl;
         this.webTitle = groupSource.webTitle;
-        this.groupId = groupSource.id;
         this.groupTitle = groupSource.title;
-        this.id = source.getId();
         this.title = source.getTitle();
         this.email = source.getEmail();
         this.loginName = source.getLoginName();
