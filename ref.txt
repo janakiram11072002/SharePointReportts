@@ -1,3 +1,7 @@
+Before using in linux env use the below command
+chmod a+x ./mvnw
+
+
 site prop:
 {
     AllowCreateDeclarativeWorkflow,
