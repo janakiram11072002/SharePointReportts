@@ -5,15 +5,26 @@ import com.jhonny.SharePointReports.Utils.AuthClient;
 import com.jhonny.SharePointReports.Utils.HttpUtils;
 import com.jhonny.SharePointReports.Utils.JwtGenerater;
 
-import org.springframework.web.bind.annotation.*;
+// import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/test")
 public class TestController
 {
+    @GetMapping("/")
+    public String sayHello()
+    {
+        return "Hello";
+    }
     @GetMapping("/get")
     public String testGet(String url)
     {
@@ -36,16 +47,17 @@ public class TestController
     {
         return new JwtGenerater().getJwtToken();
     }
+
     @GetMapping("/token")
     public String token()
     {
+        AuthClient token = new AuthClient();
         return token.GetAdminToken();
     }
-
-    AuthClient token = new AuthClient();
     @GetMapping("/ctoken")
     public String getClientToken()
     {
+        AuthClient token = new AuthClient();
         return token.GetSiteClientToken();
     }
     @GetMapping("/allsites")
