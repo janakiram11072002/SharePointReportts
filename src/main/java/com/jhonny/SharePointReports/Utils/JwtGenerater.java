@@ -14,7 +14,7 @@ import java.util.Date;
 public class JwtGenerater
 {
 
-	private String JwtToken;
+	// private String JwtToken;
 	/*
 	 * Audience
 	 * Spring.jwt.AudienceEndPoint="https://login.microsoftonline.com/"
@@ -39,7 +39,9 @@ public class JwtGenerater
 		ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
 		AppConfig appConfig = context.getBean(AppConfig.class);
 		 */
-		appConfig = new AnnotationConfigApplicationContext(AppConfig.class).getBean(AppConfig.class);
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+		appConfig = context.getBean(AppConfig.class);
+		context.close();
 
 		this.AUDIENCE = prepareAudiece();
 		try

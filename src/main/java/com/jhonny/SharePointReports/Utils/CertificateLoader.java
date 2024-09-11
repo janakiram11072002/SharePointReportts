@@ -9,13 +9,8 @@ import java.security.NoSuchAlgorithmException;
 import java.security.PrivateKey;
 import java.util.Base64;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.env.Environment;
-
 public class CertificateLoader 
 {
-	@Autowired
-	private Environment env;
 	private KeyStore keyStore;
 	private String alias;
 	private Certificate cert;

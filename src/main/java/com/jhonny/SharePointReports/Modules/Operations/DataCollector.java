@@ -18,7 +18,7 @@ import com.jhonny.SharePointReports.PersistenceModels.MetaData_Objects.Row;
 import com.jhonny.SharePointReports.PersistenceModels.MetaData_Objects.SiteUrlFromAdmin;
 import com.jhonny.SharePointReports.Utils.AppConfig;
 
-import java.net.http.HttpClient;
+// import java.net.http.HttpClient;
 import java.net.http.HttpResponse;
 import java.util.Date;
 import java.util.HashMap;
@@ -38,7 +38,9 @@ public class DataCollector
     
     public DataCollector()
     {
-        this.appConfig = new AnnotationConfigApplicationContext(AppConfig.class).getBean(AppConfig.class);
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+        this.appConfig = context.getBean(AppConfig.class);
+        context.close();        
         token = new AuthClient();
     }
 
@@ -122,13 +124,13 @@ public class DataCollector
     public void getGeoInstances(String Adminurl)
     {
         String endpoint = Adminurl+"/_vti_bin/client.svc/ProcessQuery";
-        String response = new HttpUtils()
+        String response = HttpUtils
                 .PostAsXML(
                         endpoint,
                         token.GetAdminToken(),
                         PrepGeoLocationXmlBody()
                 ).body();
-        System.out.println(response);
+        // System.out.println(response);
 //        String breakResponse = response.split("},1,")[1];
 //        TenantInstanceResponse instances = JsonUtils.toObject(
 //                breakResponse.substring(0,breakResponse.length()-2),
@@ -152,7 +154,7 @@ public class DataCollector
         int currentRow=0, end=0;
         do
         {
-            String response = new HttpUtils().Get(url, token.GetAdminToken(), prepAdminSiteBody(currentRow)).body();
+            String response = HttpUtils.Get(url, token.GetAdminToken(), prepAdminSiteBody(currentRow)).body();
             SiteUrlFromAdmin sites = JsonUtils.toObject(response, SiteUrlFromAdmin.class);
             for(Row site : sites.getRows())
             {
@@ -174,11 +176,11 @@ public class DataCollector
             end = sites.getTotalRow();
             System.out.println("row count : " + currentRow);
 
-            System.out.println(new Date().getTime());
+            System.out.println(new Date());
         }
         while(currentRow < end);
 
-        System.out.println("Sites are Collected at " +new Date().getTime());
+        System.out.println("Sites are Collected at " +new Date());
         return end;
     }
 
@@ -190,18 +192,18 @@ public class DataCollector
         SitePropertiesEnumerable allSiteProp = null;
         while(allSiteProp == null || startIndex > 0)
         {
-            String response = new HttpUtils().PostAsXML(endpoint, token.GetAdminToken(), getSitePropertyEmulatedXmlBody(appConfig.getTenatId())).body();
+            String response = HttpUtils.PostAsXML(endpoint, token.GetAdminToken(), getSitePropertyEmulatedXmlBody(appConfig.getTenatId())).body();
 
             allSiteProp = JsonUtils.toObject(JsonUtils.getDataFromJson(response,2), SitePropertiesEnumerable.class);
             for(TenantLevelSiteProperties siteProp : allSiteProp.getSites())
             {
-                System.out.println("Sites are Collected for  " + siteProp);
+                System.out.println("Sites are Collected for  " + siteProp.getUrl());
                 getSiteProperties(siteProp);
                 siteCount++;
             }
         }
 
-        System.out.println("Sites are Collected at " +new Date().getTime());
+        System.out.println("Sites are Collected at " +new Date());
         return siteCount;
     }
 
@@ -213,7 +215,7 @@ public class DataCollector
         int currentRow=0, end=0;
         do
         {
-            String response = new HttpUtils().Get(url, token.GetAdminToken(), prepAdminWebBody(currentRow)).body();
+            String response = HttpUtils.Get(url, token.GetAdminToken(), prepAdminWebBody(currentRow)).body();
             SiteUrlFromAdmin sites = JsonUtils.toObject(response, SiteUrlFromAdmin.class);
             // update total web count
             end = sites.getTotalRow();
@@ -240,7 +242,7 @@ public class DataCollector
         }
         while(currentRow < end);
 
-        System.out.println("WEbs are collected at "+ new Date().getTime());
+        System.out.println("Webs are collected at "+ new Date());
         return end;
     }
 
@@ -249,7 +251,7 @@ public class DataCollector
 
         System.out.println(siteProp.getUrl());
         String endpoint = siteProp.getUrl()+"/_api/site";
-        HttpResponse<String> response = new HttpUtils()
+        HttpResponse<String> response = HttpUtils
             .Get(
                     endpoint,
                     (siteProp.getUrl().contains("-my.sharepoint.com/personal")) ? token.GetOneDriveClientToken() : token.GetSiteClientToken(),
@@ -271,12 +273,12 @@ public class DataCollector
     public TenantLevelSiteProperties getSitePropertiesV2(String adminSite, String url)
     {
         String endpoint = adminSite+"/_vti_bin/client.svc/ProcessQuery";
-        String response = new HttpUtils()
+        String response = HttpUtils
                 .PostAsXML(endpoint,
                         token.GetAdminToken(),
                         getTenantSitePropXml(url,appConfig.getTenatId()))
                 .body();
-        System.out.println(response);
+        // System.out.println(response);
 //        String breakResponse = response.split("},1,")[1];
 //        TenantLevelSiteProperties siteProp = (JsonUtils.toObject(breakResponse.substring(0,breakResponse.length()-2), TenantLevelSiteProperties.class));
         TenantLevelSiteProperties siteProp = (JsonUtils.toObject(JsonUtils.getDataFromJson(response,2), TenantLevelSiteProperties.class));
@@ -286,13 +288,13 @@ public class DataCollector
     public void getWebProperties(String siteId, String siteName, String geoLocation, String url)
     {
         String endpoint = url+"/_vti_bin/client.svc/ProcessQuery";
-        String response = new HttpUtils()
+        String response = HttpUtils
                 .PostAsXML(
                         endpoint,
                         url.contains("-my.sharepoint.com/personal") ? token.GetOneDriveClientToken() : token.GetSiteClientToken(),
                         getWebPropXml()
                 ).body();
-        System.out.println(response);
+        // System.out.println(response);
         //String breakResponse = response.split("},1,")[1];
 //        WebProperties webProp = JsonUtils.toObject(breakResponse.substring(0,breakResponse.length()-2), WebProperties.class);
         WebProperties webProp = JsonUtils.toObject(JsonUtils.getDataFromJson(response,2), WebProperties.class);

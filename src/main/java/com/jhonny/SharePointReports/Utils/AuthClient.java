@@ -25,7 +25,10 @@ public class AuthClient
     {
 //        this.tenant_id = tenantId;
 //        this.client_id = client_id;
-        this.appConfig = new AnnotationConfigApplicationContext(AppConfig.class).getBean(AppConfig.class);
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+        this.appConfig = context.getBean(AppConfig.class);
+        context.close();
+
         this.client_assertion = new JwtGenerater().getJwtToken();
         //this.scope = scope+"/.default";
     }   

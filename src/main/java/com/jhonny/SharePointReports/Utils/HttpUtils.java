@@ -1,17 +1,17 @@
 package com.jhonny.SharePointReports.Utils;
 
-import java.io.UnsupportedEncodingException;
+// import java.io.UnsupportedEncodingException;
 
 // import com.microsoft.aad.msal4j.IHttpResponse;
 // import okhttp3.MediaType;
 
 import java.net.URI;
-import java.net.URLEncoder;
+// import java.net.URLEncoder;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.nio.charset.StandardCharsets;
-import java.util.HashMap;
+// import java.nio.charset.StandardCharsets;
+// import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
@@ -38,7 +38,7 @@ public class HttpUtils
                 //.header("Content-Type","application/x-www-form-urlencoded")
                 .setHeader("Authorization", "Bearer "+token)
                 .build();
-        HttpResponse<String> response = null;
+        // HttpResponse<String> response = null;
 //        try
 //        {
 //            response = client.send(request, HttpResponse.BodyHandlers.ofString());
@@ -75,7 +75,7 @@ public class HttpUtils
                 .POST(HttpRequest.BodyPublishers.ofString(buildFormData(body)))
                 .build();
 
-        HttpResponse<String> response = null;
+        //HttpResponse<String> response = null;
         //MediaType mediaType = MediaType.parse("application/json");
 
 
