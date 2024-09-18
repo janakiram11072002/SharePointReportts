@@ -6,17 +6,25 @@ import com.jhonny.SharePointReports.PersistenceModels.MetaData_Objects.WebProper
 import com.jhonny.SharePointReports.PersistenceModels.MetaData_Objects.WebProperties.SiteList;
 import com.jhonny.SharePointReports.PersistenceModels.MetaData_Objects.WebProperties.User;
 import com.jhonny.SharePointReports.PersistenceModels.MetaData_Objects.WebProperties.WebProperties;
+import com.jhonny.SharePointReports.Services.DbService;
 import com.jhonny.SharePointReports.Utils.CustomUtils;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.EmbeddedId;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 
 import java.util.Date;
 import java.util.HashSet;
 import java.util.concurrent.TimeUnit;
 
+@Entity
+@Table(name = "web")
 public class Web
 {
 //    public String siteId;
 //    public String id;
-
+    @EmbeddedId
     public WebKey key;
 
     public int siteType;
@@ -31,12 +39,15 @@ public class Web
     public boolean allowSavePublishDeclarativeWorkflowForCurrentUser;
     public String alternateCssUrl;
     public String appInstanceId;
+    @Column(columnDefinition = "TEXT")
     public String associatedOwnerGroup;
     public int configuration;
     public boolean containsConfidentialInfo;
     public Date created;
     public String currentUserInfo;
+    @Column(columnDefinition = "TEXT")
     public String customMasterUrl;
+    @Column(columnDefinition = "TEXT")
     public String description;
     public String designerDownloadUrlForCurrentUser;
     public boolean disableAppViews;
@@ -49,6 +60,7 @@ public class Web
     public String actualLanguage;
     public Date lastItemModifiedDate;
     public Date lastItemUserModifiedDate;
+    @Column(columnDefinition = "TEXT")
     public String masterUrl;
     public boolean membersCanShare;
     public boolean noCrawl;
@@ -60,10 +72,13 @@ public class Web
     public boolean recycleBinEnabled;
     public String requestAccessEmail;
     public boolean saveSiteAsTemplateEnabled;
+    @Column(columnDefinition = "TEXT")
     public String serverRelativeUrl;
     public boolean showUrlStructureForCurrentUser;
+    @Column(columnDefinition = "TEXT")
     public String siteLogoDescription;
     public String siteLogoUrl;
+    @Column(columnDefinition = "TEXT")
     public String supportedUILanguageIds;
     public boolean syndicationEnabled;
     public boolean tenantTagPolicyEnabled;
@@ -73,6 +88,7 @@ public class Web
     public boolean treeViewEnabled;
     public int uIVersion;
     public boolean uIVersionConfigurationEnabled;
+    @Column(columnDefinition = "TEXT")
     public String url;
     public int webs;
     public String webTemplate;
@@ -81,6 +97,7 @@ public class Web
     public int immediateChild;
     public int depth;
     public String parentId;
+    @Column(columnDefinition = "TEXT")
     public String parentUrl;
     public String parentTitle;
     public int userCount;
@@ -101,7 +118,7 @@ public class Web
     public String siteUrl;
     public String siteTitle;
     public boolean hasUniqueRoleAssignments;
-    public boolean Webs;
+    //public boolean Webs;
     public int inactiveDays;
     public boolean associatedMemberGroupAllowMembersEditMembership;
     public boolean IsSitePublic;
@@ -114,7 +131,11 @@ public class Web
 //    public int emailAuthenticationGuestUser;
     public int sharingCapability;
 
-    public Web(String siteId, String siteName, String geoLocation, WebProperties source)
+    public Web()
+    {
+        
+    }
+    public Web(String siteId, String siteName, String geoLocation, WebProperties source, DbService dbManager)
     {
         this.siteType = (source.getUrl().toLowerCase().contains("-my.sharepoint.com/personal/")) ? 1 : 0;
 //        this.siteId = siteId;
@@ -281,7 +302,9 @@ public class Web
                     isOwner = true;
                 }
                 SiteGroupMember groupMembers = new SiteGroupMember(sitegroup, user, isOwner, isMember,isVisitor);
+                dbManager.saveMember(groupMembers);
             }
+            dbManager.saveGroup(sitegroup);
             this.groupCount++;
         }
 
@@ -304,6 +327,7 @@ public class Web
         {
             SiteUsers siteUser= new SiteUsers(this, user, siteOwnersList.contains(user.getLoginName()));
             this.userCount++;
+            dbManager.saveUser(siteUser);
         }
         System.out.println("Site Users data are Collected");
         
@@ -313,6 +337,7 @@ public class Web
             List list = new List(this, siteList);
             if(list.baseType == 0) this.listCount++;
             else if(list.baseType == 1) this.documentLibraryCount++;
+            dbManager.saveList(list);
         }
         System.out.println("Site list data are collected.");
     }

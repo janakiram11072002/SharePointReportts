@@ -3,14 +3,22 @@ package com.jhonny.SharePointReports.PersistenceModels;
 import com.jhonny.SharePointReports.PersistenceModels.MetaData_Objects.WebProperties.SiteList;
 import com.jhonny.SharePointReports.Utils.CustomUtils;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.EmbeddedId;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
+@Entity
+@Table(name = "list")
 public class List
 {
 //    public String siteId;
 //    public String webId;
 //    public String id;
+    @EmbeddedId
     public ListKey key;
     public boolean allowContentTypes;
     public boolean allowDeletion;
@@ -21,12 +29,18 @@ public class List
     public boolean crawlNonDefaultViews;
     public Date created;
     public String defaultContentApprovalWorkflowId;
+    @Column(columnDefinition = "TEXT")
     public String defaultDisplayFormUrl;
+    @Column(columnDefinition = "TEXT")
     public String defaultEditFormUrl;
+    @Column(columnDefinition = "TEXT")
     public String defaultNewFormUrl;
+    @Column(columnDefinition = "TEXT")
     public String defaultViewUrl;
+    @Column(columnDefinition = "TEXT")
     public String description;
     public String direction;
+    @Column(columnDefinition = "TEXT")
     public String documentTemplateUrl;
     public int draftVersionVisibility;
     public boolean enableAssignToEmail;
@@ -42,6 +56,7 @@ public class List
     public boolean forceCheckout;
     public boolean hasExternalDataSource;
     public boolean hidden;
+    @Column(columnDefinition = "TEXT")
     public String imageUrl;
     public boolean irmEnabled;
     public boolean irmExpire;
@@ -68,7 +83,9 @@ public class List
     public boolean serverTemplateCanCreateFolders;
     public String templateFeatureId;
     public String title;
+    @Column(columnDefinition = "TEXT")
     public String validationFormula;
+    @Column(columnDefinition = "TEXT")
     public String validationMessage;
     public int writeSecurity;
     public boolean hasUniqueRoleAssignments;

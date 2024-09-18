@@ -3,21 +3,29 @@ package com.jhonny.SharePointReports.PersistenceModels;
 import com.jhonny.SharePointReports.PersistenceModels.MetaData_Objects.WebProperties.Group;
 import com.jhonny.SharePointReports.PersistenceModels.MetaData_Objects.WebProperties.User;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.EmbeddedId;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
+@Entity
+@Table(name = "site_user")
 public class SiteUsers
 {
 //    public String siteId;
 //    public String webId;
 //    public int id;
-
+    @EmbeddedId
     public SiteUserKey key;
 
     public int siteType;
     public String geoLocation;
     public String email;
     public String userPrincipleName;
+    @Column(columnDefinition = "TEXT")
     public String groups;
     public boolean isShareByEmailGuestUser;
     public boolean isSiteAdmin;
@@ -26,15 +34,21 @@ public class SiteUsers
     public String userId_nameIdUser;
     public String userId_typeId;
     public boolean isHiddenInUI;
+    @Column(columnDefinition = "TEXT")
     public String loginName;
     public String title;
     public int principalType;
 //    public String objectVersion;
+    @Column(columnDefinition = "TEXT")
     public String webUrl;
     public String webTitle;
     public String siteUrl;
     public String siteTitle;
 
+    public SiteUsers()
+    {
+
+    }
     public SiteUsers(Web webSource, User source, boolean isSiteOwner)
     {
 

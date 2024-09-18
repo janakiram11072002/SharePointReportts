@@ -2,21 +2,31 @@ package com.jhonny.SharePointReports.PersistenceModels;
 
 import com.jhonny.SharePointReports.PersistenceModels.MetaData_Objects.WebProperties.User;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.EmbeddedId;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "site_group_member")
 public class SiteGroupMember
 {
 //    public String siteId;
 //    public String webId;
 //    public int groupId;
 //    public int id;
+    @EmbeddedId
     public SiteGroupMemberKey key;
     public int siteType;
     public String siteUrl;
     public String siteTitle;
+    @Column(columnDefinition = "TEXT")
     public String webUrl;
     public String webTitle;
     public String groupTitle;
     public String title;
     public String email;
+    @Column(columnDefinition = "TEXT")
     public String loginName;
     public String domainName;
     public boolean isExternalUser;

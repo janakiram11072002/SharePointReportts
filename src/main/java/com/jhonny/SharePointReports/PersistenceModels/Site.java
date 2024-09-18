@@ -2,16 +2,26 @@ package com.jhonny.SharePointReports.PersistenceModels;
 
 
 import com.jhonny.SharePointReports.PersistenceModels.MetaData_Objects.SiteProperties.*;
-import com.jhonny.SharePointReports.Utils.enums.SiteType;
+// import com.jhonny.SharePointReports.Utils.enums.SiteType;
+import com.jhonny.SharePointReports.Utils.CustomUtils;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.EmbeddedId;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 
 import java.util.Calendar;
 import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+@Entity
+@Table(name = "site")
 public class Site
 {
-    public String id;
+    // public String id;
+    @EmbeddedId
+    public SiteKey key;
     public String siteType; //pending 
     
     public Boolean AllowCreateDeclarativeWorkflow;
@@ -213,7 +223,9 @@ public class Site
     // "RestrictedToRegion": 3,
     // "SandboxedCodeActivationCapability": 2,
     public boolean SetOwnerWithoutUpdatingSecondaryAdmin;
+    @Column(columnDefinition = "TEXT")
     public String SharingAllowedDomainList;
+    @Column(columnDefinition = "TEXT")
     public String SharingBlockedDomainList;
     public int SharingCapability;
     public int SharingDomainRestrictionMode;
@@ -249,7 +261,8 @@ public class Site
 
     public Site(SiteProperties source)
     {
-        id = source.getId();
+        this.key = new SiteKey();
+        this.key.id = source.getId();
         //siteType = source;
         AllowCreateDeclarativeWorkflow = source.isAllowCreateDeclarativeWorkflow();
         AllowDesigner = source.isAllowDesigner();
@@ -360,31 +373,7 @@ public class Site
         IsTeamsChannelConnected = source.isTeamsChannelConnected();
         IsTeamsConnected = source.isTeamsConnected();
         //LastContentModifiedDate = source.getLastContentModifiedDate();
-        try
-        {
-            Pattern pattern = Pattern.compile("/Date\\((\\d+),(\\d+),(\\d+),(\\d+),(\\d+),(\\d+),(\\d+)\\)/");
-            Matcher matcher = pattern.matcher(source.getLastContentModifiedDate());
-
-            if(matcher.matches())
-            {
-                Calendar calender = Calendar.getInstance();
-                calender.set(Calendar.YEAR,Integer.parseInt(matcher.group(1)));
-                calender.set(Calendar.MONTH,Integer.parseInt(matcher.group(2)));
-                calender.set(Calendar.DAY_OF_MONTH,Integer.parseInt(matcher.group(3)));
-                calender.set(Calendar.HOUR_OF_DAY,Integer.parseInt(matcher.group(4)));
-                calender.set(Calendar.MINUTE,Integer.parseInt(matcher.group(5)));
-                calender.set(Calendar.SECOND,Integer.parseInt(matcher.group(6)));
-                calender.set(Calendar.MILLISECOND,Integer.parseInt(matcher.group(7)));
-                
-                LastContentModifiedDate = calender.getTime();
-                
-            }
-        }
-        catch(Exception e)
-        {
-            System.err.println(e);
-        }
-
+        LastContentModifiedDate = CustomUtils.toDate(source.getLastContentModifiedDate());
         Lcid = source.getLcid();
         LockState = source.getLockState();
         NewUrl = source.getNewUrl();
