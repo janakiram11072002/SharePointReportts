@@ -91,11 +91,17 @@ public class CustomUtils
     public static String toGuid(String data)
     {
         // data = "\/Guid(0000000-0000-0000-0000-000000000000)\/"
-        if(data.length() > 0)
+        // if(data.length() > 0)
+        // {
+        //     data = data.replace("\\/Guid(", "");
+        //     data = data.replace(")\\/", "");
+        // }
+        // return data;
+
+        if(data!=null && data.length() > 0)
         {
-            data = data.replace("\\/Guid(", "");
-            data = data.replace(")\\/", "");
+            return data.substring(data.indexOf("id(")-3, data.indexOf(")")-1 );
         }
-        return data;
+        return "";
     }
 }
