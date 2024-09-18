@@ -6,6 +6,7 @@ public class SitePermissions
 {
     public String siteId;
     public String webId;
+    public String ListId;
     public int id;
     public String displayName;
     public String email;
