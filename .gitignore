@@ -31,3 +31,8 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### project IDX ###
+~/pgdata
+.idx/dev.nix
+.idx/.data/
