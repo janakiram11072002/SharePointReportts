@@ -2,10 +2,17 @@ package com.jhonny.SharePointReports.PersistenceModels;
 
 import com.jhonny.SharePointReports.PersistenceModels.MetaData_Objects.GeoInstances.SPOTenantInstance;
 
+import jakarta.persistence.EmbeddedId;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "geo_instances")
 public class GeoInstances
 {
     // public String dataLocation;
     // public String tenantAdminUrl;
+    @EmbeddedId
     public GeoInstanceKey key;
     public boolean isDefaultDataLocation;
     public String mySiteHostUrl;
