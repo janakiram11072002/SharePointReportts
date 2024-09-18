@@ -1,9 +1,14 @@
 package com.jhonny.SharePointReports.PersistenceModels;
 
+import java.io.Serializable;
+
+import jakarta.persistence.Embeddable;
+
 /**
  * GeoInstanceKey
  */
-public class GeoInstanceKey 
+@Embeddable
+public class GeoInstanceKey implements Serializable
 {
     public String dataLocation;
     public String tenantAdminUrl;    

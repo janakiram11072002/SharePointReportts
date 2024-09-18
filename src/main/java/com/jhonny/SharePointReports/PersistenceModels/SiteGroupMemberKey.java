@@ -1,6 +1,11 @@
 package com.jhonny.SharePointReports.PersistenceModels;
 
-public class SiteGroupMemberKey
+import java.io.Serializable;
+
+import jakarta.persistence.Embeddable;
+
+@Embeddable
+public class SiteGroupMemberKey implements Serializable
 {
     public String siteId;
     public String webId;

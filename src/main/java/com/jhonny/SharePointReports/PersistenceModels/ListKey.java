@@ -1,10 +1,16 @@
 package com.jhonny.SharePointReports.PersistenceModels;
 
-public class ListKey {
+import java.io.Serializable;
+
+import jakarta.persistence.Embeddable;
+
+@Embeddable
+public class ListKey implements Serializable
+{
     public String siteId;
     public String webId;
     public String id;
-    public ListKey()
+    public ListKey() 
     {
 
     }
