@@ -10,6 +10,8 @@ import com.jhonny.SharePointReports.Utils.JwtGenerater;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +22,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/test")
 public class TestController
 {
+
+    
+    @Autowired
+    private DataCollector dc;
+
+
     @GetMapping("/")
     public String sayHello()
     {
@@ -127,7 +135,7 @@ public class TestController
     @GetMapping("/test")
     public String testDataColecor()
     {
-        new DataCollector().initilize();
+        this.dc.initilize();
         //new DataCollector().getAllWebsFromAdmin();
         return "success";
     }
@@ -152,5 +160,23 @@ public class TestController
         int webs = new DataCollector().getAllWebsFromAdmin("https://42jghx-admin.sharepoint.com");
         //new DataCollector().getAllWebsFromAdmin();
         return "websCount = "+String.valueOf(webs);
+    }
+
+    @GetMapping("/jpatest")
+    public String jpaTest()
+    {
+        new DataCollector().testDependency();
+        return "success";
+    }
+
+
+    @GetMapping("/jpatest2")
+    public String jpaTest2()
+    {
+        // AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(DataCollector.class);
+        // DataCollector dc = context.getBean(DataCollector.class);
+        // context.close();
+        this.dc.testDependency();
+        return "success";
     }
 }
