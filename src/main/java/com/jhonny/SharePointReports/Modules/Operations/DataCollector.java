@@ -251,6 +251,7 @@ public class DataCollector
             allSiteProp = JsonUtils.toObject(JsonUtils.getDataFromJson(response,2), SitePropertiesEnumerable.class);
             for(TenantLevelSiteProperties siteProp : allSiteProp.getSites())
             {
+                if(siteProp.getTemplate().toLowerCase().contains("redirectsite")) continue;
                 System.out.println("Sites are Collected for  " + siteProp.getUrl());
                 getSiteProperties(siteProp);
                 siteCount++;
@@ -308,7 +309,7 @@ public class DataCollector
         HttpResponse<String> response = HttpUtils
             .Get(
                     endpoint,
-                    (siteProp.getUrl().contains("-my.sharepoint.com/personal")) ? token.GetOneDriveClientToken() : token.GetSiteClientToken(),
+                    (siteProp.getUrl().contains("-my.sharepoint.com")) ? token.GetOneDriveClientToken() : token.GetSiteClientToken(),
                     getSiteQuery());
         String siteResponse = response.body();
 
@@ -347,7 +348,7 @@ public class DataCollector
         String response = HttpUtils
                 .PostAsXML(
                         endpoint,
-                        url.contains("-my.sharepoint.com/personal") ? token.GetOneDriveClientToken() : token.GetSiteClientToken(),
+                        url.contains("-my.sharepoint.com") ? token.GetOneDriveClientToken() : token.GetSiteClientToken(),
                         getWebPropXml()
                 ).body();
         // System.out.println(response);
