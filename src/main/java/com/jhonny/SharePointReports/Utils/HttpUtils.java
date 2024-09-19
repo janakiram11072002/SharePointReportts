@@ -130,8 +130,66 @@ public class HttpUtils
         return sendRequestWithRetry(request);
     }
 
-    private static final int MAX_RETRY_LIMIT = 4; // Max retries before considering a new HttpClient
+    //#region Send request with retry
+    private static final int MAX_RETRY_LIMIT = 5; // Max retries before considering a new HttpClient
     private static final int MAX_RETRY_BEFORE_NEW_CLIENT = 3;
+
+//     public static HttpResponse<String> sendRequestWithRetry(HttpRequest request)
+//     {
+//         int currentRetry = 1;
+//         long delay = 1000;
+
+//         HttpResponse<String> response = null;
+//         try
+//         {
+//             response = client.send(request,HttpResponse.BodyHandlers.ofString());
+
+//             if(response.statusCode() == 200) return response;
+
+//             else if(response.statusCode() == 429) //Limit reached
+//             {
+//                 long retryAfterSeconds = Integer.parseInt(response.headers().firstValue("Retry-After").orElse("60"));
+//                 TimeUnit.SECONDS.sleep(retryAfterSeconds);
+//                 response = client.send(request,HttpResponse.BodyHandlers.ofString());
+//                 if(response.statusCode() == 200) return response;
+//             }
+
+//             else if(response.statusCode() == 503 || response.statusCode() == 504)
+//             {
+//                 System.out.println("Service Unavailable. Retrying after"+(delay)+"ms ........");
+//                 while(currentRetry < MAX_RETRY_LIMIT)
+//                 {
+//                     if(currentRetry >= MAX_RETRY_BEFORE_NEW_CLIENT)
+//                     {
+//                         client = HttpClient.newHttpClient();;
+//                     }
+//                     response = client.send(request,HttpResponse.BodyHandlers.ofString());
+
+//                     if(response.statusCode() == 200) return response;
+
+//                     TimeUnit.MILLISECONDS.sleep(delay);
+//                     delay *= 2;
+//                     currentRetry++;
+//                 }
+//             }
+// //            if(response.statusCode() == 503 || response.statusCode() == 429)
+// //            {
+// //
+// //                if(response.statusCode() != 200) throw new Exception();
+// //            }
+//             else
+//             {
+//                 System.out.println(request.uri() +" has failed with status code = "+ (int)response.statusCode()+" ("+response.statusCode()+")");
+//                 return response;
+//             }
+//         }
+//         catch(Exception e)
+//         {
+//             currentRetry++;
+//             if(currentRetry >= MAX_RETRY_LIMIT) throw new RuntimeException(e);
+//         }
+//         throw new RuntimeException("Exceeded maximum retries");
+//     }
 
     public static HttpResponse<String> sendRequestWithRetry(HttpRequest request)
     {
@@ -139,54 +197,74 @@ public class HttpUtils
         long delay = 1000;
 
         HttpResponse<String> response = null;
-        try
+        while(currentRetry++ < MAX_RETRY_LIMIT)
         {
-            response = client.send(request,HttpResponse.BodyHandlers.ofString());
-
-            if(response.statusCode() == 200) return response;
-
-            else if(response.statusCode() == 429) //Limit reached
+            try
             {
-                long retryAfterSeconds = Integer.parseInt(response.headers().firstValue("Retry-After").orElse("60"));
-                TimeUnit.SECONDS.sleep(retryAfterSeconds);
                 response = client.send(request,HttpResponse.BodyHandlers.ofString());
-                if(response.statusCode() == 200) return response;
-            }
-
-            else if(response.statusCode() == 503 || response.statusCode() == 504)
-            {
-                System.out.println("Service Unavailable. Retrying after"+(delay)+"ms ........");
-                while(currentRetry < MAX_RETRY_LIMIT)
+                System.out.println("Status Code = " + response.statusCode());
+                if(response.statusCode() == 200) 
                 {
+                    System.out.println("Success Request");
+                    return response;
+                }
+
+                else if(response.statusCode() == 429) //Limit reached
+                {
+                    long retryAfterSeconds = Integer.parseInt(response.headers().firstValue("Retry-After").orElse("60"));
+                    System.out.println("Rate limit reached. Retrying after " + retryAfterSeconds + " seconds...");
+                    TimeUnit.SECONDS.sleep(retryAfterSeconds);
+                    // response = client.send(request,HttpResponse.BodyHandlers.ofString());
+                    // if(response.statusCode() == 200) return response;
+                }
+
+                else if(response.statusCode() == 503 || response.statusCode() == 504)
+                {
+                    System.out.println("Service Unavailable. Retrying after"+(delay)+"ms ........");
+                    
                     if(currentRetry >= MAX_RETRY_BEFORE_NEW_CLIENT)
                     {
+                        System.out.println("Recreating HttpClient due to repeated 503/504 errors...");
                         client = HttpClient.newHttpClient();;
                     }
-                    response = client.send(request,HttpResponse.BodyHandlers.ofString());
+                    // response = client.send(request,HttpResponse.BodyHandlers.ofString());
 
-                    if(response.statusCode() == 200) return response;
+                    // if(response.statusCode() == 200) return response;
+                    System.out.println("Service Unavailable/Gateway Timeout. Retrying after " + delay + " ms..."); 
 
                     TimeUnit.MILLISECONDS.sleep(delay);
                     delay *= 2;
-                    currentRetry++;
+                    
+                }
+                else
+                {
+                    throw new RuntimeException(request.uri() +" has failed with status code = "+ (int)response.statusCode()+" ("+response.statusCode()+")");
                 }
             }
-//            if(response.statusCode() == 503 || response.statusCode() == 429)
-//            {
-//
-//                if(response.statusCode() != 200) throw new Exception();
-//            }
-            else
+            catch(Exception e)
             {
-                System.out.println(request.uri() +" has failed with status code = "+ (int)response.statusCode()+" ("+response.statusCode()+")");
-                return response;
+                currentRetry++;
+                if(currentRetry >= MAX_RETRY_LIMIT)
+                {
+                    throw new RuntimeException(e);
+                }
+                System.out.println("Exception occurred: " + e.getMessage() + ". Retrying after " + delay + " ms...");
+                // Optionally create a new HttpClient instance on exception if you want to
+                if (currentRetry >= MAX_RETRY_BEFORE_NEW_CLIENT) {
+                    client = HttpClient.newHttpClient();
+                    System.out.println("Recreating HttpClient due to exception...");
+                }
+                try {
+                    TimeUnit.MILLISECONDS.sleep(delay);
+                } catch (InterruptedException e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                }
+                delay *= 2; // Exponential backoff for retries after exceptions
             }
-        }
-        catch(Exception e)
-        {
-            currentRetry++;
-            if(currentRetry >= MAX_RETRY_LIMIT) throw new RuntimeException(e);
         }
         throw new RuntimeException("Exceeded maximum retries");
     }
+
+    //#endregion
 }
