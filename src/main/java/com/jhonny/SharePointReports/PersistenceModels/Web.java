@@ -302,9 +302,9 @@ public class Web
                     isOwner = true;
                 }
                 SiteGroupMember groupMembers = new SiteGroupMember(sitegroup, user, isOwner, isMember,isVisitor);
-                dbManager.saveMember(groupMembers);
+                // dbManager.saveMember(groupMembers);
             }
-            dbManager.saveGroup(sitegroup);
+            // dbManager.saveGroup(sitegroup);
             this.groupCount++;
         }
 
@@ -327,7 +327,7 @@ public class Web
         {
             SiteUsers siteUser= new SiteUsers(this, user, siteOwnersList.contains(user.getLoginName()));
             this.userCount++;
-            dbManager.saveUser(siteUser);
+            // dbManager.saveUser(siteUser);
         }
         System.out.println("Site Users data are Collected");
         
@@ -337,7 +337,7 @@ public class Web
             List list = new List(this, siteList);
             if(list.baseType == 0) this.listCount++;
             else if(list.baseType == 1) this.documentLibraryCount++;
-            dbManager.saveList(list);
+            // dbManager.saveList(list);
         }
         System.out.println("Site list data are collected.");
     }
