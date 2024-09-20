@@ -311,6 +311,7 @@ public class DataCollector
     {
 
         System.out.println(siteProp.getUrl());
+        System.out.println("Site Collection started : "+new Date());
         String endpoint = siteProp.getUrl()+"/_api/site";
         HttpResponse<String> response = HttpUtils
             .Get(
@@ -326,10 +327,10 @@ public class DataCollector
             site.updateSiteProp(siteProp);
             getWebProperties(site.key.id, site.Title, site.GeoLocation, siteProp.getUrl());
 
-            // this.dbManager.saveSite(site);
+            this.dbManager.saveSite(site);
         }
         else return;
-
+        System.out.println("Site Collection data Collected at "+new Date());
         //System.out.println(site);
     }
 
@@ -351,6 +352,7 @@ public class DataCollector
     public void getWebProperties(String siteId, String siteName, String geoLocation, String url)
     {
         System.out.println("Sites are Collected for  " + url);
+        System.out.println("Web Data collection started at : " + new Date());
         String endpoint = url+"/_vti_bin/client.svc/ProcessQuery";
         String response = HttpUtils
                 .PostAsXML(
@@ -363,7 +365,8 @@ public class DataCollector
 //        WebProperties webProp = JsonUtils.toObject(breakResponse.substring(0,breakResponse.length()-2), WebProperties.class);
         WebProperties webProp = JsonUtils.toObject(JsonUtils.getDataFromJson(response,2), WebProperties.class);
         Web web = new Web(siteId, siteName, geoLocation, webProp, this.dbManager);
-        // this.dbManager.saveWeb(web);
+        this.dbManager.saveWeb(web);
+        System.out.println("web data collected at : "+new Date());
         //return breakResponse;
     }
 
