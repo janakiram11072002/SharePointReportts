@@ -329,10 +329,10 @@ public class Web
         {
             System.out.println(e.getMessage());
         }
-        Set<SiteUsers> users = new HashSet<>();
+        Set<SiteUser> users = new HashSet<>();
         for(User user : source.getUserCollection().getUsers())
         {
-            SiteUsers siteUser= new SiteUsers(this, user, siteOwnersList.contains(user.getLoginName()));
+            SiteUser siteUser= new SiteUser(this, user, siteOwnersList.contains(user.getLoginName()));
             this.userCount++;
             users.add(siteUser);
             // dbManager.saveUser(siteUser);

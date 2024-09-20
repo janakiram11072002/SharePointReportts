@@ -6,12 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.jhonny.SharePointReports.PersistenceModels.GeoInstance;
 import com.jhonny.SharePointReports.PersistenceModels.List;
 import com.jhonny.SharePointReports.PersistenceModels.Site;
 import com.jhonny.SharePointReports.PersistenceModels.SiteGroup;
 import com.jhonny.SharePointReports.PersistenceModels.SiteGroupMember;
-import com.jhonny.SharePointReports.PersistenceModels.SiteUsers;
+import com.jhonny.SharePointReports.PersistenceModels.SiteUser;
 import com.jhonny.SharePointReports.PersistenceModels.Web;
+import com.jhonny.SharePointReports.Repository.GeoInstanceRepository;
 import com.jhonny.SharePointReports.Repository.ListRepository;
 import com.jhonny.SharePointReports.Repository.SiteGroupMemberRepository;
 import com.jhonny.SharePointReports.Repository.SiteGroupRepository;
@@ -23,6 +25,7 @@ import com.jhonny.SharePointReports.Repository.WebRepository;
 public class DbService
 {
     //@Autowired(required=true)
+    private GeoInstanceRepository geo;
     private SiteRepository site;
     private WebRepository web;
     private ListRepository list;
@@ -31,14 +34,20 @@ public class DbService
     private SiteGroupMemberRepository member;
 
     @Autowired(required=true)
-    public DbService(SiteRepository siterepo, WebRepository web, ListRepository list, SiteUserRepository user, SiteGroupRepository group, SiteGroupMemberRepository member)
+    public DbService(GeoInstanceRepository geo, SiteRepository site, WebRepository web, ListRepository list, SiteUserRepository user, SiteGroupRepository group, SiteGroupMemberRepository member)
     {
-        this.site = siterepo;
+        this.geo = geo;
+        this.site = site;
         this.web = web;
         this.list = list;
         this.user = user;
         this.group = group;
         this.member = member;
+    }
+
+    @Transactional
+    public void saveGeo(GeoInstance geo) {
+        this.geo.save(geo);
     }
 
     @Transactional
@@ -63,12 +72,12 @@ public class DbService
         this.list.saveAll(list);
     }
     @Transactional
-    public void saveUser(SiteUsers user)
+    public void saveUser(SiteUser user)
     {
         this.user.save(user);
     }
     @Transactional
-    public void saveAllUser(Set<SiteUsers> user)
+    public void saveAllUser(Set<SiteUser> user)
     {
         this.user.saveAll(user);
     }

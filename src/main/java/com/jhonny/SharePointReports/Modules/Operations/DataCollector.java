@@ -1,6 +1,6 @@
 package com.jhonny.SharePointReports.Modules.Operations;
 
-import com.jhonny.SharePointReports.PersistenceModels.GeoInstances;
+import com.jhonny.SharePointReports.PersistenceModels.GeoInstance;
 import com.jhonny.SharePointReports.PersistenceModels.MetaData_Objects.GeoInstances.SPOTenantInstance;
 import com.jhonny.SharePointReports.PersistenceModels.MetaData_Objects.GeoInstances.TenantInstanceResponse;
 import com.jhonny.SharePointReports.PersistenceModels.MetaData_Objects.SiteProperties.*;
@@ -194,11 +194,12 @@ public class DataCollector
                 TenantInstanceResponse.class);
         for(SPOTenantInstance instance : instances.get_Child_Items_())
         {
-            GeoInstances geoInstance= new GeoInstances(instance);
+            GeoInstance geoInstance= new GeoInstance(instance);
             int Sites = getAllSitesFromAdminV2(instance.getTenantAdminUrl());
             geoInstance.updateSite(Sites);
             Sites += getAllWebsFromAdmin(instance.getTenantAdminUrl());
             geoInstance.updateWeb(Sites);
+            // dbManager.update
         }
     }
 

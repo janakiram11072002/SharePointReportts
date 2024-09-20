@@ -8,7 +8,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "geo_instances")
-public class GeoInstances
+public class GeoInstance
 {
     // public String dataLocation;
     // public String tenantAdminUrl;
@@ -21,11 +21,11 @@ public class GeoInstances
     public int siteCollections;
     public int sites;
     //public int geosize;
-    public GeoInstances()
+    public GeoInstance()
     {
 
     }
-    public GeoInstances(SPOTenantInstance source)
+    public GeoInstance(SPOTenantInstance source)
     {
         this.key = new GeoInstanceKey(source.getDataLocation(), source.getTenantAdminUrl());
         // this.dataLocation = source.getDataLocation();

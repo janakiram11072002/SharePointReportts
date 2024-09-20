@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "site_user")
-public class SiteUsers
+public class SiteUser
 {
 //    public String siteId;
 //    public String webId;
@@ -45,11 +45,11 @@ public class SiteUsers
     public String siteUrl;
     public String siteTitle;
 
-    public SiteUsers()
+    public SiteUser()
     {
 
     }
-    public SiteUsers(Web webSource, User source, boolean isSiteOwner)
+    public SiteUser(Web webSource, User source, boolean isSiteOwner)
     {
 
 //        this.siteId = webSource.siteId;

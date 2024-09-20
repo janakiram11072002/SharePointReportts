@@ -7,9 +7,9 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.jhonny.SharePointReports.PersistenceModels.SiteUserKey;
-import com.jhonny.SharePointReports.PersistenceModels.SiteUsers;
+import com.jhonny.SharePointReports.PersistenceModels.SiteUser;
 
-public interface SiteUserRepository extends CrudRepository<SiteUsers, SiteUserKey>
+public interface SiteUserRepository extends CrudRepository<SiteUser, SiteUserKey>
 {
     // // updating partitin id
     // @Modifying
