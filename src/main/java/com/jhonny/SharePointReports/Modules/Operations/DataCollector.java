@@ -199,7 +199,7 @@ public class DataCollector
             geoInstance.updateSite(Sites);
             Sites += getAllWebsFromAdmin(instance.getTenantAdminUrl());
             geoInstance.updateWeb(Sites);
-            // dbManager.update
+            dbManager.saveGeo(geoInstance);
         }
     }
 
