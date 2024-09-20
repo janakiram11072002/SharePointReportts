@@ -105,7 +105,7 @@ public class List
 //        this.siteId = webSource.siteId;
 //        this.webId = webSource.id;
 //        this.id = webSource.id;
-        this.key = new ListKey(webSource.key.siteId, webSource.key.id, webSource.key.id);
+        this.key = new ListKey(webSource.key.siteId, webSource.key.id, CustomUtils.toGuid(source.getId()));
 
         this.webUrl = webSource.url;
 
