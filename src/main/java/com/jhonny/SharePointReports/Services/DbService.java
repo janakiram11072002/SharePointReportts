@@ -1,5 +1,7 @@
 package com.jhonny.SharePointReports.Services;
 
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -55,23 +57,40 @@ public class DbService
     {
         this.list.save(list);
     }
-
+    @Transactional
+    public void saveAllList(Set<List> list)
+    {
+        this.list.saveAll(list);
+    }
     @Transactional
     public void saveUser(SiteUsers user)
     {
         this.user.save(user);
     }
-
+    @Transactional
+    public void saveAllUser(Set<SiteUsers> user)
+    {
+        this.user.saveAll(user);
+    }
     @Transactional
     public void saveGroup (SiteGroup group)
     {
         this.group.save(group);
     }
-
+    @Transactional
+    public void saveAllGroup (Set<SiteGroup> group)
+    {
+        this.group.saveAll(group);
+    }
     @Transactional
     public void saveMember(SiteGroupMember member)
     {
         this.member.save(member);
+    }
+    @Transactional
+    public void saveAllMember(Set<SiteGroupMember> member)
+    {
+        this.member.saveAll(member);
     }
 
     @Transactional
