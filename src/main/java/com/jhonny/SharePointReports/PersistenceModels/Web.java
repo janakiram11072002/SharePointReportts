@@ -16,6 +16,7 @@ import jakarta.persistence.Table;
 
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 @Entity
@@ -265,10 +266,13 @@ public class Web
         HashSet<String> siteVisitor = new HashSet<>();
         HashSet<String> siteAdmins = new HashSet<>();
         HashSet<String> groupOwners = new HashSet<>();
-
+        
+        Set<SiteGroup> groups = new HashSet<>();
         for(Group group : source.getGroupCollection().getGroups())
         {
             SiteGroup sitegroup = new SiteGroup(this, group);
+
+            Set<SiteGroupMember> members= new HashSet<>();
             if(group.getTitle().equals(group.getOwnerTitle()))
             {
                 for(User user : group.getUserCollection().getUsers())
@@ -303,11 +307,14 @@ public class Web
                 }
                 SiteGroupMember groupMembers = new SiteGroupMember(sitegroup, user, isOwner, isMember,isVisitor);
                 // dbManager.saveMember(groupMembers);
+                members.add(groupMembers);
             }
+            dbManager.saveAllMember(members);
             // dbManager.saveGroup(sitegroup);
+            groups.add(sitegroup);
             this.groupCount++;
         }
-
+        dbManager.saveAllGroup(groups);
        this.adminCount = siteAdmins.size();
        this.ownerCount = siteOwners.size();
        this.memberCount = siteMembers.size();
@@ -322,23 +329,28 @@ public class Web
         {
             System.out.println(e.getMessage());
         }
-
+        Set<SiteUsers> users = new HashSet<>();
         for(User user : source.getUserCollection().getUsers())
         {
             SiteUsers siteUser= new SiteUsers(this, user, siteOwnersList.contains(user.getLoginName()));
             this.userCount++;
+            users.add(siteUser);
             // dbManager.saveUser(siteUser);
         }
+        dbManager.saveAllUser(users);
         System.out.println("Site Users data are Collected");
         
         System.out.println("Site Group and Group members date are collected.");
+        Set<List> lists = new HashSet<>();
         for(SiteList siteList : source.getListCollection().getLists())
         {
             List list = new List(this, siteList);
             if(list.baseType == 0) this.listCount++;
             else if(list.baseType == 1) this.documentLibraryCount++;
             // dbManager.saveList(list);
+            lists.add(list);
         }
+        dbManager.saveAllList(lists);
         System.out.println("Site list data are collected.");
     }
 
