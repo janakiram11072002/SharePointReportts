@@ -17,3 +17,25 @@ initdb --pgdata=~/pgdata --username=postgres
 # try to connect
 psql -U postgres
 
+
+
+reference for equals and hashcode
+
+
+
+@Override
+public boolean equals(Object obj) {
+    if(obj == null) return false;
+    GeoInstanceKey castedObject = (GeoInstanceKey) obj;
+    if(dataLocation.equals(castedObject.dataLocation) 
+        && tenantAdminUrl.equals(castedObject.tenantAdminUrl)) return true;
+
+    return false;
+}
+
+@Override
+public int hashCode() {
+    // TODO Auto-generated method stub
+    return (dataLocation+tenantAdminUrl).hashCode();
+}
+
