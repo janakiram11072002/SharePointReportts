@@ -100,7 +100,7 @@ public class CustomUtils
 
         if(data!=null && data.length() > 0)
         {
-            return data.substring(data.indexOf("id(")-3, data.indexOf(")")-1 );
+            return data.substring(data.indexOf("id(")+3, data.indexOf(")")-1 );
         }
         return "";
     }
