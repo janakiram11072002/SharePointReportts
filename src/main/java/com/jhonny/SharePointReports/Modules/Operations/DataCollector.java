@@ -249,6 +249,11 @@ public class DataCollector
             String response = HttpUtils.PostAsXML(endpoint, token.GetAdminToken(), getSitePropertyEmulatedXmlBody(appConfig.getTenatId(), startIndex)).body();
 
             allSiteProp = JsonUtils.toObject(JsonUtils.getDataFromJson(response,2), SitePropertiesEnumerable.class);
+            if(allSiteProp == null)
+            {
+                System.out.println("Site Colelcted as for is " + siteCount +"\n and there is no site for now");
+                return siteCount;
+            }
             for(TenantLevelSiteProperties siteProp : allSiteProp.getSites())
             {
                 if(siteProp.getTemplate().toLowerCase().contains("redirectsite")) continue;
