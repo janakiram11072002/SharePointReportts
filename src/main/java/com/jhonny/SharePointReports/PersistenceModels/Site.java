@@ -362,6 +362,11 @@ public class Site
     // Site Audit
     public void updateSiteProp(TenantLevelSiteProperties source)
     {
+        if(this.key == null || this.key.id == null)
+        {
+            this.key = new SiteKey();
+            this.key.id = source.getSiteId();
+        }
         ArchiveStatus = source.getArchiveStatus();
         AverageResourceUsage = source.getAverageResourceUsage();
         CurrentResourceUsage = source.getCurrentResourceUsage();
