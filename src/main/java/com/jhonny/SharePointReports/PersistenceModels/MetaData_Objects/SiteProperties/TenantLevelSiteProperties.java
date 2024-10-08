@@ -52,6 +52,8 @@ public class TenantLevelSiteProperties
     private int SharingCapability;
     @JsonProperty("SharingDomainRestrictionMode")
     private int SharingDomainRestrictionMode;
+    @JsonProperty("SiteId")
+    private String SiteId;
     @JsonProperty("Status")
     private String Status;
     @JsonProperty("StorageMaximumLevel")
@@ -252,6 +254,14 @@ public class TenantLevelSiteProperties
 
     public void setSharingDomainRestrictionMode(int sharingDomainRestrictionMode) {
         SharingDomainRestrictionMode = sharingDomainRestrictionMode;
+    }
+
+    public String getSiteId() {
+        return SiteId;
+    }
+
+    public void setSiteId(String siteId) {
+        SiteId = siteId;
     }
 
     public String getStatus() {
