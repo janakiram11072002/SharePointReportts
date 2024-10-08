@@ -310,7 +310,10 @@ public class DataCollector
 
     public void getSiteProperties(TenantLevelSiteProperties siteProp)
     {
-
+        if(siteProp.getLockState().toLowerCase().equals("noaccess"))
+        {
+            persistSiteIfLocked(siteProp);
+        }
         System.out.println(siteProp.getUrl());
         System.out.println("Site Collection started : "+new Date());
         String endpoint = siteProp.getUrl()+"/_api/site";
@@ -334,7 +337,12 @@ public class DataCollector
         System.out.println("Site Collection data Collected at "+new Date());
         //System.out.println(site);
     }
-
+    public void persistSiteIfLocked(TenantLevelSiteProperties siteProp)
+    {
+        Site site = new Site();
+        site.updateSiteProp(siteProp);
+        this.dbManager.saveSite(site);
+    }
     public TenantLevelSiteProperties getSitePropertiesV2(String adminSite, String url)
     {
         String endpoint = adminSite+"/_vti_bin/client.svc/ProcessQuery";
